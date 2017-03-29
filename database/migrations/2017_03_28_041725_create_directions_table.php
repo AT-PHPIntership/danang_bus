@@ -15,9 +15,9 @@ class CreateDirectionsTable extends Migration
     {
         Schema::create('directions', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('order');
+            $table->tinyInteger('order');
             $table->string('fee');
-            $table->integer('status');
+            $table->tinyInteger('status');
             $table->time('time');
             $table->integer('route_id')->unsigned();
             $table->integer('stop_id')->unsigned();
