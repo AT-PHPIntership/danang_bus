@@ -16,8 +16,8 @@ class CreateStopsTable extends Migration
         Schema::create('stops', function(Blueprint $table){
             $table->increments('id');
             $table->string('name');
-            $table->decimal('lat_x',11,8);
-            $table->decimal('lat_y',11,8);
+            $table->decimal('lat',11,8);
+            $table->decimal('lng',11,8);
             $table->string('address');
             $table->timestamps();
         });
