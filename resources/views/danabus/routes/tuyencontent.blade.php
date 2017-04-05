@@ -5,27 +5,23 @@
       <div class="triangle"></div>
       <div class="container">
         <div class=" title">
-            <h1> Tuyến Tam kỳ Đà Nẵng </h1>       
+            <h1> {{$routes->name}} </h1>       
         </div>
           <div id="single-project">  
             <div class="newcontent">
-              Tuyến số 1: Bến xe Trung tâm Đà Nẵng - Bến xe Hội An: <br>
+              Tuyến: {{$routes->name}} <br>
 
-                  {!! trans('tuyen.di') !!}: Bến xe Trung tâm Đà Nẵng - Tôn Đức Thắng - Nguyễn Sinh Sắc - Kinh Dương Vương - Lý Thái Tông - Thanh Khê 6 - Dũng sỹ Thanh Khê - Trần Cao Vân - Điện Biên Phủ - Lê Duẩn - Trần Phú - Trưng Nữ Vương - Núi Thành - Cầu Trần Thị Lý - Ngũ Hành Sơn - Trần Đại Nghĩa - Bến xe Hội An.
+                  {!! trans('tuyen.di') !!}: Bến xe Trung tâm Đà Nẵng - Tôn Đức Thắng - Nguyễn Sinh Sắc - Kinh Dương Vương - Lý Thái Tông - Thanh Khê 6 - Dũng sỹ Thanh Khê - Trần Cao Vân - Điện Biên Phủ - Lê Duẩn - Trần Phú - Trưng Nữ Vương - Núi Thành - Cầu Trần Thị Lý - Ngũ Hành Sơn - Trần Đại Nghĩa - Bến xe Hội An. <br>
 
-                  {!! trans('tuyen.ve') !!} Bến xe Hội An - Trần Đại Nghĩa - Ngũ Hành Sơn - Cầu Trần Thị Lý - Núi Thành - Trưng Nữ Vương - Bạch Đằng - Phan Đình Phùng - Yên Bái - Lê Duẩn - Điện Biên Phủ - Trần Cao Vân - Dũng Sỹ Thanh Khê - Thanh Khê 6 - Lý Thái Tông - Kinh Dương Vương - Nguyễn Sinh Sắc - Tôn Đức Thắng - Bến xe Trung tâm Đà Nẵng.
+                  {!! trans('tuyen.ve') !!} Bến xe Hội An - Trần Đại Nghĩa - Ngũ Hành Sơn - Cầu Trần Thị Lý - Núi Thành - Trưng Nữ Vương - Bạch Đằng - Phan Đình Phùng - Yên Bái - Lê Duẩn - Điện Biên Phủ - Trần Cao Vân - Dũng Sỹ Thanh Khê - Thanh Khê 6 - Lý Thái Tông - Kinh Dương Vương - Nguyễn Sinh Sắc - Tôn Đức Thắng - Bến xe Trung tâm Đà Nẵng. <br>
 
-                  {!! trans('tuyen.tansuat') !!}                                                    20 phút/chuyến. <br>
+                  {{ trans('tuyen.khoangcach') }}  {{$routes->distance}} km<br>
 
-                  Số chuyến (đi và về) trong ngày:               76 chuyến. <br>
+                  {!! trans('tuyen.tansuat') !!}                                                    {{$routes->frequency}} <br>
 
-                  {!! trans('tuyen.thoigian') !!}             5 giờ 30 đến 17 giờ 50. <br>
+                  {!! trans('tuyen.thoigian') !!}             {{$routes->start_time}} đến {{$routes->end_time}} <br>
 
-                  Doanh nghiệp khai thác tuyến: <br>
-
-                  * Công ty cổ phần Xe khách & DVTM Đà Nẵng - Điện thoại : (0511) 3680670; <br>
-
-                  * Hợp tác xã Vận tải Thuỷ bộ & Khách du lịch Hội An – Điện thoại: (0510) 3861240.
+                 
 
             </div>    
           </div>

@@ -8,6 +8,7 @@
 		've' => 'Hành trình lượt về:',
 		'tansuat' => 'Tần xuất: ',
 		'thoigian' => ' Thời gian hoạt động hàng ngày:    ',
+		'khoangcach' => 'Khoảng Cách :'
 		
 
 	];

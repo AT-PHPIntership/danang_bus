@@ -9,69 +9,27 @@
         <div class="container">    
           <div class="row">
             <div class="on-city" > {!! trans('tuyen.lientinh') !!}</div>
+            @foreach ($ngoaithanh as $value)
             <div class="col-sm-4">
               <div class="panel panel-primary">
                 <div class="panel-heading">
-                  <a  href="tuyencontent.html"> Tuyến số  1. Đà Nẵng - Bến xe Hội An</a>
+                  <a  href="tuyen/{{str_slug($value->name)}}-{{$value->id}}"> Tuyến : {{ $value->name }}</a>
                 </div>
               </div>
             </div>
-            <div class="col-sm-4"> 
-              <div class="panel panel-primary">
-                <div class="panel-heading"><a  href="tuyencontent.html">  Tuyến số  3: Đà Nẵng - Bến xe Ái Nghĩa</a></div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="panel panel-primary">
-                <div class="panel-heading"><a  href="tuyencontent.html">Tuyến số 4: Đà Nẵng - Tam Kỳ</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4"> 
-              <div class="panel panel-primary">
-                <div class="panel-heading"><a  href="tuyencontent.html">Tuyến số 6: Bến xe Trung tâm Đà Nẵng - Phú Đa</a></div>
-              </div>
-            </div>
-            <div class="col-sm-4"> 
-              <div class="panel panel-primary">
-                <div class="panel-heading"><a  href="tuyencontent.html">Tuyến số 9:  Thọ Quang  - Quế Sơn </a></div>
-              </div>
-            </div>
+            @endforeach
+        
           </div>
           <div class="row">
             <div class="on-city" > {!! trans('tuyen.noithanh') !!}</div>
+            @foreach ($noithanh as $value)
             <div class="col-sm-4"> 
               <div class="panel panel-primary">
-                <div class="panel-heading"><a  href="tuyencontent.html">Tuyến số 2: Kim Liên - Chợ Hàn</a></div>
+                <div class="panel-heading"><a  href="tuyen/{{str_slug($value->name)}}-{{$value->id}}">Tuyến: {{$value->name}}</a></div>
               </div>
             </div>
-            <div class="col-sm-4"> 
-              <div class="panel panel-primary">
-                <div class="panel-heading"><a  href="tuyencontent.html">Tuyến số  5 . Nguyễn Tất Thành - Xuân Diệu</a></div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="panel panel-primary">
-                <div class="panel-heading"><a  href="tuyencontent.html">Tuyến số 7 Xuân Diệu - Metro - Phạm Hung</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4"> 
-              <div class="panel panel-primary">
-                <div class="panel-heading"><a  href="tuyencontent.html">Tuyến số 8 Tho Quang - Pham Hung</a></div>
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="panel panel-primary">
-                <div class="panel-heading"><a  href="tuyencontent.html">Tuyến số 11 Xuan Dieu - Lotte Mart</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-4"> 
-              <div class="panel panel-primary">
-                <div class="panel-heading"><a  href="tuyencontent.html">Tuyến số 12 Tho Quang - Truong Sa</a></div>
-              </div>
-            </div>
+            @endforeach
+          
           </div>
         </div>
         </div>
@@ -88,5 +46,5 @@
           </div>
         </div>
       </div>
-      @stop
+    @stop
     

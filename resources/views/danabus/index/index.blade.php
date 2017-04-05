@@ -10,84 +10,40 @@
         </div>
         <ul class="nav nav-pills">
           <li class="filter" >
-            <a href="">{!! trans('index.all') !!}</a>
+            <a href="/">{!! trans('index.all') !!}</a>
           </li>
+          @foreach ($cats as $cat)
           <li class="filter" >
-            <a href="">{!! trans('index.giaothong') !!} </a>
+            <a href="danhmuc-{{$cat->id}}">{{$cat -> name}}</a>
           </li>
-          <li class="filter" >
-            <a href="">{!! trans('index.tuyenxe') !!}</a>
-          </li>
+          @endforeach
         </ul>
+        @foreach ($news as $value)
         <div id="single-project">
           <div id="slidingDiv" class="toggleDiv row-fluid single-project">
             <div class="span6 news-pic">
-              <img src="{{ asset('templates/danabus/images/image-1.jpg')}}" alt="" />
+              <img src="{{ asset('')}}/assets/files/{{$value->picture_path}}" alt="" />
             </div>
             <div class="span6 news-content">
               <div class="project-description">
                 <div class="project-title clearfix">
-                  <h3 class="title-news"><a href="tintuc.html">Chương trình “xe buýt đồng hành cùng người khuyết tật”</a> </h3>
+                  <h3 class="title-news"><a href="news/{{str_slug($value->title)}}-{{$value->id}}">{{{$value -> title}}}</a> </h3>
                 </div>
                 <div class="project-info">
                   <div>
-                    Sáng ngày 25/3, Đoàn thanh niên Trung tâm phối hợp cùng Hợp tác xã vận tải 19/5 triển khai Chương trình “xe buýt đồng hành cùng người khuyết tật”........
+                    {{ str_limit($value->content, $limit = 280, $end = '...')}}
                   </div>
                 </div>
               </div>
             </div>
           </div>                  
         </div>
-        <div id="single-project">
-          <div id="slidingDiv" class="toggleDiv row-fluid single-project">
-            <div class="span6 news-pic">
-              <img src="{{ asset('templates/danabus/images/image-2.jpg')}}" alt="" />
-            </div>
-            <div class="span6 news-content">
-              <div class="project-description">
-                <div class="project-title clearfix">
-                  <h3 class="title-news"><a href="tintuc.html">Kế hoạch phục vụ Lễ Giỗ tổ Hùng Vương năm 2017</a> </h3>
-                </div>
-                <div class="project-info">
-                  <div>
-                    Nhằm phục vụ hành khách vào ngày Lễ Giỗ tổ Hùng Vương năm 2017, Trung tâm đã có kế hoạch tăng chuyến trên các tuyến xe buýt phục vụ hành khách đến khu vui chơi, giảm chuyến và tạm ngưng một số tuyến trong dịp sinh viên nghỉ lễ.....
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>                  
-        </div>
-        <div id="single-project">
-          <div id="slidingDiv" class="toggleDiv row-fluid single-project">
-            <div class="span6 news-pic">
-              <img src="{{ asset('templates/danabus/images/image-1.jpg')}}" alt="" />
-            </div>
-            <div class="span6 news-content">
-              <div class="project-description">
-                <div class="project-title clearfix">
-                  <h3 class="title-news"><a href="tintuc.html">Chương trình “xe buýt đồng hành cùng người khuyết tật”</a> </h3>
-                </div>
-                <div class="project-info">
-                  <div>
-                    Sáng ngày 25/3, Đoàn thanh niên Trung tâm phối hợp cùng Hợp tác xã vận tải 19/5 triển khai Chương trình “xe buýt đồng hành cùng người khuyết tật”.......
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>                  
-        </div>
+        @endforeach
+        
       </div>
       <div class="container fix-cont-pad" >
         <div class="row fix-pagina">
-          <ul class="pagination">
-            <li><a href="#">&laquo;</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li class="disabled"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-          </ul>
+         {{$news -> render()}}
         </div>
       </div>
     </div>

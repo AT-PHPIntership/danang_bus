@@ -42,10 +42,10 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li><a href="index.html">{!! trans('header.home') !!} </a></li>
-            <li><a href="tuyen.html">{!! trans('header.routes') !!} </a></li>
-            <li><a href="search.html">{!! trans('header.search') !!} </a></li>
-            <li><a href="feedback.html">{!! trans('header.feedback') !!} </a></li>
+            <li><a href="/">{!! trans('header.home') !!} </a></li>
+            <li><a href="{{route('tuyen.content')}}">{!! trans('header.routes') !!} </a></li>
+            <li><a href="search">{!! trans('header.search') !!} </a></li>
+            <li><a href="feedback">{!! trans('header.feedback') !!} </a></li>
           </ul>
         </div>
       </div>
