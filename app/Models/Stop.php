@@ -8,11 +8,17 @@ class Stop extends Model
 {
     protected $table = 'stops';
     protected $fillable = [
-    	'name', 'lat', 'lng' ,'address'
+        'name', 'lat', 'lng' ,'address'
     ];
     public $timestamps = true;
-
-    public function direction() {
-    	return $this->belongsTo('App\Models\Directions');
+    
+    /**
+     * Get parent that owns Stop
+     *
+     * @return Direction
+     */
+    public function direction()
+    {
+        return $this->belongsTo('App\Models\Directions');
     }
 }

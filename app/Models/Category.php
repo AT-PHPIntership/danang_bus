@@ -10,8 +10,13 @@ class Category extends Model
     protected $fillable = 'name';
     public $timestamps = true;
 
-
-    public function news() {
-    	return $this->hasMany('App\News');
+    /**
+     * Get the children for category
+     *
+     * @return array List of child categories
+     */
+    public function news()
+    {
+        return $this->hasMany('App\News');
     }
 }

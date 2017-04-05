@@ -8,17 +8,27 @@ class Directions extends Model
 {
     protected $table = 'directions';
     protected $fillable = [
-    	'order', 'fee', 'status', 'time', 'route_id', 'stop_id'
+        'order', 'fee', 'status', 'time', 'route_id', 'stop_id'
     ];
     public $timestamps = true;
 
-
+    /**
+    * Get the phone record associated with the user.
+    *
+    * @return direction
+    */
     public function stop()
     {
         return $this->hasOne('App\Models\Stop');
     }
 
-    public function routes() {
-    	return $this->belongsTo('App\Models\Route');
+    /**
+     * Get parent that owns direction
+     *
+     * @return Route
+     */
+    public function routes()
+    {
+        return $this->belongsTo('App\Models\Route');
     }
 }
