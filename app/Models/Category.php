@@ -13,7 +13,7 @@ class Category extends Model
     /**
      * Get the children for category
      *
-     * @return array List of child categories
+     * @return array list of child categories
      */
     public function news()
     {

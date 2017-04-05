@@ -15,7 +15,7 @@ class Route extends Model
     /**
      * Get the children for route
      *
-     * @return array List of child route
+     * @return array list of child route
      */
     public function directions()
     {

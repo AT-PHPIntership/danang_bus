@@ -29,7 +29,7 @@ class User extends Authenticatable
     /**
      * Get the children for user
      *
-     * @return array List of child users
+     * @return array list of child users
      */
     public function news()
     {

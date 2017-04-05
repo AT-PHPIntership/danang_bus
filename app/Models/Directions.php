@@ -13,7 +13,7 @@ class Directions extends Model
     public $timestamps = true;
 
     /**
-    * Get the phone record associated with the user.
+    * Get the stop record associated with the direction.
     *
     * @return direction
     */

@@ -23,7 +23,7 @@ class News extends Model
     }
 
     /**
-     * Get parent that owns News
+     * Get parent that owns news
      *
      * @return Category
      */

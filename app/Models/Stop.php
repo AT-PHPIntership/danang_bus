@@ -13,7 +13,7 @@ class Stop extends Model
     public $timestamps = true;
     
     /**
-     * Get parent that owns Stop
+     * Get parent that owns stop
      *
      * @return Direction
      */
