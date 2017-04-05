@@ -19,6 +19,7 @@ class CreateRoutesTable extends Migration
             $table->integer('distance');
             $table->integer('frequency');
             $table->integer('frequency_peak');
+            $table->integer('type');
             $table->time('start_time');
             $table->time('end_time');
             $table->timestamps();
