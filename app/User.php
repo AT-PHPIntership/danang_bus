@@ -26,7 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function news() {
+
+    /**
+     * Get the children for user
+     *
+     * @return array list of child users
+     */
+    public function news()
+    {
         return $this->hasMany('App\Model\News');
     }
 }
