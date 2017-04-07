@@ -8,7 +8,7 @@ class Feedbacks extends Model
 {
     protected $table = 'feedbacks';
     protected $fillable = [
-    	'email', 'content', 'reply'
+        'email', 'content', 'reply'
     ];
     public $timestamps = true;
 }
