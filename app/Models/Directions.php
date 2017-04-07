@@ -13,9 +13,9 @@ class Directions extends Model
     public $timestamps = true;
 
     /**
-    * Get the stop record associated with the direction.
+    * Direction has one stop
     *
-    * @return direction
+    * @return Illuminate\Database\Eloquent\Relations\HasOne
     */
     public function stop()
     {
@@ -23,9 +23,9 @@ class Directions extends Model
     }
 
     /**
-     * Get parent that owns direction
+     * Direction belongs to a Route
      *
-     * @return Route
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function routes()
     {

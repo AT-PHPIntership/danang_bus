@@ -11,9 +11,9 @@ class Category extends Model
     public $timestamps = true;
 
     /**
-     * Get the children for category
+     * Category has many news
      *
-     * @return array list of child categories
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function news()
     {

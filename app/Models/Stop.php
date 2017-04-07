@@ -13,9 +13,9 @@ class Stop extends Model
     public $timestamps = true;
     
     /**
-     * Get parent that owns stop
+     * Stop belongs to a direction
      *
-     * @return Direction
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function direction()
     {

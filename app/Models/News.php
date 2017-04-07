@@ -13,9 +13,9 @@ class News extends Model
     public $timestamps = true;
 
     /**
-     * Get parent that owns News
+     *  News belongs to an User.
      *
-     * @return User
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
@@ -23,9 +23,9 @@ class News extends Model
     }
 
     /**
-     * Get parent that owns news
+     * News belongs to a Category.
      *
-     * @return Category
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function category()
     {

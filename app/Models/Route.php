@@ -13,9 +13,9 @@ class Route extends Model
     public $timestamps = true;
 
     /**
-     * Get the children for route
+     * Route has many directions
      *
-     * @return array list of child route
+     * @return Illuminate\Database\Eloquent\Relations\hasMany
      */
     public function directions()
     {

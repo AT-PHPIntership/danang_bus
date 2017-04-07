@@ -28,9 +28,9 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the children for user
+     * User has many news
      *
-     * @return array list of child users
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function news()
     {
