@@ -12,12 +12,11 @@ class NewsController extends Controller
     /**
     * Show news content
     *
-    * @param [type] $slug [slug event]
-    * @param [type] $id   [id event]
+    * @param integer $id id of news
     *
     * @return news content page
     */
-    public function news($slug, $id)
+    public function news($id)
     {
         $news = News::find($id);
         return view('danabus.news.news', ['news' => $news]);

@@ -27,7 +27,7 @@
         <div class="span6 news-content">
           <div class="project-description">
             <div class="project-title clearfix">
-              <h3 class="title-news"><a href="news/{{str_slug($value->title)}}-{{$value->id}}">{{{$value -> title}}}</a> </h3>
+              <h3 class="title-news"><a href="tintuc/tin-{{$value->id}}">{{{$value -> title}}}</a> </h3>
             </div>
             <div class="project-info">
               <div>

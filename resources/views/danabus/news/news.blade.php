@@ -15,7 +15,7 @@
     <div class="section secondary-section">
       <div class="container">
         <div class="title">
-            <h2 class="map">{{$trans('index.map')}}</h2>
+            <h2 class="map">{{ trans('index.map')}}</h2>
         </div>
       </div>
       <div class="map-wrapper">           

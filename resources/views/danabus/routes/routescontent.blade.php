@@ -9,25 +9,23 @@
       </div>
         <div id="single-project">  
           <div class="newcontent">
-            Tuyến: {{$routes->name}} <br>
+            {!! trans('routes.routes') !!}: {{$routes->name}} <br>
 
-                {!! trans('routes.go') !!}: @foreach ($directions as $value)  
+              {!! trans('routes.go') !!}: 
+                @foreach ($directions as $value)  
                   {{$value -> address}}-
 
-                  @endforeach
-                <br>
+                @endforeach
+              <br>
 
-                {!! trans('routes.back') !!} dhhdshd <br>
+              {!! trans('routes.back') !!} dhhdshd <br>
 
-                {{ trans('routes.distance') }}  {{$routes->distance}} km<br>
+              {{ trans('routes.distance') }}  {{$routes->distance}} km<br>
 
-                {!! trans('routes.frequency') !!}                                                    {{$routes->frequency}} <br>
-                {!! trans('routes.frequency_feak') !!}                                                    {{$routes->frequency}} <br>
-  
-                {!! trans('routes.time') !!}             {{$routes->start_time}} đến {{$routes->end_time}} <br>
+              {!! trans('routes.frequency')!!}  {{$routes->frequency}} <br>
+              {!! trans('routes.frequency_feak') !!} {{$routes->frequency}} <br>
 
-               
-
+              {!! trans('routes.time') !!}  {{$routes->start_time}} đến {{$routes->end_time}} <br>
           </div>    
         </div>
     </div>    

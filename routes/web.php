@@ -18,22 +18,15 @@ Route::pattern('id','([0-9]*)');
 Auth::routes();
 
 
+Route::group(['namespace' => 'Danabus'], function(){
+	Route::get('','IndexController@index');
+    Route::get('danhmuc-{id}','IndexController@filter');
+    Route::get('tintuc/tin-{id}','NewsController@news');
+    Route::get('tuyen',['as' => 'routes.route','uses' =>'RoutesController@routes']);
+    Route::get('tuyen/tuyen-{id}','RoutesController@routescontent');
+    Route::get('phanhoi','FeedbackController@feedback');
+    Route::get('timduong','SearchController@search');
+
+});
 
 
-
-Route::get('','Danabus\IndexController@index');
-Route::get('danhmuc-{id}','Danabus\IndexController@filter');
-
-
-
-Route::get('tintuc/{slug}-{id}','Danabus\NewsController@news');
-
-
-
-Route::get('tuyen',['as' => 'routes.content','uses' =>'Danabus\RoutesController@routes']);
-Route::get('tuyen/{slug}-{id}','Danabus\RoutesController@routescontent');
-
-Route::get('phanhoi','Danabus\FeedbackController@feedback');
-
-
-Route::get('timduong','Danabus\SearchController@search');

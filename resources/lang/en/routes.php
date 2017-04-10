@@ -9,7 +9,8 @@
         'frequency' => 'Tần xuất: ',
         'frequency_peak' => 'Tần suất giờ cao điểm ',
         'time' => ' Thời gian hoạt động hàng ngày:    ',
-        'distance' => 'Khoảng Cách :'
+        'distance' => 'Khoảng Cách :',
+        'routes' => 'Tuyến'
         
 
     ];

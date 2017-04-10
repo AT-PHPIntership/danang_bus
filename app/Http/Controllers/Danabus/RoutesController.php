@@ -24,12 +24,11 @@ class RoutesController extends Controller
     /**
     * Show routes content
     *
-    * @param [type] $slug [slug event]
-    * @param [type] $id   [id event]
+    * @param integer $id id of routes
     *
     * @return routes content page
     */
-    public function routescontent($slug, $id)
+    public function routescontent($id)
     {
         $directions=DB::table('directions')->join('stops', 'directions.stop_id', '=', 'stops.id')->where('route_id', '=', $id)->get();
         $routes = Route::find($id);

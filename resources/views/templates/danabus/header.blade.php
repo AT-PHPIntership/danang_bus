@@ -43,7 +43,7 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li><a href="/">{!! trans('header.home') !!} </a></li>
-            <li><a href="{{route('routes.content')}}">{!! trans('header.routes') !!} </a></li>
+            <li><a href="{{route('routes.route')}}">{!! trans('header.routes') !!} </a></li>
             <li><a href="search">{!! trans('header.search') !!} </a></li>
             <li><a href="feedback">{!! trans('header.feedback') !!} </a></li>
           </ul>
