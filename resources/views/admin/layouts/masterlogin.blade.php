@@ -17,7 +17,6 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{asset('bower_components/AdminLTE/dist/css/skins/_all-skins.min.css')}}">
-  <link rel="stylesheet" href="{{asset('bower_components/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
   <!-- HTML5 Shim and Respond.js')}} IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js')}} doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -29,13 +28,11 @@
 <div class="wrapper">
 
   @include('admin.layouts.partials.header')
-  <!-- Left side column. contains the logo and sidebar -->
-  @include('admin.layouts.partials.sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('admin.layouts.partials.content_header')
+    <!-- @include('admin.layouts.partials.content_header') -->
 
     <!-- Main content -->
     @yield('content')
@@ -56,14 +53,9 @@
 </script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{{asset('bower_components/AdminLTE/bootstrap/js/bootstrap.min.js')}}"></script>
-<!-- Slimscroll -->
-<script src="{{asset('bower_components/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
 <!-- FastClick -->
 <script src="{{asset('bower_components/AdminLTE/plugins/fastclick/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('bower_components/AdminLTE/dist/js/app.min.js')}}"></script>
-<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
-<!-- daterangepicker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 </body>
 </html>
