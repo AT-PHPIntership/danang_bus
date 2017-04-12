@@ -11,6 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::pattern('slug','(.*)');
+Route::pattern('id','([0-9]*)');
+
+Route::group(['namespace' => 'Danabus'], function(){
+	
+	Route::get('/','NewsController@index');
+
+	Route::get('/tuyen','RoutesController@index');
+
+	Route::get('/tuyen/{id}', 'RoutesController@show');
+
+	Route::get('/danhmuc/{id}', 'CategoryController@show');
+
+	Route::get('/tintuc/{id}', 'NewsController@show');
+	
+	
+
+	
 });
