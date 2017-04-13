@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'fullname','password',
     ];
 
     /**
@@ -34,6 +34,6 @@ class User extends Authenticatable
      */
     public function news()
     {
-        return $this->hasMany('App\Model\News');
+        return $this->hasMany(News::class);
     }
 }

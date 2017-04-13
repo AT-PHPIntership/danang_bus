@@ -1,0 +1,17 @@
+{
+  "name": "danang_bus",
+  "homepage": "https://github.com/AT-PHPIntership/danang_bus",
+  "description": "danabus project",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+   "dependencies": {
+    "AdminLTE": "admin-lte#^2.3.11"
+  }
+}
