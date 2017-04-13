@@ -19,7 +19,7 @@ class News extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -29,6 +29,6 @@ class News extends Model
      */
     public function category()
     {
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo(Category::class);
     }
 }
