@@ -11,7 +11,6 @@ return [
         'copyright' => 'Copyright &copy; AT-IntershipPHP',
         'admin' => 'Admin',
         'home' =>'Home',
-        'category' =>'Category',
         'news' => 'News',
         'route'=> 'Route',
         'direction'=>'Direction',
@@ -23,4 +22,9 @@ return [
         'login' => 'Login',
         'register' => 'Register',
         'profile' =>'Profile',
+        'submit' =>'Submit',
+        'cancel' =>'Cancel',
+        'action' =>'Action',
+        'delete' =>'Delete',
+        'edit' =>'Edit',
     ];
