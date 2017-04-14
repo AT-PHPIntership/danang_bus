@@ -42,7 +42,7 @@ class CategoryController extends Controller
     {
         $category = new Category($request->all());
         $category ->save();
-        Session::flash(trans('messages.success'), trans('messages.category_create_success'));
+        Session::flash(trans('messages.category_create_success'), 'success');
         return redirect()->route('categories.index');
     }
 
@@ -64,7 +64,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         return view('admin.categories.edit', compact('category', $category));
     }
 
@@ -79,7 +79,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         Category::find($id)->update($request->all());
-        Session::flash(trans('messages.success'), trans('messages.category_edit_success'));
+        Session::flash(trans('messages.category_edit_success'), 'success');
         return redirect()->route('categories.index');
     }
 
@@ -92,7 +92,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::find($id)->delete();
+        Category::findOrFail($id)->delete();
         Session::flash(trans('messages.success'), trans('messages.category_delete_success'));
         return redirect()->route('categories.index');
     }
