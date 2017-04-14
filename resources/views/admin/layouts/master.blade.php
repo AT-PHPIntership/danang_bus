@@ -62,21 +62,15 @@
 <script src="{{asset('bower_components/AdminLTE/dist/js/app.min.js')}}"></script>
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <script src="{{asset('bower_components/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
+<script src="{{asset('admin/myjavascript.js')}}"></script>
 <script>
   $(function () {
     CKEDITOR.replace('editor1');
     $(".textarea").wysihtml5();
   });
-  //Timepicker
     $(".timepicker").timepicker({
       showInputs: false
     });
-    function Delete(msg){
-      if(window.confirm(msg)){
-        return true;
-      }
-      return false;
-    }
 </script>
 </body>
 </html>

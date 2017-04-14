@@ -18,16 +18,10 @@
             <label>{{trans('categories.news')}}</label>
             <input type="text" class="form-control"  name="name" placeholder="Enter news title category">
           </div>
+          <div class="form-group has-error"> 
+            <span class="help-block">{{$errors->first('name')}}</span>
           </div>
-          @if (count($errors) > 0)
-              <div class="alert alert-danger">
-                  <ul>
-                      @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                      @endforeach
-                  </ul>
-              </div>
-          @endif
+          </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary">{{trans('admin.submit')}}</button>
             <a href="{{route('admin.categories.index')}}"><button type="button" class="btn  btn-danger">{{trans('admin.cancel')}}</button></a>

@@ -6,24 +6,17 @@
         <div class="box-header with-border">
           <h3 class="box-title">{{trans('categories.add')}}</h3>
         </div>
-        <!-- form start -->
         <form action="{!! URL::route('admin.categories.store')!!}" enctype="multipart/form-data" method="POST">
           {{csrf_field()}}
           <div class="box-body">
-            <div class="form-group ">
+              <div class="form-group">
                 <label >{{trans('categories.title')}} </label>
                 <input type="text" class="form-control"  name="name" placeholder="Enter title category">
-            </div>
-          </div>
-            @if (count($errors) > 0)
-              <div class="alert alert-danger">
-                  <ul>
-                      @foreach ($errors->all() as $error)
-                          <li>{{ $error }}</li>
-                      @endforeach
-                  </ul>
+                <div class="form-group has-error"> 
+                <span class="help-block">{{$errors->first('name')}}</span>
+                </div>
               </div>
-          @endif
+          </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary">{{trans('admin.submit')}}</button>
             <a href="{{route('admin.categories.index')}}"><button type="button" class="btn  btn-danger">{{trans('admin.cancel')}}</button></a>

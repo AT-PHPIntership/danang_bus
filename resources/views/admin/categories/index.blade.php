@@ -19,7 +19,7 @@
             <th>{{trans('categories.title')}}</th>
             <th style="width: 150px">{{trans('admin.action')}}</th>
           </tr>
-           @foreach($category as $item)
+           @foreach($categories as $item)
           <tr>
             <td>{{$item->id}}</td>
             <td>{{ $item->name}}</td>
@@ -35,7 +35,7 @@
                       <form action="{!!route('admin.categories.destroy',$item->id)!!}" enctype="multipart/form-data" method="POST">
                         <input type="hidden" name="_token"  value="{!! csrf_token()!!}">
                       {{ method_field('DELETE') }}
-                      <input type="submit" name="" onclick="return Delete('Are you want to delete this !!!')" value="{{trans('admin.delete')}}">
+                      <input type="submit" name="" onclick="return confirmDelete('Are you want to delete this !!!')" value="{{trans('admin.delete')}}">
                     </form>
                     </li>
                     <li><a href="{{route('admin.categories.edit',$item->id)}}">{{trans('admin.edit')}}</a></li>
@@ -48,7 +48,7 @@
       </div>
       <div class="box-footer clearfix">
         <ul class="pagination pagination-sm no-margin pull-right">
-        <li> {{$category->render()}}</li>
+        <li> {{$categories->render()}}</li>
         </ul>
       </div>
     </div>

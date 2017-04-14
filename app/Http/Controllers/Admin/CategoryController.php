@@ -17,8 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category= Category::orderBy('id', 'DESC')->paginate();
-        return view('admin.categories.index', compact('category', $category));
+        $categories= Category::orderBy('id', 'DESC')->paginate();
+        return view('admin.categories.index', compact('categories', $categories));
     }
 
     /**
@@ -78,7 +78,7 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        Category::find($id)->update($request->all());
+        Category::findOrFail($id)->update($request->all());
         Session::flash('success', trans('messages.category_edit_success'));
         return redirect()->route('admin.categories.index');
     }
