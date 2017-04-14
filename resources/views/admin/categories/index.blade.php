@@ -2,9 +2,9 @@
 @section('title', 'List Category')
 @section('content')
 <div class="row">
-  @if(Session::has('msg'))
+  @if(Session::has('success'))
       <div class="alert alert-success">
-          {{ Session::get('msg') }}
+          {{ Session::get('success') }}
       </div>
   @endif
   <div class="col-md-10 col-md-offset-1">
@@ -21,7 +21,7 @@
           </tr>
            @foreach($data as $item)
           <tr>
-            <td>1.</td>
+            <td>{{$item->id}}</td>
             <td>{{ $item->name}}</td>
             <td>
                 <div class="btn-group">
@@ -38,7 +38,7 @@
                       <input type="submit" name="" value="{{trans('admin.delete')}}">
                     </form>
                     </li>
-                    <li><a href="{{route('categories.show',$item->id)}}">{{trans('admin.edit')}}</a></li>
+                    <li><a href="{{route('categories.edit',$item->id)}}">{{trans('admin.edit')}}</a></li>
                   </ul>
                 </div>
             </td>
