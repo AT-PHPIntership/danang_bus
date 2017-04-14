@@ -17,8 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = Category::orderBy('id', 'DESC')->paginate();
-        return view('admin.categories.index', compact('data', $data));
+        $category= Category::orderBy('id', 'DESC')->paginate();
+        return view('admin.categories.index', compact('category', $category));
     }
 
     /**
@@ -42,8 +42,8 @@ class CategoryController extends Controller
     {
         $category = new Category($request->all());
         $category ->save();
-        Session::flash(trans('messages.category_create_success'), 'success');
-        return redirect()->route('categories.index');
+        Session::flash('success', trans('messages.category_create_success'));
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -79,8 +79,8 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         Category::find($id)->update($request->all());
-        Session::flash(trans('messages.category_edit_success'), 'success');
-        return redirect()->route('categories.index');
+        Session::flash('success', trans('messages.category_edit_success'));
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -93,7 +93,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::findOrFail($id)->delete();
-        Session::flash(trans('messages.success'), trans('messages.category_delete_success'));
-        return redirect()->route('categories.index');
+        Session::flash('success', trans('messages.category_delete_success'));
+        return redirect()->route('admin.categories.index');
     }
 }

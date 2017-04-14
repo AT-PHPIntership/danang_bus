@@ -71,6 +71,12 @@
     $(".timepicker").timepicker({
       showInputs: false
     });
+    function Delete(msg){
+      if(window.confirm(msg)){
+        return true;
+      }
+      return false;
+    }
 </script>
 </body>
 </html>
