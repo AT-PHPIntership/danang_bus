@@ -19,7 +19,7 @@ class Directions extends Model
     */
     public function stop()
     {
-        return $this->hasOne('App\Models\Stop');
+        return $this->hasOne(Stop::class);
     }
 
     /**
@@ -29,6 +29,6 @@ class Directions extends Model
      */
     public function routes()
     {
-        return $this->belongsTo('App\Models\Route');
+        return $this->belongsTo(Route::class);
     }
 }
