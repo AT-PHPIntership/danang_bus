@@ -4,6 +4,7 @@
     <file>app</file>
     <file>resources</file>
     <file>config</file>
+    <file>routes</file>
 
     <!-- Add PSR1 standard -->
     <rule ref="PSR1"></rule>

@@ -11,7 +11,6 @@ return [
         'copyright' => 'Copyright &copy; AT-IntershipPHP',
         'admin' => 'Admin',
         'home' =>'Home',
-        'category' =>'Category',
         'news' => 'News',
         'route'=> 'Route',
         'direction'=>'Direction',

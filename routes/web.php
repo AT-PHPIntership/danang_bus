@@ -16,11 +16,11 @@ Route::get('/', function () {
 });
 
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
-    Route::get('/home','AdminController@index');
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    Route::get('/home', 'AdminController@index');
     Route::resource('/news', 'NewsController');
-    Route::resource('/categories','CategoryController');
-    Route::resource('/routes','RouteController');
+    Route::resource('/categories', 'CategoryController');
+    Route::resource('/routes', 'RouteController');
     Route::Auth();
 });
 Route::get('/home', 'HomeController@index');
