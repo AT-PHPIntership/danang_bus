@@ -19,6 +19,7 @@ class CategoryController extends Controller
     {
         $category= Category::orderBy('id', 'DESC')->paginate();
         return view('admin.categories.index', compact('category', $category));
+
     }
 
     /**
@@ -44,6 +45,7 @@ class CategoryController extends Controller
         $category ->save();
         Session::flash('success', trans('messages.category_create_success'));
         return redirect()->route('admin.categories.index');
+
     }
 
     /**
@@ -53,6 +55,7 @@ class CategoryController extends Controller
      */
     public function show()
     {
+        
     }
 
     /**
@@ -81,6 +84,7 @@ class CategoryController extends Controller
         Category::find($id)->update($request->all());
         Session::flash('success', trans('messages.category_edit_success'));
         return redirect()->route('admin.categories.index');
+
     }
 
     /**
@@ -95,5 +99,6 @@ class CategoryController extends Controller
         Category::findOrFail($id)->delete();
         Session::flash('success', trans('messages.category_delete_success'));
         return redirect()->route('admin.categories.index');
+
     }
 }

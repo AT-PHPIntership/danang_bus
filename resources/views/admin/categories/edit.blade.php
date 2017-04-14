@@ -31,6 +31,7 @@
           <div class="box-footer">
             <button type="submit" class="btn btn-primary">{{trans('admin.submit')}}</button>
             <a href="{{route('admin.categories.index')}}"><button type="button" class="btn  btn-danger">{{trans('admin.cancel')}}</button></a>
+
           </div>
       </form>
     </div>

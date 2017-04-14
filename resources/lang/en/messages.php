@@ -1,4 +1,5 @@
-<?php
+
+<?php 
 return [
     'success' => 'success',
     'warmning' => 'warmning',
@@ -9,3 +10,4 @@ return [
     'news_edit_success' => 'Edit News Success',
     'news_delete_success' => 'Delete News Success',
 ];
+?>

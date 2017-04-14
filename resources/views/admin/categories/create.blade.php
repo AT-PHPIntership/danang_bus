@@ -8,11 +8,11 @@
         </div>
         <!-- form start -->
         <form action="{!! URL::route('admin.categories.store')!!}" enctype="multipart/form-data" method="POST">
-           {{csrf_field()}}
+          <input type="hidden" name="_token" value="{!! csrf_token()!!}">
           <div class="box-body">
             <div class="form-group ">
-                <label>{{trans('categories.title')}} </label>
-                <input type="text" class="form-control"  name="name" placeholder="Enter title category">
+                <label for="exampleInputEmail1">{{trans('categories.title')}} </label>
+                <input type="text" class="form-control" id="exampleInputTitle" name="name" placeholder="Enter title category">
             </div>
           </div>
             @if (count($errors) > 0)
