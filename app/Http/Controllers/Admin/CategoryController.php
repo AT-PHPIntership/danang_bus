@@ -17,8 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $data = Category::orderBy('id', 'DESC')->paginate(config('constant.LIMIT_PAGE_ADMIN'));
-        return view('admin.categories.list', compact('data', $data));
+        $data = Category::orderBy('id', 'DESC')->paginate();
+        return view('admin.categories.index', compact('data', $data));
     }
 
     /**
@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.add');
+        return view('admin.categories.create');
     }
 
     /**
@@ -40,33 +40,32 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        $data = new Category;
-        $data ->name = $request ->txtTitle;
-        $data ->save();
-        Session::flash('msg', 'Add success !');
+        $category = new Category($request->all());
+        $category ->save();
+        Session::flash(trans('messages.success'), trans('messages.category_create_success'));
         return redirect()->route('categories.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id of category
-     *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $dataCategory = Category::find($id);
-        return view('admin.categories.edit', compact('dataCategory', $dataCategory));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
+     * @param int $id of category
+     *
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
+        $category = Category::find($id);
+        return view('admin.categories.edit', compact('category', $category));
     }
 
     /**
@@ -77,12 +76,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        $dataCategory = Category::find($id);
-        $dataCategory ->name = $request->txtTitle;
-        $dataCategory -> save();
-        Session::flash('msg', 'Update success !');
+        Category::find($id)->update($request->all());
+        Session::flash(trans('messages.success'), trans('messages.category_edit_success'));
         return redirect()->route('categories.index');
     }
 
@@ -95,9 +92,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $dataCategory = Category::find($id);
-        $dataCategory ->delete($id);
-        Session::flash('msg', 'Delete success !');
+        Category::find($id)->delete();
+        Session::flash(trans('messages.success'), trans('messages.category_delete_success'));
         return redirect()->route('categories.index');
     }
 }

@@ -24,19 +24,7 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'txtTitle' => 'required',
-        ];
-    }
-
-    /**
-     * Return  that apply to the request.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'txtTitle.required' => 'Vui lòng nhập title vào trường ',
+            'name' => 'required',
         ];
     }
 }
