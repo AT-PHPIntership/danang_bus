@@ -15,9 +15,9 @@
       <div class="box-body">
         <table class="table table-bordered">
           <tr>
-            <th style="width: 20px">#</th>
+            <th style="width: 5%">#</th>
             <th>{{trans('categories.title')}}</th>
-            <th style="width: 150px">{{trans('admin.action')}}</th>
+            <th style="width: 15%">{{trans('admin.action')}}</th>
           </tr>
            @foreach($categories as $item)
           <tr>
