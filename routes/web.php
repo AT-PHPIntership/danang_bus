@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
@@ -22,3 +19,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::Auth();
 });
 Route::get('/home', 'HomeController@index');
+
+Route::group(['namespace' => 'Danabus'], function () {
+    Route::get('/', 'IndexController@index');
+    Route::resource('/categories', 'CategoryController');
+    Route::resource('/news', 'NewsController');
+});
