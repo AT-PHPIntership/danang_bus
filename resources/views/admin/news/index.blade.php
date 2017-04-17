@@ -17,12 +17,10 @@
         <table class="table table-hover">
           <tr>
             <th>#</th>
-            <th style="width:15%">{{trans('news.title')}}</th>
-            <th style="width:8%">{{trans('categories.category')}}</th>
-            <th style="width:8%">{{trans('news.user')}}</th>
-            <th>{{trans('news.content')}}</th>
-            <th>{{trans('news.image')}}</th>
-            <th>{{trans('admin.action')}}</th>
+            <th style="width:25%">{{trans('news.title')}}</th>
+            <th >{{trans('categories.category')}}</th>
+            <th style="width:15%">{{trans('news.user')}}</th>
+            <th style="width:8%">{{trans('admin.action')}}</th>
           </tr>
           @foreach($news as $item)
           <tr>
@@ -30,8 +28,6 @@
             <td>{{$item->title}}</td>
             <td>{{$item->category->name}}</td>
             <td>{{$item->user->fullname}}</td>
-            <td>{{str_limit($item->content, $limit = 200 , $end = '....')}}</td>
-            <td><img style="height:100px;width: 100px" src="{{asset(trans('news.picture_news'))}}/{{$item->picture_path}}"></td>
             <td>
               <a href="{{route('admin.news.edit',$item->id)}}">
               <button type="button" class="btn btn-block btn-info btn-sm">
