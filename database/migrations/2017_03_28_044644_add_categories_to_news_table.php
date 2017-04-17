@@ -27,8 +27,8 @@ class AddCategoriesToNewsTable extends Migration
     public function down()
     {
         Schema::table('news', function (Blueprint $table) {
-            $table->dropForeign('category_id');
-            $table->dropForeign('user_id');
+            $table->dropForeign('news_category_id_foreign');
+            $table->dropForeign('news_user_id_foreign');
         });
     }
 }
