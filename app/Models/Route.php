@@ -19,6 +19,6 @@ class Route extends Model
      */
     public function directions()
     {
-        return $this->hasMany('App\Models\Direction');
+        return $this->hasMany(Directions::class);
     }
 }

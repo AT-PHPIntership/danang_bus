@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use App\User;
+use App\Models\User;
 
 class UserTableSeeder extends Seeder
 {
@@ -13,6 +13,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 10)->create();
+        factory(App\Models\User::class, 10)->create();
     }
 }
