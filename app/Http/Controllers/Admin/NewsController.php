@@ -63,19 +63,48 @@ class NewsController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param int $id of news
+     *
+     * @return \Illuminate\Http\Response
      */
-    // public function edit($id)
-    // {
-    //     //
-    // }
+    public function edit($id)
+    {
+        $categories = Category::orderBy('id', 'DESC')->get();
+        $news =  News::findOrFail($id);
+        return view('admin.news.edit', compact('news', 'categories'));
+    }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request of news
+     * @param int                      $id      of news
+     *
+     * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
+    public function update(NewsRequest $request, $id)
+    {
+        $news = News::findOrFail($id);
+        $picturePathOld = $news['picture_path'];
+        $news ->user_id = Auth()->user()->id;
+        $news ->title = $request ->title;
+        $news ->content = $request ->content;
+        $news ->category_id = $request ->category_id;
+        if ($request->hasFile('picture_path')) {
+            $news ->picture_path= $request->picture_path->hashName();
+            $request->file('picture_path')->move('upload/picture_news', $news ->picture_path);
+            unlink('../public/upload/picture_news/'.$picturePathOld);
+        }
+        $result = $news ->update();
+        if ($result) {
+            Session::flash('success', trans('messages.news_edit_success'));
+            return redirect()->route('admin.news.index');
+        } else {
+            Session::flash('success', trans('messages.news_edit_success'));
+            return redirect()->route('admin.news.create');
+        }
+    }
 
     /**
      * Remove the specified resource from storage.
