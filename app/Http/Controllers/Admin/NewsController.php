@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\News;
 use App\Models\Category;
-use App\Http\Requests\NewsRequest;
+use App\Http\Requests\NewsPostRequest;
 use Session;
 use Storage;
 use File;
@@ -31,8 +31,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $categories = Category::orderBy('id', 'DESC')->get();
-        return view('admin.news.create', compact('categories'));
+        return view('admin.news.create');
     }
 
     /**
@@ -42,14 +41,14 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(NewsRequest $request)
+    public function store(NewsPostRequest $request)
     {
 
         $news = new News($request->all());
         $news ->user_id = Auth()->user()->id;
         if ($request->hasFile('picture_path')) {
             $news ->picture_path= $request->picture_path->hashName();
-            $request->file('picture_path')->move('upload/picture_news', $news ->picture_path);
+            $request->file('picture_path')->move(config('constant.path_upload'), $news ->picture_path);
             $result = $news ->save();
             if ($result) {
                 Session::flash('success', trans('messages.news_create_success'));

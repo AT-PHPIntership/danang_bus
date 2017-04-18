@@ -13,22 +13,25 @@
             <label>{{trans('news.title')}} </label>
             <input type="text" class="form-control" name="title" placeholder="Enter title">
           </div>
+          @if($errors->first('category_id'))
           <div class="form-group has-error">
           <span class="help-block">{{$errors->first('title')}}</span>
           </div>
+          @endif
           <div class="form-group">
             <label>{{trans('admin.category')}}</label>
             <select class="form-control select2" name="category_id" style="width: 100%;">
               <option value="">-- Choose --</option>
               @foreach($categories as $item)
-              <p>$item->name</p>
               <option value="{{$item->id}}">{{$item->name}}</option>
               @endforeach
             </select>
           </div>
+          @if($errors->first('category_id'))
           <div class="form-group has-error">
           <span class="help-block">{{$errors->first('category_id')}}</span>
           </div>
+          @endif
           <div class="form-group">
             <label>{{trans('news.content')}}</label>
             <div class="box box-info ">
@@ -40,25 +43,30 @@
                 </div>
               </div>
               <div class="box-body pad">
-                <textarea id="editor1" name="content" rows="10" cols="80" placeholder="This is my textarea to be replaced with CKEditor.">
+                <textarea class="textarea" name="content" rows="10" cols="220" >
                 </textarea>
               </div>
             </div>
           </div>
+          @if($errors->first('content'))
           <div class="form-group has-error">
             <span class="help-block">{{$errors->first('content')}}</span>
           </div>
+          @endif
           <div class="form-group">
             <label>{{trans('news.image')}} </label>
             <input type="file" name="picture_path">
           </div>
+          @if($errors->first('content'))
           <div class="form-group has-error">
           <span class="help-block">{{$errors->first('picture_path')}}</span>
           </div>
+          @endif
         </div>
         <div class="box-footer">
           <button type="submit" class="btn btn-primary">{{trans('admin.add')}}</button>
-          <button type="button" class="btn  btn-danger">{{trans('admin.cancel')}}</button>
+          <a href="{{route('admin.news.index')}}"><button type="button" class="btn  btn-danger">{{trans('admin.cancel')}}</button></a>
+         
         </div>
       </form>
     </div>
@@ -66,5 +74,6 @@
 </div>
 @endsection
 @section('script')
+<script src="{{asset('bower_components/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 <script src="{{asset('admin/js/editor.js')}}"></script>
 @endsection
