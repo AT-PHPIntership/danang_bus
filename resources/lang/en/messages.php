@@ -8,4 +8,7 @@ return [
     'news_create_success' => 'Create News Success',
     'news_edit_success' => 'Edit News Success',
     'news_delete_success' => 'Delete News Success',
+    'stop_create_success' => 'Create Stop Success',
+    'stop_edit_success' => 'Edit Stop Success',
+    'stop_delete_success' => 'Delete Stop Success',
 ];
