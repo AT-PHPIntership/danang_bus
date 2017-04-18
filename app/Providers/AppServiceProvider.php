@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer(
             'danabus.index.index',
-            'App\Http\ViewComposers\IndexComposer'
+            'App\Http\ViewComposers\CategoryComposer'
         );
     }
 

@@ -20,6 +20,6 @@ class NewsController extends Controller
     public function show($id)
     {
         $news = News::findOrFail($id);
-        return view('danabus.news.news', ['news' => $news]);
+        return view('danabus.news.index', ['news' => $news]);
     }
 }
