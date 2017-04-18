@@ -27,8 +27,8 @@ class AddRoutesToDirectionsTable extends Migration
     public function down()
     {
         Schema::table('directions', function (Blueprint $table) {
-            $table->dropForeign('route_id');
-            $table->dropForeign('stop_id');
+            $table->dropForeign('directions_route_id_foreign');
+            $table->dropForeign('directions_stop_id_foreign');
         });
     }
 }

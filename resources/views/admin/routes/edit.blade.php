@@ -11,43 +11,27 @@
       {{ method_field('PUT') }}
       {{csrf_field()}}
         <div class="box-body">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6 @if($errors->first('name')) has-error @endif ">
             <label>{{ trans('admin_routes.routes') }}</label>
-            <input type="texxt" class="form-control"  name="name" value="{{$route->name}}">
-            @if ($errors->first('name'))
-            <div class="form-group has-error"> 
-              <span class="help-block">{{$errors->first('name')}}</span>
-            </div>
-            @endif
+            <input type="texxt" class="form-control"  name="name" value="{{$route->name}}">          
+            <span class="help-block">{{$errors->first('name')}}</span>
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6 @if($errors->first('distance')) has-error @endif ">
             <label>{{trans('admin_routes.distance')}} </label>
             <input type="text" class="form-control"  name="distance" value="{{$route->distance}}">
-            @if ($errors->first('distance'))
-            <div class="form-group has-error"> 
-              <span class="help-block">{{$errors->first('distance')}}</span>
-            </div>
-            @endif
+            <span class="help-block">{{$errors->first('distance')}}</span>
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6 @if($errors->first('frequency')) has-error @endif ">
             <label>{{trans('admin_routes.frequency')}} </label>
             <input type="text" class="form-control"  name="frequency" value="{{$route->frequency}}">
-            @if ($errors->first('frequency'))
-            <div class="form-group has-error"> 
-              <span class="help-block">{{$errors->first('frequency')}}</span>
-            </div>
-            @endif
+            <span class="help-block">{{$errors->first('frequency')}}</span>
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6 @if($errors->first('frequency_peak')) has-error @endif ">
             <label>{{ trans('admin_routes.frequency_peak') }} </label>
             <input type="text" class="form-control"  name="frequency_peak" value="{{$route->frequency_peak}}">
-            @if ($errors->first('frequency_peak'))
-            <div class="form-group has-error"> 
-              <span class="help-block">{{$errors->first('frequency_peak')}}</span>
-            </div>
-            @endif
+            <span class="help-block">{{$errors->first('frequency_peak')}}</span>
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6 @if($errors->first('start_time')) has-error @endif">
               <div class="bootstrap-timepicker">
                 <div class="form-group">
                   <label>{{ trans('admin_routes.start_time') }}</label>
@@ -62,13 +46,9 @@
                 </div>
                 <!-- /.form group -->
               </div>
-              @if ($errors->first('start_time'))
-              <div class="form-group has-error"> 
               <span class="help-block">{{$errors->first('start_time')}}</span>
-              </div>
-              @endif
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6 @if($errors->first('end_time')) has-error @endif">
               <div class="bootstrap-timepicker">
                 <div class="form-group">
                   <label>{{ trans('admin_routes.end_time') }}</label>
@@ -83,15 +63,11 @@
                 </div>
                 <!-- /.form group -->
               </div>
-              @if (errors->first('end_time'))
-              <div class="form-group has-error"> 
               <span class="help-block">{{$errors->first('end_time')}}</span>
-              </div>
-              @endif
           </div>
           @if($route->type==1)
-          <div class="form-group col-md-6">
-            <label for="exampleInputEmail1">{{trans('admin_routes.type')}} </label>
+          <div class="form-group col-md-6 @if($errors->first('type')) has-error @endif">
+            <label>{{trans('admin_routes.type')}} </label>
              <p>
                <input type="radio" name="type" value="1" checked="">{{trans('admin_routes.inter_municipal')}}
              </p>
@@ -100,8 +76,8 @@
              </p>
           </div>
           @else 
-          <div class="form-group col-md-6">
-            <label for="exampleInputEmail1">{{trans('admin_routes.type')}} </label>
+          <div class="form-group col-md-6 @if($errors->first('type')) has-error @endif ">
+            <label>{{trans('admin_routes.type')}} </label>
              <p>
                <input type="radio" name="type" value="1">{{trans('admin_routes.inter_municipal')}}
              </p>
@@ -110,11 +86,7 @@
              </p>
           </div>
           @endif
-          @if ($errors->first('type'))
-          <div class="form-group has-error"> 
-            <span class="help-block">{{$errors->first('type')}}</span>
-          </div>
-          @endif
+          <span class="help-block">{{$errors->first('type')}}</span>
         </div>
         <div class="box-footer">
           <button type="submit" class="btn btn-primary">{{trans('admin_routes.submit')}}</button>
