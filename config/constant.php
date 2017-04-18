@@ -1,4 +1,5 @@
 <?php
     return [
-        'path_upload' => 'upload/picture_news',
+        'path_upload_news' => 'upload/picture_news',
+        'path_remove_news' => '../public/upload/picture_news/',
     ];

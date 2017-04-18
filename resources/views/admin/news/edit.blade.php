@@ -14,27 +14,22 @@
             <label >{{trans('news.oldtitle')}}</label>
             <input type="text" class="form-control"  disabled="" value="{{$news->title}}">
           </div>
-          <div class="form-group">
+          <div class="form-group @if($errors->first('title')) has-error @endif">
             <label >{{trans('news.newstitle')}} </label>
             <input type="text" class="form-control" name="title"  placeholder="Enter new title">
-          </div>
-          <div class="form-group has-error">
+          @if($errors->first('title'))
           <span class="help-block">{{$errors->first('title')}}</span>
+          @endif
           </div>
           <div class="form-group">
             <label>{{trans('categories.category')}}</label>
             <select class="form-control select2" style="width: 100%;" name="category_id">
               @foreach($categories as $item)
-                  <option <?php if ($item->id == $news->category_id) {
-                      echo "selected=''";
-} ?>  value="{{$item->id}}" >{{$item->name}}</option>
+                  <option {{$item->id == $news->category_id ? 'selected' : '' }} value="{{$item->id}}" >{{$item->name}}</option>
               @endforeach
             </select>
           </div>
-          <div class="form-group has-error">
-          <span class="help-block">{{$errors->first('category_id')}}</span>
-          </div>
-          <div class="form-group">
+          <div class="form-group @if($errors->first('content')) has-error @endif">
             <label>{{trans('news.content')}}</label>
             <div class="box box-info ">
               <div class="box-header">
@@ -45,14 +40,14 @@
                 </div>
               </div>
               <div class="box-body pad">
-                <textarea id="editor1" name="content" rows="10" cols="80">
+                <textarea class="textarea" name="content" rows="10" cols="200">
                      {{$news->content}}
                 </textarea>
               </div>
             </div>
-          </div>
-          <div class="form-group has-error">
+            @if($errors->first('content'))
           <span class="help-block">{{$errors->first('content')}}</span>
+          @endif
           </div>
           <div class="form-group">
             <label>{{trans('news.imageold')}} </label>
@@ -60,17 +55,17 @@
             <img style="height:100px;width: 100px" src="{{asset(trans('path.picture_news'))}}/{{$news->picture_path}}"/>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group @if($errors->first('content')) has-error @endif">
             <label>{{trans('news.image')}} </label>
             <input type="file" name="picture_path">
-          </div>
-          <div class="form-group has-error">
+            @if($errors->first('picture_path'))
           <span class="help-block">{{$errors->first('picture_path')}}</span>
+          @endif
           </div>
         </div>
         <div class="box-footer">
           <button type="submit" class="btn btn-primary">{{trans('admin.edit')}}</button>
-          <button type="button" class="btn  btn-danger">{{trans('admin.cancel')}}</button>
+          <a href="{{route('admin.news.index')}}"><button type="button" class="btn  btn-danger">{{trans('admin.cancel')}}</button></a>
         </div>
       </form>
     </div>
@@ -78,5 +73,5 @@
 </div>
 @endsection
 @section('script')
-<script src="{{asset('admin/js/editor.js')}}"></script>
+<script src="{{asset('bower_components/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 @endsection

@@ -4,7 +4,7 @@ namespace App\Http\ViewComposers;
 use Illuminate\View\View;
 use App\Models\Category;
 
-class IndexComposer
+class CategoryComposer
 {
     /**
      * Bind data to the view.

@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer(
             'admin.news.create',
-            'App\Http\ViewComposers\IndexComposer'
+            'App\Http\ViewComposers\CategoryComposer'
         );
     }
 

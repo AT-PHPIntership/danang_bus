@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\News;
 use App\Models\Category;
 use App\Http\Requests\NewsPostRequest;
+use App\Http\Requests\NewsPutRequest;
 use Session;
 use Storage;
 use File;
@@ -48,15 +49,15 @@ class NewsController extends Controller
         $news ->user_id = Auth()->user()->id;
         if ($request->hasFile('picture_path')) {
             $news ->picture_path= $request->picture_path->hashName();
-            $request->file('picture_path')->move(config('constant.path_upload'), $news ->picture_path);
-            $result = $news ->save();
-            if ($result) {
-                Session::flash('success', trans('messages.news_create_success'));
-                 return redirect()->route('admin.news.index');
-            } else {
-                 Session::flash('success', trans('messages.news_create_errors'));
-                return redirect()->route('admin.news.create');
-            }
+            $request->file('picture_path')->move(config('constant.path_upload_news'), $news ->picture_path);
+        }
+        $result = $news ->save();
+        if ($result) {
+            Session::flash('success', trans('messages.news_create_success'));
+            return redirect()->route('admin.news.index');
+        } else {
+            Session::flash('success', trans('messages.news_create_errors'));
+            return redirect()->route('admin.news.create');
         }
     }
 
@@ -82,20 +83,18 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(NewsRequest $request, $id)
+    public function update(NewsPutRequest $request, $id)
     {
         $news = News::findOrFail($id);
         $picturePathOld = $news['picture_path'];
-        $news ->user_id = Auth()->user()->id;
-        $news ->title = $request ->title;
-        $news ->content = $request ->content;
-        $news ->category_id = $request ->category_id;
+        $news ->user_id = $news->user->id;
+        $news->fill($request->all());
         if ($request->hasFile('picture_path')) {
             $news ->picture_path= $request->picture_path->hashName();
-            $request->file('picture_path')->move('upload/picture_news', $news ->picture_path);
-            unlink('../public/upload/picture_news/'.$picturePathOld);
+            $request->file('picture_path')->move(config('constant.path_upload_news'), $news ->picture_path);
+            unlink(config('constant.path_remove_news').$picturePathOld);
         }
-        $result = $news ->update();
+        $result= $news->update();
         if ($result) {
             Session::flash('success', trans('messages.news_edit_success'));
             return redirect()->route('admin.news.index');

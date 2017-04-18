@@ -9,16 +9,14 @@
        <form action="{!!route('admin.news.store')!!}" enctype="multipart/form-data" method="POST">
         {{csrf_field()}}
         <div class="box-body">
-          <div class="form-group">
+          <div class="form-group @if($errors->first('title')) has-error @endif">
             <label>{{trans('news.title')}} </label>
             <input type="text" class="form-control" name="title" placeholder="Enter title">
-          </div>
-          @if($errors->first('category_id'))
-          <div class="form-group has-error">
+            @if($errors->first('title'))
           <span class="help-block">{{$errors->first('title')}}</span>
-          </div>
           @endif
-          <div class="form-group">
+          </div>
+          <div class="form-group   @if($errors->first('category_id')) has-error @endif " >
             <label>{{trans('admin.category')}}</label>
             <select class="form-control select2" name="category_id" style="width: 100%;">
               <option value="">-- Choose --</option>
@@ -26,13 +24,11 @@
               <option value="{{$item->id}}">{{$item->name}}</option>
               @endforeach
             </select>
-          </div>
-          @if($errors->first('category_id'))
-          <div class="form-group has-error">
+            @if($errors->first('category_id'))
           <span class="help-block">{{$errors->first('category_id')}}</span>
-          </div>
           @endif
-          <div class="form-group">
+          </div>
+          <div class="form-group @if($errors->first('content')) has-error @endif">
             <label>{{trans('news.content')}}</label>
             <div class="box box-info ">
               <div class="box-header">
@@ -47,21 +43,17 @@
                 </textarea>
               </div>
             </div>
-          </div>
-          @if($errors->first('content'))
-          <div class="form-group has-error">
+            @if($errors->first('content'))
             <span class="help-block">{{$errors->first('content')}}</span>
-          </div>
           @endif
-          <div class="form-group">
+          </div>
+          <div class="form-group @if($errors->first('picture_path')) has-error @endif">
             <label>{{trans('news.image')}} </label>
             <input type="file" name="picture_path">
-          </div>
-          @if($errors->first('content'))
-          <div class="form-group has-error">
+             @if($errors->first('picture_path'))
           <span class="help-block">{{$errors->first('picture_path')}}</span>
-          </div>
           @endif
+          </div>
         </div>
         <div class="box-footer">
           <button type="submit" class="btn btn-primary">{{trans('admin.add')}}</button>
@@ -75,5 +67,4 @@
 @endsection
 @section('script')
 <script src="{{asset('bower_components/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
-<script src="{{asset('admin/js/editor.js')}}"></script>
 @endsection
