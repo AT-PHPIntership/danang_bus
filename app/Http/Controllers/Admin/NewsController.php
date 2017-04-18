@@ -49,14 +49,14 @@ class NewsController extends Controller
         if ($request->hasFile('picture_path')) {
             $news ->picture_path= $request->picture_path->hashName();
             $request->file('picture_path')->move(config('constant.path_upload'), $news ->picture_path);
-            $result = $news ->save();
-            if ($result) {
-                Session::flash('success', trans('messages.news_create_success'));
-                 return redirect()->route('admin.news.index');
-            } else {
-                 Session::flash('success', trans('messages.news_create_errors'));
-                return redirect()->route('admin.news.create');
-            }
+        }
+        $result = $news ->save();
+        if ($result) {
+            Session::flash('success', trans('messages.news_create_success'));
+            return redirect()->route('admin.news.index');
+        } else {
+            Session::flash('success', trans('messages.news_create_errors'));
+            return redirect()->route('admin.news.create');
         }
     }
 

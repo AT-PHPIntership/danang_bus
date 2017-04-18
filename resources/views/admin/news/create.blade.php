@@ -75,5 +75,4 @@
 @endsection
 @section('script')
 <script src="{{asset('bower_components/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
-<script src="{{asset('admin/js/editor.js')}}"></script>
 @endsection
