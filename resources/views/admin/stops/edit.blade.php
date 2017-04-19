@@ -10,25 +10,33 @@
       {{csrf_field()}}
       {{ method_field('PUT') }}
         <div class="box-body">
-          <div class="form-group col-md-6  @if($errors->first('name')) has-error @endif">
+          <div class="form-group col-md-6  {{ $errors->has('name') ? ' has-error' : '' }}">
             <label>{{ trans('stops.stop') }}</label>
-            <input type="texxt" class="form-control"  name="name" value="{{$stop->name}}">           
-            <span class="help-block" >{{$errors->first('name')}}</span>
+            <input type="texxt" class="form-control"  name="name" value="{{$stop->name}}"> 
+            @if ($errors->has('name'))          
+              <span class="help-block" >{{$errors->first('name')}}</span>
+            @endif
           </div>
-          <div class="form-group col-md-6 @if($errors->first('lat')) has-error @endif">
+          <div class="form-group col-md-6 {{ $errors->has('lat') ? ' has-error' : '' }}">
             <label>{{trans('stops.lat')}} </label>
             <input type="text" class="form-control"  name="lat" value="{{$stop->lat}}">
-            <span class="help-block" >{{$errors->first('lat')}}</span>
+            @if ($errors->has('lat'))
+              <span class="help-block" >{{$errors->first('lat')}}</span>
+            @endif
           </div>
-          <div class="form-group col-md-6 @if($errors->first('lng')) has-error @endif">
+          <div class="form-group col-md-6 {{ $errors->has('lng') ? ' has-error' : '' }}">
             <label>{{trans('stops.lng')}} </label>
-            <input type="text" class="form-control"  name="lng" value="{{$stop->lng}}">            
-            <span class="help-block">{{$errors->first('lng')}}</span>
+            <input type="text" class="form-control"  name="lng" value="{{$stop->lng}}">
+            @if ($errors->has('lng'))            
+              <span class="help-block">{{$errors->first('lng')}}</span>
+            @endif
           </div>
-          <div class="form-group col-md-6 @if($errors->first('address')) has-error @endif">
+          <div class="form-group col-md-6 {{ $errors->has('address') ? ' has-error' : '' }}">
             <label>{{ trans('stops.address') }} </label>
             <input type="text" class="form-control"  name="address" value="{{$stop->address}}">
-            <span class="help-block">{{$errors->first('address')}}</span>
+            @if ($errors->has('address'))
+              <span class="help-block">{{$errors->first('address')}}</span>
+            @endif
           </div>
         </div>
         <div class="box-footer">
