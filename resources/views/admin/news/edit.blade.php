@@ -52,7 +52,7 @@
           <div class="form-group">
             <label>{{trans('news.imageold')}} </label>
             <div>
-            <img style="height:100px;width: 100px" src="{{asset(trans('path.picture_news'))}}/{{$news->picture_path}}"/>
+            <img style="height:100px;width: 100px" src="{{asset(config('constant.path_upload_news'))}}/{{$news->picture_path}}"/>
             </div>
           </div>
           <div class="form-group {{ $errors->has('picture_path') ? ' has-error' : '' }}">
