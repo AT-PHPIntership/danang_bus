@@ -14,7 +14,7 @@ class Route extends Model
     /**
      * Route type Urban
      */
-    const ROUTE_TYPE_INNER = 0;
+    const ROUTE_TYPE_INNER = 2;
 
     protected $table = 'routes';
     protected $fillable = [
