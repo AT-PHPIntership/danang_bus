@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
+    protected $appends = ['picture'];
     protected $table = 'news';
     protected $fillable = [
         'title', 'content', 'picture_path', 'category_id', 'user_id'
@@ -30,5 +31,14 @@ class News extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    /**
+     * Get the picture path.
+     *
+     * @return string
+     */
+    public function getPictureAttribute()
+    {
+        return asset(config('constant.path_upload_news')).'/'.$this->picture_path;
     }
 }

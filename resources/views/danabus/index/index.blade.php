@@ -24,7 +24,7 @@
       <div id="single-project">
         <div id="slidingDiv" class="toggleDiv row-fluid single-project">
           <div class="span6 news-pic">
-            <img src="{{asset(config('constants.path_upload_news'))}}/{{$value->picture_path}}" alt="" />
+            <img src="{{$value->picture}}" alt="picture" />
           </div>
           <div class="span6 news-content">
             <div class="project-description">

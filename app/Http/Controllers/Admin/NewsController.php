@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\News;
 use App\Models\Category;
+use App\Http\Requests\NewsPostRequest;
+use Session;
+use Storage;
+use File;
 
 class NewsController extends Controller
 {
@@ -20,31 +24,41 @@ class NewsController extends Controller
         return view('admin.news.index', compact('news'));
     }
 
-    /**
+     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('admin.news.create');
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request of news
+     *
+     * @return \Illuminate\Http\Response
      */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
+    public function store(NewsPostRequest $request)
+    {
 
-    /**
-     * Display the specified resource.
-     */
-    // public function show($id)
-    // {
-    //     //
-    // }
+        $news = new News($request->all());
+        $news ->user_id = Auth()->user()->id;
+        if ($request->hasFile('picture_path')) {
+            $news ->picture_path= $request->picture_path->hashName();
+            $request->file('picture_path')->move(config('constant.path_upload'), $news ->picture_path);
+        }
+        $result = $news ->save();
+        if ($result) {
+            Session::flash('success', trans('messages.news_create_success'));
+            return redirect()->route('admin.news.index');
+        } else {
+            Session::flash('success', trans('messages.news_create_errors'));
+            return redirect()->route('admin.news.create');
+        }
+    }
 
     /**
      * Show the form for editing the specified resource.
