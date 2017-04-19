@@ -11,4 +11,7 @@ return [
     'users_create_success' => 'Create User Success',
     'users_edit_success' => 'Edit User Success',
     'users_delete_success' => 'Delete User Success',
+    'stop_create_success' => 'Create Stop Success',
+    'stop_edit_success' => 'Edit Stop Success',
+    'stop_delete_success' => 'Delete Stop Success',
 ];
