@@ -44,8 +44,8 @@
               </div>
             </div>
             @if($errors->first('content'))
-            <span class="help-block">{{$errors->first('content')}}</span>
-          @endif
+              <span class="help-block">{{$errors->first('content')}}</span>
+            @endif
           </div>
           <div class="form-group {{ $errors->has('picture_path') ? ' has-error' : '' }}">
             <label>{{trans('news.image')}} </label>
