@@ -9,14 +9,14 @@
        <form action="{!!route('admin.news.store')!!}" enctype="multipart/form-data" method="POST">
         {{csrf_field()}}
         <div class="box-body">
-          <div class="form-group @if($errors->first('title')) has-error @endif">
+          <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
             <label>{{trans('news.title')}} </label>
             <input type="text" class="form-control" name="title" placeholder="Enter title">
             @if($errors->first('title'))
-          <span class="help-block">{{$errors->first('title')}}</span>
-          @endif
+            <span class="help-block">{{$errors->first('title')}}</span>
+            @endif
           </div>
-          <div class="form-group   @if($errors->first('category_id')) has-error @endif " >
+          <div class="form-group  {{ $errors->has('category_id') ? ' has-error' : '' }}" >
             <label>{{trans('admin.category')}}</label>
             <select class="form-control select2" name="category_id" style="width: 100%;">
               <option value="">-- Choose --</option>
@@ -25,10 +25,10 @@
               @endforeach
             </select>
             @if($errors->first('category_id'))
-          <span class="help-block">{{$errors->first('category_id')}}</span>
-          @endif
+            <span class="help-block">{{$errors->first('category_id')}}</span>
+            @endif
           </div>
-          <div class="form-group @if($errors->first('content')) has-error @endif">
+          <div class="form-group {{ $errors->has('content') ? ' has-error' : '' }}">
             <label>{{trans('news.content')}}</label>
             <div class="box box-info ">
               <div class="box-header">
@@ -44,15 +44,15 @@
               </div>
             </div>
             @if($errors->first('content'))
-            <span class="help-block">{{$errors->first('content')}}</span>
-          @endif
+              <span class="help-block">{{$errors->first('content')}}</span>
+            @endif
           </div>
-          <div class="form-group @if($errors->first('picture_path')) has-error @endif">
+          <div class="form-group {{ $errors->has('picture_path') ? ' has-error' : '' }}">
             <label>{{trans('news.image')}} </label>
             <input type="file" name="picture_path">
              @if($errors->first('picture_path'))
-          <span class="help-block">{{$errors->first('picture_path')}}</span>
-          @endif
+            <span class="help-block">{{$errors->first('picture_path')}}</span>
+            @endif
           </div>
         </div>
         <div class="box-footer">
