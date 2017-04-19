@@ -117,6 +117,6 @@ class NewsController extends Controller
         unlink(config('constant.path_remove_news').$news['picture_path']);
         $news->delete($id);
         Session::flash('success', trans('messages.news_delete_success'));
-          return redirect()->route('admin.news.index');
+        return redirect()->route('admin.news.index');
     }
 }

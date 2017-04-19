@@ -14,7 +14,7 @@
             <label >{{trans('news.oldtitle')}}</label>
             <input type="text" class="form-control"  disabled="" value="{{$news->title}}">
           </div>
-          <div class="form-group @if($errors->first('title')) has-error @endif">
+          <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
             <label >{{trans('news.newstitle')}} </label>
             <input type="text" class="form-control" name="title"  placeholder="Enter new title">
           @if($errors->first('title'))
@@ -29,7 +29,7 @@
               @endforeach
             </select>
           </div>
-          <div class="form-group @if($errors->first('content')) has-error @endif">
+          <div class="form-group {{ $errors->has('content') ? ' has-error' : '' }}">
             <label>{{trans('news.content')}}</label>
             <div class="box box-info ">
               <div class="box-header">
@@ -55,7 +55,7 @@
             <img style="height:100px;width: 100px" src="{{asset(trans('path.picture_news'))}}/{{$news->picture_path}}"/>
             </div>
           </div>
-          <div class="form-group @if($errors->first('content')) has-error @endif">
+          <div class="form-group {{ $errors->has('picture_path') ? ' has-error' : '' }}">
             <label>{{trans('news.image')}} </label>
             <input type="file" name="picture_path">
             @if($errors->first('picture_path'))
