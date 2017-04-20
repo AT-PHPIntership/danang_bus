@@ -23,3 +23,9 @@ Route::group(['namespace' => 'Admin','middleware'=>'auth', 'prefix' => 'admin'],
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::Auth();
 });
+
+Route::group(['namespace' => 'Danabus'], function () {
+    Route::get('/', 'IndexController@index');
+    Route::resource('/categories', 'CategoryController');
+    Route::resource('/news', 'NewsController');
+});
