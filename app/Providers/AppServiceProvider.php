@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
             'admin.users.index',
             'App\Http\ViewComposers\UserComposer'
         );
+        View::composer(['danabus.index.index','admin.news.create'], 'App\Http\ViewComposers\CategoryComposer');
     }
 
     /**

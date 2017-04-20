@@ -6,6 +6,7 @@ use App\Models\Category;
 
 class CategoryComposer
 {
+
     /**
      * Bind data to the view.
      *
