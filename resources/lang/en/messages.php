@@ -14,4 +14,6 @@ return [
     'stop_create_success' => 'Create Stop Success',
     'stop_edit_success' => 'Edit Stop Success',
     'stop_delete_success' => 'Delete Stop Success',
+    'users_edit_errors' => 'Edit User not success !!',
+    'users_edit_no' => 'You can not edit this user !',
 ];

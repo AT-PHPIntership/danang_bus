@@ -8,4 +8,7 @@
         'register' => ' Register',
         'password' => ' Password',
         'table' => ' User Table',
+        'update' => ' Update',
+        'oldpassword' => ' Old Password',
+        'newpassword' => ' New Password',
     ];

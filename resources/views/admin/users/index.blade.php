@@ -6,6 +6,11 @@
       {{ Session::get('success') }}
   </div>
 @endif
+@if(Session::has('errors'))
+  <div class="alert alert-error">
+      {{ Session::get('errors') }}
+  </div>
+@endif
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
@@ -29,7 +34,7 @@
             <td>{{$user->fullname}}</td>
             <td>{{$user->email}}</td>
             <td>
-              <a href="">
+              <a href="{{route('admin.users.edit',$user->id)}}">
               <button type="button" class="btn btn-block btn-info btn-sm">
                 <i class="fa fa-fw fa-edit"></i>
               </button></a>

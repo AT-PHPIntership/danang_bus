@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Session;
 use App\Http\Requests\UserPostRequest;
+use App\Http\Requests\UserPutRequest;
+use Hash;
 
 class UserController extends Controller
 {
@@ -17,8 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'DESC')->paginate();
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index');
     }
 
     /**
@@ -42,39 +43,52 @@ class UserController extends Controller
     {
         $user = new User($request->all());
         $user ->password = bcrypt($request->password);
-        $user->save();
+        $user ->save();
         Session::flash('success', trans('messages.users_create_success'));
         return redirect()->route('admin.users.index');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit()
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * @param int $id of user
      *
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function edit($id)
     {
-        //
+        if ($id == Auth()->user()->id) {
+            $user = User::findOrFail($id);
+            return view('admin.users.edit', compact('user'));
+        } else {
+            Session::flash('errors', trans('messages.users_edit_no'));
+            return view('admin.users.index');
+        }
+    }
+
+    /**
+     * Update the specified resource in storae.
+     *
+     * @param \Illuminate\Http\Request $request of users
+     * @param int                      $id      of user
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UserPutRequest $request, $id)
+    {
+        $user = User::findOrFail($id);
+        if (Hash::check($request->oldpassword, $user->password)) {
+            if ($request->newpassword) {
+                $user->password = bcrypt($request->newpassword);
+            }
+            $user->fill($request->all());
+            $user->save();
+            Session::flash('success', trans('messages.users_edit_success'));
+            return redirect()->route('admin.users.index');
+        } else {
+            Session::flash('errors', trans('messages.users_edit_errors'));
+            return redirect()->route('admin.users.index');
+        }
     }
 
     /**

@@ -18,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
             'admin.news.create',
             'App\Http\ViewComposers\CategoryComposer'
         );
+        View::composer(
+            'admin.users.index',
+            'App\Http\ViewComposers\UserComposer'
+        );
     }
 
     /**
