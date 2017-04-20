@@ -92,7 +92,7 @@ class NewsController extends Controller
         if ($request->hasFile('picture_path')) {
             $news ->picture_path= $request->picture_path->hashName();
             $request->file('picture_path')->move(config('constant.path_upload_news'), $news ->picture_path);
-            unlink(config('constant.path_remove_news').$picturePathOld);
+            unlink(config('constant.path_upload_news').$picturePathOld);
         }
         $result= $news->update();
         if ($result) {
@@ -114,7 +114,7 @@ class NewsController extends Controller
     public function destroy($id)
     {
         $news = News::findOrFail($id);
-        unlink(config('constant.path_remove_news').$news['picture_path']);
+        unlink(config('constant.path_upload_news').$news['picture_path']);
         $news->delete($id);
         Session::flash('success', trans('messages.news_delete_success'));
         return redirect()->route('admin.news.index');
