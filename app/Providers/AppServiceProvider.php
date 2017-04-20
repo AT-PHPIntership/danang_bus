@@ -18,6 +18,14 @@ class AppServiceProvider extends ServiceProvider
             'admin.news.create',
             'App\Http\ViewComposers\CategoryComposer'
         );
+        View::composer(
+            ['admin.directions.create','admin.directions.edit'],
+            'App\Http\ViewComposers\RouteComposer'
+        );
+        View::composer(
+            ['admin.directions.create','admin.directions.edit'],
+            'App\Http\ViewComposers\StopComposer'
+        );
     }
 
     /**

@@ -21,6 +21,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::resource('/categories', 'CategoryController', ['as' => 'admin']);
     Route::resource('/news', 'NewsController', ['as' => 'admin']);
     Route::resource('stops', 'StopController', ['as' => 'admin']);
+    Route::resource('/directions', 'DirectionController', ['as' => 'admin']);
     Route::Auth();
 });
 Route::get('/home', 'HomeController@index');

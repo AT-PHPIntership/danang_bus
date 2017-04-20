@@ -11,4 +11,7 @@ return [
     'stop_create_success' => 'Create Stop Success',
     'stop_edit_success' => 'Edit Stop Success',
     'stop_delete_success' => 'Delete Stop Success',
+    'direction_create_success' => 'Create Direction Success',
+    'direction_edit_success' => 'Edit Direction Success',
+    'direction_delete_success' => 'Delete Direction Success',
 ];
