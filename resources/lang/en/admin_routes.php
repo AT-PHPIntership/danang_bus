@@ -1,8 +1,8 @@
 <?php
     return [
         'list_route' => 'Danh sách các tuyến xe',
-        'inter_municipal' => 'Tuyến xe buýt liên tỉnh',
-        'urban' => 'Tuyến xe buýt nội thành',
+        'interprovincial_routes' => 'Tuyến xe buýt liên tỉnh',
+        'inner_city_routes' => 'Tuyến xe buýt nội thành',
         'frequency' => 'Tần suất',
         'frequency_peak' => 'Tần suất giờ cao điểm ',
         'start_time' => ' Thời gian bắt đầu ',

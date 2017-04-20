@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Route extends Model
 {
     /**
-     * Route type Inter minication
+     * Route type Interprovincial
      */
-    const ROUTE_TYPE_INTER_MUNICIPAL = 1;
+    const TYPE_INTERPROVINCIAL = 1;
 
     /**
-     * Route type Urban
+     * Route type inner city
      */
-    const ROUTE_TYPE_INNER = 2;
+    const TYPE_INNER_CITY = 2;
 
     protected $table = 'routes';
     protected $fillable = [
@@ -39,9 +39,9 @@ class Route extends Model
      */
     public function getTypeLabelAttribute()
     {
-        if ($this->type == self::ROUTE_TYPE_INTER_MUNICIPAL) {
-            return trans('admin_routes.inter_municipal');
+        if ($this->type == self::TYPE_INTERPROVINCIAL) {
+            return trans('admin_routes.interprovincial_routes');
         }
-        return trans('admin_routes.urban');
+        return trans('admin_routes.inner_city_routes');
     }
 }

@@ -62,6 +62,7 @@
 <script src="{{asset('bower_components/AdminLTE/dist/js/app.min.js')}}"></script>
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <script src="{{asset('bower_components/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
+@yield('script')
 <script src="{{asset('admin/js/main.js')}}"></script>
 </body>
 </html>

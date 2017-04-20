@@ -11,4 +11,7 @@ return [
     'route_create_success' => 'Create Route Success',
     'route_edit_success' => 'Edit Route Success',
     'route_delete_success' => 'Delete Route Success',
+    'stop_create_success' => 'Create Stop Success',
+    'stop_edit_success' => 'Edit Stop Success',
+    'stop_delete_success' => 'Delete Stop Success',
 ];

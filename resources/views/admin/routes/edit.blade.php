@@ -75,12 +75,12 @@
           <div class="form-group col-md-6 {{ $errors->has('type') ? ' has-error' : '' }}">
             <label>{{trans('admin_routes.type')}} </label>
              <p>
-               <input type="radio" name="type" value="1" {{ $route->type==config('constants.INTER_MUNICIPAL_DEFAULT') ? 'checked' : '' }}>
-               {{trans('admin_routes.inter_municipal')}}
+               <input type="radio" name="type" value="1" {{ $route->type==\App\Models\Route::TYPE_INTERPROVINCIAL ? 'checked' : '' }}>
+               {{trans('admin_routes.interprovincial_routes')}}
              </p>
              <p>
-               <input type="radio" name="type" value="2" {{ $route->type==config('constants.URBAN_DEFAULT') ? 'checked' : '' }}>
-               {{trans('admin_routes.urban')}}
+               <input type="radio" name="type" value="2" {{ $route->type==\App\Models\Route::TYPE_INNER_CITY ? 'checked' : '' }}>
+               {{trans('admin_routes.inner_city_routes')}}
              </p>
           </div>
         </div>

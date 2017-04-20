@@ -75,10 +75,10 @@
           <div class="form-group col-md-6 {{ $errors->has('type') ? ' has-error' : '' }}">
             <label>{{trans('admin_routes.type')}} </label>
              <p>
-               <input type="radio" name="type" value="1">{{trans('admin_routes.inter_municipal')}}
+               <input type="radio" name="type" value="1">{{trans('admin_routes.interprovincial_routes')}}
              </p>
              <p>
-               <input type="radio" name="type" value="2">{{trans('admin_routes.urban')}}
+               <input type="radio" name="type" value="2">{{trans('admin_routes.inner_city_routes')}}
              </p>
             @if ($errors->has('type'))
               <span class="help-block">{{$errors->first('type')}}</span>
