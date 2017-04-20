@@ -14,10 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(
-            'admin.news.create',
-            'App\Http\ViewComposers\CategoryComposer'
-        );
+        View::composer(['danabus.index.index','admin.news.create'], 'App\Http\ViewComposers\CategoryComposer');
     }
 
     /**
