@@ -49,4 +49,22 @@ class LoginController extends Controller
     {
         return view('admin.auth.login');
     }
+    
+    /**
+     * Log the user out of the application.
+     *
+     * @param \Illuminate\Http\Request $request of form
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('/admin/login');
+    }
 }
