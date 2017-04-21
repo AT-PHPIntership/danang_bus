@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         return view('admin.users.index');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -41,8 +41,8 @@ class UserController extends Controller
      */
     public function store(UserPostRequest $request)
     {
+
         $user = new User($request->all());
-        $user ->password = bcrypt($request->password);
         $user ->save();
         Session::flash('success', trans('messages.users_create_success'));
         return redirect()->route('admin.users.index');
@@ -76,19 +76,6 @@ class UserController extends Controller
      */
     public function update(UserPutRequest $request, $id)
     {
-        $user = User::findOrFail($id);
-        if (Hash::check($request->oldpassword, $user->password)) {
-            if ($request->newpassword) {
-                $user->password = bcrypt($request->newpassword);
-            }
-            $user->fill($request->all());
-            $user->save();
-            Session::flash('success', trans('messages.users_edit_success'));
-            return redirect()->route('admin.users.index');
-        } else {
-            Session::flash('errors', trans('messages.users_edit_errors'));
-            return redirect()->route('admin.users.index');
-        }
     }
 
     /**
