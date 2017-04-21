@@ -69,7 +69,6 @@ class UserController extends Controller
     /**
      * Update the specified resource in storae.
      *
-     *
      * @return \Illuminate\Http\Response
      */
     public function update()
