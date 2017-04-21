@@ -69,12 +69,10 @@ class UserController extends Controller
     /**
      * Update the specified resource in storae.
      *
-     * @param \Illuminate\Http\Request $request of users
-     * @param int                      $id      of user
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(UserPutRequest $request, $id)
+    public function update()
     {
     }
 
