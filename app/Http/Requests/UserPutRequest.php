@@ -25,8 +25,8 @@ class UserPutRequest extends FormRequest
     {
         return [
             'fullname' => 'required',
-            'oldpassword' => 'required|min:6',
-            'newpassword' => 'confirmed',
+            'oldpassword' => 'required',
+            'password' => 'required|min:6|confirmed',
         ];
     }
 }

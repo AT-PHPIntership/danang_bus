@@ -61,27 +61,49 @@ class UserController extends Controller
             $user = User::findOrFail($id);
             return view('admin.users.edit', compact('user'));
         } else {
-            Session::flash('errors', trans('messages.users_edit_no'));
+            Session::flash('error', trans('messages.users_edit_not'));
             return view('admin.users.index');
         }
     }
-
+    
     /**
      * Update the specified resource in storae.
      *
+     * @param \Illuminate\Http\Request $request of users
+     * @param int                      $id      of user
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(UserPutRequest $request, $id)
     {
+        $user = User::findOrFail($id);
+        if (Hash::check($request->oldpassword, $user->password)) {
+            $user->fill($request->all());
+            $user->save();
+            Session::flash('success', trans('messages.users_edit_success'));
+            return redirect()->route('admin.users.index');
+        } else {
+            Session::flash('error', trans('messages.users_edit_error'));
+            return redirect()->route('admin.users.index');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param int $id of user
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy($id)
     {
-        //
+        if ($id == Auth()->user()->id) {
+            User::findOrFail($id)->delete();
+            Session::flash('success', trans('messages.users_delete_success'));
+            return redirect()->route('admin.users.index');
+        } else {
+            Session::flash('error', trans('messages.users_delete_not'));
+            return view('admin.users.index');
+        }
     }
 }
