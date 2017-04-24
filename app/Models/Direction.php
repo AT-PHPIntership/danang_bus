@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Directions extends Model
+class Direction extends Model
 {
     /**
      * Status forward trip
