@@ -24,7 +24,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="active treeview">
-          <a href="#">
+          <a href="{{URL('admin/home')}}">
             <i class="fa fa-dashboard"></i> <span>{{trans('admin.home')}}</span>
           </a>
         </li>
@@ -37,8 +37,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i>{{trans('admin.add')}} </a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> {{trans('admin.list')}} </a></li>
+            <li><a href="{{route('admin.categories.create')}}"><i class="fa fa-circle-o"></i>{{trans('admin.add')}} </a></li>
+            <li><a href="{{route('admin.categories.index')}}"><i class="fa fa-circle-o"></i> {{trans('admin.list')}} </a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -50,8 +50,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> {{trans('admin.add')}} </a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> {{trans('admin.list')}} </a></li>
+            <li><a href="{{route('admin.news.create')}}"><i class="fa fa-circle-o"></i> {{trans('admin.add')}} </a></li>
+            <li><a href="{{route('admin.news.index')}}"><i class="fa fa-circle-o"></i> {{trans('admin.list')}} </a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -62,20 +62,20 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> {{trans('admin.add')}} </a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> {{trans('admin.list')}} </a></li>
+            <li><a href="{{route('admin.routes.create')}}"><i class="fa fa-circle-o"></i> {{trans('admin.add')}} </a></li>
+            <li><a href="{{route('admin.routes.index')}}"><i class="fa fa-circle-o"></i> {{trans('admin.list')}} </a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-bus" aria-hidden="true"></i> <span>{{trans('admin.stop')}}</span>
+            <i class="fa fa-bus" aria-hidden="true"></i> <span>{{trans('stops.stop')}}</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i>  {{trans('admin.add')}} </a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> {{trans('admin.list')}}  </a></li>
+            <li><a href="{{route('admin.stops.create')}}"><i class="fa fa-circle-o"></i>  {{trans('admin.add')}} </a></li>
+            <li><a href="{{route('admin.stops.index')}}"><i class="fa fa-circle-o"></i> {{trans('admin.list')}}  </a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -98,17 +98,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> {{trans('admin.add')}} </a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> {{trans('admin.list')}}  </a></li>
           </ul>
-        </li>
-        <li>
-          <a href="">
-            <i class="fa fa-envelope"></i> <span>{{trans('admin.mail')}} </span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
         </li>
         <li class="treeview">
           <a href="#">
@@ -118,8 +109,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=""><i class="fa fa-circle-o"></i> {{trans('admin.add')}} </a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> {{trans('admin.list')}} </a></li>
+            <li><a href="{{route('admin.users.create')}}"><i class="fa fa-circle-o"></i> {{trans('admin.add')}} </a></li>
+            <li><a href="{{route('admin.users.index')}}"><i class="fa fa-circle-o"></i> {{trans('admin.list')}} </a></li>
           </ul>
         </li>
       </ul>
