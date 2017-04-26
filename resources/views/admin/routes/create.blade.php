@@ -48,9 +48,7 @@
                     <i class="fa fa-clock-o"></i>
                   </div>
                 </div>
-                <!-- /.input group -->
               </div>
-              <!-- /.form group -->
             </div>
             @if ($errors->has('start_time'))
               <span class="help-block">{{$errors->first('start_time')}}</span>
@@ -84,6 +82,86 @@
               <span class="help-block">{{$errors->first('type')}}</span>
             @endif
           </div>  
+        </div>
+        <div class="box box-info col-md-6">
+          <div class="box-header with-border">
+            <h3 class="box-title">{{trans('admin_routes.adddirections')}}</h3>
+          </div>
+          <div class="row">
+          <!-- /.box-header -->
+          <div class="box-body col-md-6">
+            <div class="table-responsive">
+            <h4 class="box-title">{{trans('admin_routes.forwardtrip')}}</h4>
+              <table class="table no-margin" id="lists">
+                <thead>
+                <tr>
+                  <th>{{trans('admin_routes.order')}}</th>
+                  <th>{{trans('admin_routes.busstop')}}</th>
+                  <th>{{trans('admin_routes.time')}}</th>
+                  <th>{{trans('admin_routes.fee')}}</th>
+                  <th>{{trans('admin_routes.action')}}</th>
+                </tr>
+                </thead>
+                <tbody id ="foward_trip">
+                <tr id="item">
+                  <td><input style="width: 70%;" type="text" name="order_forwardtrip[]" class="order_id_1" value="1"></td>
+                  <td>
+                    <select class="form-control select2" name="stop_id_forwardtrip[]" id="stop_id">
+                      <option value="">-- Choose --</option>
+                      @foreach($stops as $item)
+                      <option value="{{$item->id}}">{{$item->name}}</option>
+                      @endforeach
+                    </select>
+                  </td>
+                  <td><input type="text" name="time_forwardtrip[]" id="time"></td>
+                  <td><input type="text" name="fee_forwardtrip[]" id="fee"></td>
+                  <td><a class="delete1">{{trans('admin_routes.delete')}}</a></td>
+                </tr>
+                </tbody>
+                <tr>
+                  <td colspan="4"></td>
+                  <td><a id="add" class="add_to_forwardtrip">{{trans('admin_routes.add')}}</a></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="box-body col-md-6">
+            <div class="table-responsive">
+              <h4 class="box-title">{{trans('admin_routes.backwardtrip')}}</h4>
+              <table class="table no-margin" id="lists">
+                <thead>
+                <tr>
+                  <th>{{trans('admin_routes.order')}}</th>
+                  <th>{{trans('admin_routes.busstop')}}</th>
+                  <th>{{trans('admin_routes.time')}}</th>
+                  <th>{{trans('admin_routes.fee')}}</th>
+                  <th>{{trans('admin_routes.action')}}</th>
+                </tr>
+                </thead>
+                <tbody id ="backward_trip">
+                <tr id="item2">
+                  <td ><input style="width: 70%;" type="text" name="order_backwardtrip" class="order_id_2" value="1"></td>
+                  <td>
+                    <select class="form-control select2" name="stop_id_backwardtrip" id="stop_id">
+                      <option value="">-- Choose --</option>
+                      @foreach($stops as $item)
+                      <option value="{{$item->id}}">{{$item->name}}</option>
+                      @endforeach
+                    </select>
+                  </td>
+                  <td><input type="text" name="time_backwardtrip" id="time_back"></td>
+                  <td><input type="text" name="fee_backwardtrip" id="fee_back"></td>
+                  <td><a class="delete2" >{{trans('admin_routes.delete')}}</a></td>
+                </tr>
+                </tbody>
+                <tr>
+                  <td colspan="4"></td>
+                  <td rowspan="4"><a id="add" class="add_to_backwardtrip">{{trans('admin_routes.add')}}</a></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          </div>
         </div>
         <div class="box-footer">
           <button type="submit" class="btn btn-primary">{{trans('admin_routes.submit')}}</button>

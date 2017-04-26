@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
             'App\Http\ViewComposers\RouteComposer'
         );
         View::composer(
-            ['admin.directions.create','admin.directions.edit'],
+            ['admin.routes.create','admin.routes.edit'],
             'App\Http\ViewComposers\StopComposer'
         );
         View::composer(['danabus.index.index','admin.news.create'], 'App\Http\ViewComposers\CategoryComposer');
