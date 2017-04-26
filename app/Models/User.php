@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Observers\UserObserver;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -37,14 +36,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(News::class);
     }
-
-    /**
-     * The event map for the model.
-     *
-     * @var array
-     */
-    protected $events = [
-        'creating' => UserObserver::class,
-        'updating' => UserObserver::class,
-    ];
 }
