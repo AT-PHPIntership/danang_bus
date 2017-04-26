@@ -63,10 +63,10 @@ class RouteController extends Controller
             }
             for ($i=0; $i<count($allRequest['order_backwardtrip']); $i++) {
                 $backwardtrip = new Direction([
-                            "order" => $allRequest['order_forwardtrip'][$i],
-                            "stop_id" => $allRequest['stop_id_forwardtrip'][$i],
-                            "fee" => $allRequest['fee_forwardtrip'][$i],
-                            "time" => $allRequest['time_forwardtrip'][$i],
+                            "order" => $allRequest['order_backwardtrip'][$i],
+                            "stop_id" => $allRequest['stop_id_backwardtrip'][$i],
+                            "fee" => $allRequest['fee_backwardtrip'][$i],
+                            "time" => $allRequest['time_backwardtrip'][$i],
                             "status" => \App\Models\Direction::STATUS_BACKWARD_TRIP,
                             "route_id" => $newroute->id
                         ]);

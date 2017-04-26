@@ -6,27 +6,28 @@
       <div class="box-header with-border">
         <h3 class="box-title">{{trans('news.news')}}</h3>
       </div>
-       <form action="{!!route('admin.news.store')!!}" enctype="multipart/form-data" method="POST">
+      <form action="{!! URL::route('admin.news.update',$news->id)!!}" enctype="multipart/form-data" method="POST">
         {{csrf_field()}}
+        {{ method_field('PUT') }}
         <div class="box-body">
-          <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
-            <label>{{trans('news.title')}} </label>
-            <input type="text" class="form-control" name="title" placeholder="Enter title">
-            @if($errors->first('title'))
-            <span class="help-block">{{$errors->first('title')}}</span>
-            @endif
+          <div class="form-group">
+            <label >{{trans('news.oldtitle')}}</label>
+            <input type="text" class="form-control"  disabled="" value="{{$news->title}}">
           </div>
-          <div class="form-group  {{ $errors->has('category_id') ? ' has-error' : '' }}" >
-            <label>{{trans('admin.category')}}</label>
-            <select class="form-control select2" name="category_id" style="width: 100%;">
-              <option value="">-- Choose --</option>
+          <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
+            <label >{{trans('news.newstitle')}} </label>
+            <input type="text" class="form-control" name="title"  placeholder="Enter new title">
+          @if($errors->first('title'))
+          <span class="help-block">{{$errors->first('title')}}</span>
+          @endif
+          </div>
+          <div class="form-group">
+            <label>{{trans('categories.category')}}</label>
+            <select class="form-control select2" style="width: 100%;" name="category_id">
               @foreach($categories as $item)
-              <option value="{{$item->id}}">{{$item->name}}</option>
+                  <option {{$item->id == $news->category_id ? 'selected' : '' }} value="{{$item->id}}" >{{$item->name}}</option>
               @endforeach
             </select>
-            @if($errors->first('category_id'))
-            <span class="help-block">{{$errors->first('category_id')}}</span>
-            @endif
           </div>
           <div class="form-group {{ $errors->has('content') ? ' has-error' : '' }}">
             <label>{{trans('news.content')}}</label>
@@ -39,26 +40,32 @@
                 </div>
               </div>
               <div class="box-body pad">
-                <textarea class="textarea" name="content" rows="10" cols="220" >
+                <textarea class="textarea" name="content" rows="10" cols="200">
+                     {{$news->content}}
                 </textarea>
               </div>
             </div>
             @if($errors->first('content'))
-              <span class="help-block">{{$errors->first('content')}}</span>
-            @endif
+          <span class="help-block">{{$errors->first('content')}}</span>
+          @endif
+          </div>
+          <div class="form-group">
+            <label>{{trans('news.imageold')}} </label>
+            <div>
+            <img style="height:100px;width: 100px" src="{{asset(config('constant.path_upload_news'))}}/{{$news->picture_path}}"/>
+            </div>
           </div>
           <div class="form-group {{ $errors->has('picture_path') ? ' has-error' : '' }}">
             <label>{{trans('news.image')}} </label>
             <input type="file" name="picture_path">
-             @if($errors->first('picture_path'))
-            <span class="help-block">{{$errors->first('picture_path')}}</span>
-            @endif
+            @if($errors->first('picture_path'))
+          <span class="help-block">{{$errors->first('picture_path')}}</span>
+          @endif
           </div>
         </div>
         <div class="box-footer">
-          <button type="submit" class="btn btn-primary">{{trans('admin.add')}}</button>
+          <button type="submit" class="btn btn-primary">{{trans('admin.edit')}}</button>
           <a href="{{route('admin.news.index')}}"><button type="button" class="btn  btn-danger">{{trans('admin.cancel')}}</button></a>
-         
         </div>
       </form>
     </div>

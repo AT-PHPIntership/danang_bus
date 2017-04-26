@@ -140,23 +140,23 @@
                 </thead>
                 <tbody id ="backward_trip">
                 <tr id="item2">
-                  <td ><input style="width: 70%;" type="text" name="order_backwardtrip" class="order_id_2" value="1"></td>
+                  <td ><input style="width: 70%;" type="text" name="order_backwardtrip[]" class="order_id_2" value="1"></td>
                   <td>
-                    <select class="form-control select2" name="stop_id_backwardtrip" id="stop_id">
+                    <select class="form-control select2" name="stop_id_backwardtrip[]">
                       <option value="">-- Choose --</option>
                       @foreach($stops as $item)
                       <option value="{{$item->id}}">{{$item->name}}</option>
                       @endforeach
                     </select>
                   </td>
-                  <td><input type="text" name="time_backwardtrip" id="time_back"></td>
-                  <td><input type="text" name="fee_backwardtrip" id="fee_back"></td>
+                  <td><input type="text" name="time_backwardtrip[]"></td>
+                  <td><input type="text" name="fee_backwardtrip[]"></td>
                   <td><a class="delete2" >{{trans('admin_routes.delete')}}</a></td>
                 </tr>
                 </tbody>
                 <tr>
                   <td colspan="4"></td>
-                  <td rowspan="4"><a id="add" class="add_to_backwardtrip">{{trans('admin_routes.add')}}</a></td>
+                  <td><a id="add" class="add_to_backwardtrip">{{trans('admin_routes.add')}}</a></td>
                 </tr>
               </table>
             </div>
