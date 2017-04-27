@@ -28,4 +28,5 @@ Route::group(['namespace' => 'Danabus'], function () {
     Route::get('/', 'IndexController@index');
     Route::resource('/categories', 'CategoryController');
     Route::resource('/news', 'NewsController');
+    Route::resource('/routes', 'RouteController');
 });
