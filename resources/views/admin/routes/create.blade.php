@@ -103,10 +103,10 @@
                 </tr>
                 </thead>
                 <tbody id ="foward_trip">
-                <tr id="item">
-                  <td><input style="width: 70%;" type="text" name="order_forwardtrip[]" class="order_id_1" value="1"></td>
+                <tr id="item_forwardtrip">
+                  <td><input style="width: 70%;" type="text" name="order_forwardtrip[]" class="order_forwardtrip" value="1"></td>
                   <td>
-                    <select class="form-control select2" name="stop_id_forwardtrip[]" id="stop_id">
+                    <select class="form-control" name="stop_id_forwardtrip[]" id="stop_id">
                       <option value="">-- Choose --</option>
                       @foreach($stops as $item)
                       <option value="{{$item->id}}">{{$item->name}}</option>
@@ -115,7 +115,7 @@
                   </td>
                   <td><input type="text" name="time_forwardtrip[]" id="time"></td>
                   <td><input type="text" name="fee_forwardtrip[]" id="fee"></td>
-                  <td><a class="delete1">{{trans('admin_routes.delete')}}</a></td>
+                  <td><a class="delete_forwardtrip">{{trans('admin_routes.delete')}}</a></td>
                 </tr>
                 </tbody>
                 <tr>
@@ -139,10 +139,10 @@
                 </tr>
                 </thead>
                 <tbody id ="backward_trip">
-                <tr id="item2">
-                  <td ><input style="width: 70%;" type="text" name="order_backwardtrip[]" class="order_id_2" value="1"></td>
+                <tr id="item_backwardtrip">
+                  <td ><input style="width: 70%;" type="text" name="order_backwardtrip[]" class="order_backwardtrip" value="1"></td>
                   <td>
-                    <select class="form-control select2" name="stop_id_backwardtrip[]">
+                    <select class="form-control" name="stop_id_backwardtrip[]">
                       <option value="">-- Choose --</option>
                       @foreach($stops as $item)
                       <option value="{{$item->id}}">{{$item->name}}</option>
@@ -151,7 +151,7 @@
                   </td>
                   <td><input type="text" name="time_backwardtrip[]"></td>
                   <td><input type="text" name="fee_backwardtrip[]"></td>
-                  <td><a class="delete2" >{{trans('admin_routes.delete')}}</a></td>
+                  <td><a class="delete_backwardtrip" >{{trans('admin_routes.delete')}}</a></td>
                 </tr>
                 </tbody>
                 <tr>

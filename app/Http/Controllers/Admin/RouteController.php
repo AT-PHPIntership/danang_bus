@@ -43,13 +43,11 @@ class RouteController extends Controller
      */
     public function store(RouteRequest $request)
     {
-
         $allRequest = $request->all();
         $route = $request->only(['name','distance','frequency','frequency_peak','start_time','end_time','type']);
          DB::transaction(function () use ($route, $allRequest) {
             $newroute = new Route($route);
             $newroute->save();
-
             for ($i=0; $i<count($allRequest['order_forwardtrip']); $i++) {
                 $forwardtrip = new Direction([
                             "order" => $allRequest['order_forwardtrip'][$i],
@@ -57,9 +55,8 @@ class RouteController extends Controller
                             "fee" => $allRequest['fee_forwardtrip'][$i],
                             "time" => $allRequest['time_forwardtrip'][$i],
                             "status" => \App\Models\Direction::STATUS_FORWARD_TRIP,
-                            "route_id" => $newroute->id
                         ]);
-                $forwardtrip->save();
+                $newroute->directions()->save($forwardtrip);
             }
             for ($i=0; $i<count($allRequest['order_backwardtrip']); $i++) {
                 $backwardtrip = new Direction([
@@ -68,12 +65,10 @@ class RouteController extends Controller
                             "fee" => $allRequest['fee_backwardtrip'][$i],
                             "time" => $allRequest['time_backwardtrip'][$i],
                             "status" => \App\Models\Direction::STATUS_BACKWARD_TRIP,
-                            "route_id" => $newroute->id
                         ]);
-                $backwardtrip->save();
+                $newroute->directions()->save($backwardtrip);
             }
          });
-        
         Session::flash('success', trans('messages.route_create_success'));
         return redirect()->route('admin.routes.index');
     }
