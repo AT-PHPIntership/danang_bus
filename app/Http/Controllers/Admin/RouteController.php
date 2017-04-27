@@ -55,8 +55,16 @@ class RouteController extends Controller
      */
     public function edit($id)
     {
-        $route = Route::findOrFail($id);
-        return view('admin.routes.edit', compact('route', $route));
+
+        $routes = Route::where('id', '=', $id)->with(['directions' => function ($query) {
+            return $query->orderBy('order');
+        },'directions.stop'])->get();
+        foreach ($routes as $key => $value) {
+            $directions =  $value->directions;
+        }
+        
+        return view('admin.routes.edit', ['routes'=> $routes, "directions" => $directions]);
+
     }
 
     /**
@@ -69,9 +77,9 @@ class RouteController extends Controller
      */
     public function update(RouteRequest $request, $id)
     {
-        Route::findOrFail($id)->update($request->all());
-        Session::flash('success', trans('messages.route_edit_success'));
-        return redirect()->route('admin.routes.index');
+        $allRequest = $request->all();
+        $route = $request->only(['name','distance','frequency','frequency_peak','start_time','end_time','type']);
+        
     }
 
     /**
