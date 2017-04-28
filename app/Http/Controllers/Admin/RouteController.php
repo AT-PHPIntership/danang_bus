@@ -90,8 +90,11 @@ class RouteController extends Controller
         $routes = Route::where('id', '=', $id)->with(['directions' => function ($query) {
             return $query->orderBy('order');
         },'directions.stop'])->get();
+        foreach ($routes as $key => $value) {
+            $directions =  $value->directions;
+        }
         
-        return view('admin.routes.edit', ['routes'=> $routes]);
+        return view('admin.routes.edit', ['routes'=> $routes, "directions" => $directions]);
     }
 
     /**
@@ -104,7 +107,57 @@ class RouteController extends Controller
      */
     public function update(RouteRequest $request, $id)
     {
-        Route::findOrFail($id)->update($request->all());
+        
+        $allRequest = $request->all();
+        $route = $request->only(['name','distance','frequency','frequency_peak','start_time','end_time','type']);
+        // DB::transaction(function () use ($route, $allRequest, $id) {
+        //     Route::findOrFail($id)->update($route);
+        //     for ($i=0; $i<count($allRequest['order_forwardtrip']); $i++) {
+        //         $forwardtrip =Direction::updateOrCreate(["id"=>$allRequest['id_forwardtrip'][$i]],
+        //                 [
+        //                     "order" => $allRequest['order_forwardtrip'][$i],
+        //                     "stop_id" => $allRequest['stop_id_forwardtrip'][$i],
+        //                     "fee" => $allRequest['fee_forwardtrip'][$i],
+        //                     "time" => $allRequest['time_forwardtrip'][$i],
+        //                     "status" => \App\Models\Direction::STATUS_FORWARD_TRIP,
+        //                     "route_id" => $id
+        //                 ]);
+        //     }
+        //     for ($j=0; $j<count($allRequest['order_backwardtrip']); $j++) {
+        //         $backwardtrip = Direction::updateOrCreate(["id" => $allRequest['id_backwardtrip'][$j]],
+        //                 [
+        //                     "order" => $allRequest['order_backwardtrip'][$j],
+        //                     "stop_id" => $allRequest['stop_id_backwardtrip'][$j],
+        //                     "fee" => $allRequest['fee_backwardtrip'][$j],
+        //                     "time" => $allRequest['time_backwardtrip'][$j],
+        //                     "status" => \App\Models\Direction::STATUS_BACKWARD_TRIP,
+        //                     "route_id" => $id
+        //                 ]);
+        //     }
+        //  });
+        DB::transaction(function () use ($route, $allRequest, $id) {
+            Direction::where('route_id', '=', $id)->delete();
+            for ($i=0; $i<count($allRequest['order_forwardtrip']); $i++) {
+                $forwardtrip = new Direction([
+                            "order" => $allRequest['order_forwardtrip'][$i],
+                            "stop_id" => $allRequest['stop_id_forwardtrip'][$i],
+                            "fee" => $allRequest['fee_forwardtrip'][$i],
+                            "time" => $allRequest['time_forwardtrip'][$i],
+                            "status" => \App\Models\Direction::STATUS_FORWARD_TRIP,
+                        ]);
+                Route::find($id)->directions()->save($forwardtrip);
+            }
+            for ($i=0; $i<count($allRequest['order_backwardtrip']); $i++) {
+                $backwardtrip = new Direction([
+                            "order" => $allRequest['order_forwardtrip'][$i],
+                            "stop_id" => $allRequest['stop_id_forwardtrip'][$i],
+                            "fee" => $allRequest['fee_forwardtrip'][$i],
+                            "time" => $allRequest['time_forwardtrip'][$i],
+                            "status" => \App\Models\Direction::STATUS_BACKWARD_TRIP,
+                        ]);
+                 Route::find($id)->directions()->save($backwardtrip);
+            }
+        });
         Session::flash('success', trans('messages.route_edit_success'));
         return redirect()->route('admin.routes.index');
     }
@@ -118,7 +171,7 @@ class RouteController extends Controller
      */
     public function destroy($id)
     {
-        Route::findOrFail($id)->delete();
+        Route::where('id', '=', $id)->with('directions')->delete();
         Session::flash('success', trans('messages.route_delete_success'));
         return redirect()->route('admin.routes.index');
     }
