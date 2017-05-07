@@ -49,24 +49,24 @@ class RouteController extends Controller
             $newRoute = new Route($routeRequest);
             $newRoute->save();
             for ($i=0; $i<count($allRequest['stop_id_forward']); $i++) {
-                $forward_direction = new Direction([
+                $forwardStop = new Direction([
                     "order" => $i,
                     "stop_id" => $allRequest['stop_id_forward'][$i],
                     "fee" => $allRequest['fee_forward'][$i],
                     "time" => $allRequest['time_forward'][$i],
                     "status" => \App\Models\Direction::STATUS_FORWARD_TRIP,
                 ]);
-                $newRoute->directions()->save($forward_direction);
+                $newRoute->directions()->save($forwardStop);
             }
             for ($i=0; $i<count($allRequest['stop_id_backward']); $i++) {
-                $backward_direction = new Direction([
+                $backwardStop = new Direction([
                     "order" => $i,
                     "stop_id" => $allRequest['stop_id_backward'][$i],
                     "fee" => $allRequest['fee_backward'][$i],
                     "time" => $allRequest['time_backward'][$i],
                     "status" => \App\Models\Direction::STATUS_BACKWARD_TRIP,
                 ]);
-                $newRoute->directions()->save($backward_direction);
+                $newRoute->directions()->save($backwardStop);
             }
          });
         Session::flash('success', trans('messages.route_create_success'));
