@@ -105,7 +105,7 @@
                  </tr>
                  </thead>
                  <tbody class="stop-container">
-                   @foreach($directions as $direction)
+                   @foreach($route->directions as $direction)
                     @if($direction->status==\App\Models\Direction::STATUS_FORWARD_TRIP)
                        <tr id="stop-template-forward">
                           <td>
@@ -117,14 +117,14 @@
                          </td>
                          <td><input type="text" name="time_forward[]" value="{{$direction->time}}"></td>
                          <td><input type="text" name="fee_forward[]" value="{{$direction->fee}}"></td>
-                         <td><a class="delete_forward_stop" >{{trans('admin_routes.delete')}}</a></td>
+                         <td><a class="delete" >{{trans('admin_routes.delete')}}</a></td>
                        </tr>
                      @endif
                    @endforeach
                  </tbody>
                  <tr>
                   <td colspan="4"></td>
-                   <td><a class="btn_add_stop_forward">{{trans('admin_routes.add')}}</a></td>
+                   <td><a class="btn-add-stop-forward">{{trans('admin_routes.add')}}</a></td>
                  </tr>
                </table>
              </div>
@@ -142,7 +142,7 @@
                  </tr>
                  </thead>
                  <tbody class="stop-container">
-                   @foreach($directions as $direction)
+                   @foreach($route->directions as $direction)
                      @if($direction->status==\App\Models\Direction::STATUS_BACKWARD_TRIP)
                        <tr id="stop-template-backward">
                          <td>
@@ -154,14 +154,14 @@
                          </td>
                          <td><input type="text" name="time_backward[]"  value="{{$direction->time}}"></td>
                          <td><input type="text" name="fee_backward[]" value="{{$direction->fee}}"></td>
-                         <td><a class="delete_backward_stop">{{trans('admin_routes.delete')}}</a></td>
+                         <td><a class="delete">{{trans('admin_routes.delete')}}</a></td>
                        </tr>
                     @endif
                    @endforeach
                  </tbody>
                  <tr>
                   <td colspan="4"></td>
-                   <td><a class="btn_add_stop_backward">{{trans('admin_routes.add')}}</a></td>
+                   <td><a class="btn-add-stop-backward">{{trans('admin_routes.add')}}</a></td>
                  </tr>
                </table>
              </div>
@@ -174,6 +174,34 @@
           <button type="button" class="btn  btn-danger"><a href="{{route('admin.routes.index')}}">{{trans('admin_routes.cancle')}}</a></button>
         </div>
       </form>
+      <table hidden="">
+        <tr class="stop-template-forward">
+         <td>
+           <select class="form-control" name="stop_id_forward[]">
+             <option value="">-- Choose --</option>
+             @foreach($stops as $item)
+             <option value="{{$item->id}}">{{$item->name}}</option>
+             @endforeach
+           </select>
+         </td>
+         <td><input type="text" name="time_forward[]"></td>
+         <td><input type="text" name="fee_forward[]"></td>
+         <td><a class="delete" >{{trans('admin_routes.delete')}}</a></td>
+       </tr>
+        <tr class="stop-template-backward">
+          <td>
+            <select class="form-control" name="stop_id_backward[]">
+              <option value="">-- Choose --</option>
+              @foreach($stops as $item)
+              <option value="{{$item->id}}">{{$item->name}}</option>
+              @endforeach
+            </select>
+          </td>
+          <td><input type="text" name="time_backward[]"></td>
+          <td><input type="text" name="fee_backward[]"></td>
+          <td><a class="delete" >{{trans('admin_routes.delete')}}</a></td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>

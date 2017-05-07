@@ -45,33 +45,31 @@ class RouteController extends Controller
     {
 
         $allRequest = $request->all();
-        $route = $request->only(['name','distance','frequency','frequency_peak','start_time','end_time','type']);
-         DB::transaction(function () use ($route, $allRequest) {
-            $newroute = new Route($route);
-            $newroute->save();
-
+        $routeRequest = $request->only(['name','distance','frequency','frequency_peak','start_time','end_time','type']);
+        DB::transaction(function () use ($routeRequest, $allRequest) {
+            $newRoute = new Route($routeRequest);
+            $newRoute->save();
             for ($i=0; $i<count($allRequest['stop_id_forward']); $i++) {
-                            $forward_direction = new Direction([
-                                "order" => $i,
-                                "stop_id" => $allRequest['stop_id_forward'][$i],
-                                "fee" => $allRequest['fee_forward'][$i],
-                                "time" => $allRequest['time_forward'][$i],
-                                "status" => \App\Models\Direction::STATUS_FORWARD_TRIP,
-                            ]);
-                            $newRoute->directions()->save($forward_direction);
-                        }
-                        for ($i=0; $i<count($allRequest['stop_id_backward']); $i++) {
-                            $backward_direction = new Direction([
-                                "order" => $i,
-                                "stop_id" => $allRequest['stop_id_backward'][$i],
-                                "fee" => $allRequest['fee_backward'][$i],
-                                "time" => $allRequest['time_backward'][$i],
-                                "status" => \App\Models\Direction::STATUS_BACKWARD_TRIP,
-                            ]);
-                            $newRoute->directions()->save($backward_direction);
-                        }
-         });
-        
+                $forwardStop = new Direction([
+                   "order" => $i,
+                   "stop_id" => $allRequest['stop_id_forward'][$i],
+                   "fee" => $allRequest['fee_forward'][$i],
+                   "time" => $allRequest['time_forward'][$i],
+                   "status" => \App\Models\Direction::STATUS_FORWARD_TRIP,
+                ]);
+                 $newRoute->directions()->save($forwardStop);
+            }
+            for ($i=0; $i<count($allRequest['stop_id_backward']); $i++) {
+                $backwardStop = new Direction([
+                   "order" => $i,
+                   "stop_id" => $allRequest['stop_id_backward'][$i],
+                   "fee" => $allRequest['fee_backward'][$i],
+                   "time" => $allRequest['time_backward'][$i],
+                   "status" => \App\Models\Direction::STATUS_BACKWARD_TRIP,
+                ]);
+                 $newRoute->directions()->save($backwardStop);
+            }
+        });
         Session::flash('success', trans('messages.route_create_success'));
         return redirect()->route('admin.routes.index');
     }
@@ -88,11 +86,7 @@ class RouteController extends Controller
         $routes = Route::where('id', '=', $id)->with(['directions' => function ($query) {
             return $query->orderBy('order');
         },'directions.stop'])->get();
-        foreach ($routes as $key => $value) {
-            $directions =  $value->directions;
-        }
-        
-        return view('admin.routes.edit', ['routes'=> $routes, "directions" => $directions]);
+        return view('admin.routes.edit', ['routes'=> $routes]);
     }
 
     /**
@@ -112,24 +106,24 @@ class RouteController extends Controller
             Route::findOrFail($id)->update($routeRequest);
             Direction::where('route_id', '=', $id)->delete();
             for ($i=0; $i<count($allRequest['stop_id_forward']); $i++) {
-                $forward_direction = new Direction([
+                $forwardStop = new Direction([
                     "order" => $i,
                     "stop_id" => $allRequest['stop_id_forward'][$i],
                     "fee" => $allRequest['fee_forward'][$i],
                     "time" => $allRequest['time_forward'][$i],
                     "status" => \App\Models\Direction::STATUS_FORWARD_TRIP,
                 ]);
-                Route::findOrFail($id)->directions()->save($forward_direction);
+                Route::findOrFail($id)->directions()->save($forwardStop);
             }
             for ($i=0; $i<count($allRequest['stop_id_backward']); $i++) {
-                $backward_direction = new Direction([
+                $backwardStop = new Direction([
                     "order" => $i,
                     "stop_id" => $allRequest['stop_id_backward'][$i],
                     "fee" => $allRequest['fee_backward'][$i],
                     "time" => $allRequest['time_backward'][$i],
                     "status" => \App\Models\Direction::STATUS_BACKWARD_TRIP,
                 ]);
-                Route::findOrFail($id)->directions()->save($backward_direction);
+                Route::findOrFail($id)->directions()->save($backwardStop);
             }
         });
         Session::flash('success', trans('messages.route_edit_success'));
