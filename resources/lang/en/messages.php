@@ -20,4 +20,6 @@ return [
     'users_edit_error' => 'Edit User not success !!',
     'users_edit_not' => 'You can not edit this user !',
     'users_delete_not' => 'You can not delete this user !',
+    'feedback_reply_success' => 'Reply Feedback Success',
+    'feedback_delete_success' => 'Delete Feedback Success',
 ];
