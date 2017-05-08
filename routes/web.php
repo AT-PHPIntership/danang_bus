@@ -13,10 +13,10 @@
 
 
 
-Route::group(['namespace' => 'Admin','middleware'=>'auth', 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Admin', 'middleware'=>'auth','prefix' => 'admin'], function () {
     Route::get('/home', 'AdminController@index');
     Route::resource('/categories', 'CategoryController', ['as' => 'admin']);
-    Route::resource('/routes', 'RouteController', ['as' => 'admin']);
+    Route::resource('/routes', 'RouteController', ['as' => 'admin', 'except' => 'show']);
     Route::resource('/news', 'NewsController', ['as' => 'admin']);
     Route::resource('/users', 'UserController', ['as' => 'admin', 'except' => 'show']);
     Route::resource('stops', 'StopController', ['as' => 'admin']);

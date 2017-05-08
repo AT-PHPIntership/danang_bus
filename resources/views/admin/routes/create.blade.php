@@ -141,28 +141,28 @@
       <table hidden="">
         <tr class="stop-template-forward">
          <td>
-           <select class="form-control" name="stop_id_forward[]">
+           <select class="form-control" name="stop_id_forward[]" required="">
              <option value="">-- Choose --</option>
              @foreach($stops as $item)
              <option value="{{$item->id}}">{{$item->name}}</option>
              @endforeach
            </select>
          </td>
-         <td><input type="text" name="time_forward[]"></td>
-         <td><input type="text" name="fee_forward[]"></td>
+         <td><input type="text" name="time_forward[]" required=""></td>
+         <td><input type="number" name="fee_forward[]" required="" ></td>
          <td><a class="delete" >{{trans('admin_routes.delete')}}</a></td>
        </tr>
         <tr class="stop-template-backward">
           <td>
-            <select class="form-control" name="stop_id_backward[]">
+            <select class="form-control" name="stop_id_backward[]" required="">
               <option value="">-- Choose --</option>
               @foreach($stops as $item)
               <option value="{{$item->id}}">{{$item->name}}</option>
               @endforeach
             </select>
           </td>
-          <td><input type="text" name="time_backward[]"></td>
-          <td><input type="text" name="fee_backward[]"></td>
+          <td><input type="text" name="time_backward[]" required=""></td>
+          <td><input type="number" name="fee_backward[]" required=""></td>
           <td><a class="delete" >{{trans('admin_routes.delete')}}</a></td>
         </tr>
       </table>
