@@ -105,7 +105,7 @@
                 </tbody>
                 <tr>
                   <td colspan="3"></td>
-                  <td><a class="btn_add_stop_forward">{{trans('admin_routes.add')}}</a></td>
+                  <td><a class="btn-add-stop-forward">{{trans('admin_routes.add')}}</a></td>
                 </tr>
               </table>
             </div>
@@ -126,7 +126,7 @@
                 </tbody>
                 <tr>
                   <td colspan="3"></td>
-                  <td><a class="btn_add_stop_backward">{{trans('admin_routes.add')}}</a></td>
+                  <td><a class="btn-add-stop-backward">{{trans('admin_routes.add')}}</a></td>
                 </tr>
               </table>
             </div>

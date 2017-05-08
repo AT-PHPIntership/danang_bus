@@ -54,7 +54,7 @@ class RouteController extends Controller
                     "stop_id" => $allRequest['stop_id_forward'][$i],
                     "fee" => $allRequest['fee_forward'][$i],
                     "time" => $allRequest['time_forward'][$i],
-                    "status" => \App\Models\Direction::STATUS_FORWARD_TRIP,
+                    "status" => \App\Models\Direction::STATUS_FORWARD,
                 ]);
                 $newRoute->directions()->save($forwardStop);
             }
@@ -64,7 +64,7 @@ class RouteController extends Controller
                     "stop_id" => $allRequest['stop_id_backward'][$i],
                     "fee" => $allRequest['fee_backward'][$i],
                     "time" => $allRequest['time_backward'][$i],
-                    "status" => \App\Models\Direction::STATUS_BACKWARD_TRIP,
+                    "status" => \App\Models\Direction::STATUS_BACKWARD,
                 ]);
                 $newRoute->directions()->save($backwardStop);
             }

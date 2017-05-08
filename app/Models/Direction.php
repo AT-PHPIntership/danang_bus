@@ -9,12 +9,12 @@ class Direction extends Model
     /**
      * Status forward trip
      */
-    const STATUS_FORWARD_TRIP = 0;
+    const STATUS_FORWARD = 0;
 
     /**
      * Status backward trip
      */
-    const STATUS_BACKWARD_TRIP= 1;
+    const STATUS_BACKWARD= 1;
 
     
 
@@ -51,7 +51,7 @@ class Direction extends Model
      */
     public function getStatusLabelAttribute()
     {
-        if ($this->status == self::STATUS_FORWARD_TRIP) {
+        if ($this->status == self::STATUS_FORWARD) {
             return trans('directions.go');
         }
         return trans('directions.comeback');
