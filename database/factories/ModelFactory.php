@@ -49,7 +49,7 @@ $factory->define(App\Models\Route::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Models\FeedBacks::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\FeedBack::class, function (Faker\Generator $faker) {
     return [
         'email' => $faker->unique()->userName().'@gmail.com',
         'content' => $faker->sentence($nbWords = 13, $variableNbWords = true),
@@ -66,7 +66,7 @@ $factory->define(App\Models\Stop::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Models\Directions::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Direction::class, function (Faker\Generator $faker) {
     return [
         'order' => $faker->biasedNumberBetween($min = 1, $max = 10),
         'fee' => $faker->NumberBetween($min = 5000, $max = 50000),

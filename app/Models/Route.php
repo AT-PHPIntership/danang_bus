@@ -29,7 +29,7 @@ class Route extends Model
      */
     public function directions()
     {
-        return $this->hasMany(Directions::class);
+        return $this->hasMany(Direction::class);
     }
 
     /**

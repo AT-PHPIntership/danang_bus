@@ -40,22 +40,15 @@
               <td>{{$route->start_time}}</td>
               <td>{{$route->end_time}}</td>
               <td>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-success">{{trans('admin_routes.action')}}</button>
-                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                    <span class="sr-only"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="{{route('admin.routes.edit',$route->id)}}">{{trans('admin_routes.edit')}}</a></li>
-                    <li><form action="{{route('admin.routes.destroy',$route->id)}}" method="POST">
-                    {{csrf_field()}}
-                    {{ method_field('DELETE') }}
-                      <input type="submit" onclick="return confirmDelete('Are you want to delete this !!!')" name="Detele" value="Detele">   
-                    </form>
-                    </li>
-                  </ul>
-                </div>
+                <a href="{{route('admin.routes.edit',$route->id)}}">
+                <button type="button" class="btn btn-block btn-info btn-sm">
+                  <i class="fa fa-fw fa-edit"></i>
+                </button></a>
+                <form action="{{route('admin.routes.destroy',$route->id)}}" enctype="multipart/form-data" method="POST">
+                   {{csrf_field()}}
+                  {{ method_field('DELETE') }}
+                  <button type="submit"  onclick="return confirmDelete('Are you want to delete this !!!')" class="btn btn-block btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                </form>
               </td>
             </tr>
             @endforeach
