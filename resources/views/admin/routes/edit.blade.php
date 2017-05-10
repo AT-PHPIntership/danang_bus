@@ -106,7 +106,7 @@
                  </thead>
                  <tbody class="stop-container">
                    @foreach($route->directions as $direction)
-                    @if($direction->status==\App\Models\Direction::STATUS_FORWARD_TRIP)
+                    @if($direction->status==\App\Models\Direction::STATUS_FORWARD)
                        <tr id="stop-template-forward">
                           <td>
                            <select class="form-control" name="stop_id_forward[]">
@@ -143,7 +143,7 @@
                  </thead>
                  <tbody class="stop-container">
                    @foreach($route->directions as $direction)
-                     @if($direction->status==\App\Models\Direction::STATUS_BACKWARD_TRIP)
+                     @if($direction->status==\App\Models\Direction::STATUS_BACKWARD)
                        <tr id="stop-template-backward">
                          <td>
                            <select class="form-control" name="stop_id_backward[]">
