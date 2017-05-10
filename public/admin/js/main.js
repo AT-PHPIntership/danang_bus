@@ -18,7 +18,7 @@ $(document).ready(function(){
     var $template = $('.stop-template-backward').clone().removeClass('stop-template-backward');
     $container.append($template);
   });
-  $(document).on("click",".delete",function() {
+  $(document).on("click",".btn-delete-stop",function() {
     $(this).closest('tr').remove();
   });
 });
