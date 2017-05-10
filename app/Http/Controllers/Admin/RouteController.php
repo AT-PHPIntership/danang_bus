@@ -44,9 +44,8 @@ class RouteController extends Controller
     public function store(RouteRequest $request)
     {
         $allRequest = $request->all();
-        $routeRequest = $request->only(['name','distance','frequency','frequency_peak','start_time','end_time','type']);
-         DB::transaction(function () use ($routeRequest, $allRequest) {
-            $newRoute = new Route($routeRequest);
+         DB::transaction(function () use ($allRequest) {
+            $newRoute = new Route($allRequest);
             $newRoute->save();
             for ($i=0; $i<count($allRequest['stop_id_forward']); $i++) {
                 $forwardStop = new Direction([
