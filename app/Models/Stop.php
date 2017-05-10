@@ -19,6 +19,6 @@ class Stop extends Model
      */
     public function direction()
     {
-        return $this->belongsTo(Directions::class);
+        return $this->hasMany(Direction::class);
     }
 }

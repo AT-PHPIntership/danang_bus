@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use App\Models\Feedbacks;
+use App\Models\Feedback;
 
 class FeedBackTableSeeder extends Seeder
 {
@@ -13,6 +13,6 @@ class FeedBackTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\FeedBacks::class, 10)->create();
+        factory(App\Models\FeedBack::class, 10)->create();
     }
 }
