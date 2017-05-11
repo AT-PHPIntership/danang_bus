@@ -15,8 +15,8 @@ class RouteController extends Controller
      */
     public function index()
     {
-        $interprovincial = Route::where('type', '=', \App\Models\Route::TYPE_INTERPROVINCIAL)->get();
-        $innercity = Route::where('type', '=', \App\Models\Route::TYPE_INNER_CITY)->get();
+        $interprovincial = Route::interprovincial()->get();
+        $innercity = Route::innercity()->get();
         return view('danabus.routes.index', ['interprovincial' => $interprovincial, 'innercity' => $innercity]);
     }
 
@@ -27,6 +27,5 @@ class RouteController extends Controller
      */
     public function show()
     {
-        //
     }
 }

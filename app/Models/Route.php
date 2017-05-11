@@ -44,4 +44,28 @@ class Route extends Model
         }
         return trans('admin_routes.inner_city_routes');
     }
+
+    /**
+     * Interprovincial type of route
+     *
+     * @param \Illuminate\Http\Request $query route
+     *
+     * @return $query
+     */
+    public function scopeInterprovincial($query)
+    {
+        return $query->where('type', '=', self::TYPE_INTERPROVINCIAL);
+    }
+
+    /**
+     * Innercity type of route
+     *
+     * @param \Illuminate\Http\Request $query route
+     *
+     * @return $query
+     */
+    public function scopeInnercity($query)
+    {
+        return $query->where('type', '=', self::TYPE_INNER_CITY);
+    }
 }
