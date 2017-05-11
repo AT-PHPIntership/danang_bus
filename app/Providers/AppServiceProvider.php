@@ -16,6 +16,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        View::composer(
+            ['admin.directions.create','admin.directions.edit'],
+            'App\Http\ViewComposers\RouteComposer'
+        );
+        View::composer(
+            ['admin.routes.create','admin.routes.edit'],
+            'App\Http\ViewComposers\StopComposer'
+        );
         View::composer(
             'admin.news.create',
             'App\Http\ViewComposers\CategoryComposer'

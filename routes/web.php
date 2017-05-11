@@ -13,14 +13,15 @@
 
 
 
-Route::group(['namespace' => 'Admin','prefix' => 'admin'], function () {
+
+Route::group(['namespace' => 'Admin', 'middleware'=>'auth','prefix' => 'admin'], function () {
     Route::get('/home', 'AdminController@index');
     Route::resource('/categories', 'CategoryController', ['as' => 'admin']);
-    Route::resource('/routes', 'RouteController', ['as' => 'admin']);
+    Route::resource('/routes', 'RouteController', ['as' => 'admin', 'except' => 'show']);
     Route::resource('/news', 'NewsController', ['as' => 'admin']);
     Route::resource('/users', 'UserController', ['as' => 'admin', 'except' => 'show']);
     Route::resource('stops', 'StopController', ['as' => 'admin']);
-    Route::resource('/feedbacks', 'FeedbackController', ['as' => 'admin']);
+    Route::resource('/feedbacks', 'FeedbackController', ['as' => 'admin', 'except' => ['show','create']]);
 });
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::Auth();
@@ -30,4 +31,5 @@ Route::group(['namespace' => 'Danabus'], function () {
     Route::get('/', 'IndexController@index');
     Route::resource('/categories', 'CategoryController');
     Route::resource('/news', 'NewsController');
+    Route::resource('/routes', 'RouteController');
 });

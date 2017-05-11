@@ -16,7 +16,17 @@
         'id' => 'ID',
         'submit' => 'Submit',
         'cancle' => 'Cancle',
-        'edit' => 'Edit'
+        'edit' => 'Edit',
+        'adddirections' => "Thêm hành trình chạy xe ",
+        'forwardtrip' => "Hành trình lượt đi ",
+        'backwardtrip' => "Hành trình lượt về ",
+        'order' => "Thứ tự ",
+        'busstop' => "Trạm ",
+        'time' => "Xe đầu tiên đến lúc ",
+        "fee" => "Giá tiền ",
+        "add" => "Add",
+        "delete" => "Delete"
+
 
         
 
