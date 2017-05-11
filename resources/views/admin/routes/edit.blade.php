@@ -117,7 +117,7 @@
                          </td>
                          <td><input type="text" name="time_forward[]" value="{{$direction->time}}"></td>
                          <td><input type="text" name="fee_forward[]" value="{{$direction->fee}}"></td>
-                         <td><a class="delete" >{{trans('admin_routes.delete')}}</a></td>
+                         <td><a class="btn-delete-stop" >{{trans('admin_routes.delete')}}</a></td>
                        </tr>
                      @endif
                    @endforeach
@@ -154,7 +154,7 @@
                          </td>
                          <td><input type="text" name="time_backward[]"  value="{{$direction->time}}"></td>
                          <td><input type="text" name="fee_backward[]" value="{{$direction->fee}}"></td>
-                         <td><a class="delete">{{trans('admin_routes.delete')}}</a></td>
+                         <td><a class="btn-delete-stop">{{trans('admin_routes.delete')}}</a></td>
                        </tr>
                     @endif
                    @endforeach
