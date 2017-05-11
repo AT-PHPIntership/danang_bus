@@ -35,7 +35,6 @@ class AppServiceProvider extends ServiceProvider
         );
         View::composer(['danabus.index.index','admin.news.create'], 'App\Http\ViewComposers\CategoryComposer');
         
-        
         User::observe(UserObserver::class);
     }
 
