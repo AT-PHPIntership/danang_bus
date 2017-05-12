@@ -17,7 +17,7 @@ class CreateFeedbacksTable extends Migration
             $table->increments('id');
             $table->string('email');
             $table->text('content');
-            $table->text('reply');
+            $table->text('reply')->nullable();
             $table->timestamps();
         });
     }

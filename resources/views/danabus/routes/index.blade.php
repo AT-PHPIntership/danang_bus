@@ -12,7 +12,7 @@
           <div class="col-sm-4">
             <div class="panel panel-primary">
               <div class="panel-heading">
-                <a  href="{/routes/{{$item ->id}}"> {{trans('admin_routes.routes')}}  {{ $item ->name }}</a>
+                <a  href="routes/{{$item ->id}}"> {{trans('admin_routes.routes')}}  {{ $item ->name }}</a>
               </div>
             </div>
           </div>
