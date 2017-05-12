@@ -29,7 +29,7 @@ class RouteController extends Controller
      */
     public function show($id)
     {
-        $route = Route::where('id', '=', $id)->with('directions', 'directions.stop')->get();
-        return view('danabus.routes.show', ['route' => $route]);
+        $route = Route::with('backwardDirections', 'forwardDirections', 'forwardDirections.stop', 'backwardDirections.stop')->findOrFail($id);
+        return view('danabus.routes.show', compact('route'));
     }
 }

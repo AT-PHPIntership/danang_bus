@@ -1,12 +1,12 @@
 $(document).ready(function() {
-    showDirection("forward");
+    showBusStopOnMap("forwardDirection");
 }); 
-function showDirection(type) {
+function showBusStopOnMap(type) {
   var busstops;
-  if(type == "forward") {
-    busstops = forward;
+  if(type == "forwardDirection") {
+    busstops = JSON.parse(forwardDirectionJson);
   } else {
-    busstops = backward;
+    busstops = JSON.parse(backwardDirectionJson);
   }
   var mymap = new google.maps.Map(document.getElementById('mymap'), {
     zoom: 14,
@@ -14,14 +14,15 @@ function showDirection(type) {
     mapTypeId: 'terrain'
   });
   var path = [];
-  $.each( busstops, function( index, value ){
+  $.each( busstops, function( index, busstop ){
+  
     var marker = new google.maps.Marker({
       map: mymap,
-      position: {lat: Number(value.lat), lng: Number(value.lng)},
-      title: value.adresss
+      position: {lat: Number(busstop.lat), lng: Number(busstop.lng)},
+      title: busstop.adresss
     });
     marker.setMap(mymap);
-    path.push({lat: Number(value.lat), lng: Number(value.lng)});
+    path.push({lat: Number(busstop.lat), lng: Number(busstop.lng)});
   });
   var polyline = new google.maps.Polyline({
     path: path,
