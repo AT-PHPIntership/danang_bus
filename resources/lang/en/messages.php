@@ -22,4 +22,5 @@ return [
     'users_delete_not' => 'You can not delete this user !',
     'feedback_reply_success' => 'Reply Feedback Success',
     'feedback_delete_success' => 'Delete Feedback Success',
+    'feedback_send_success' => 'Send Feedback Success',
 ];
