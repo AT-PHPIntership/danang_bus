@@ -12,16 +12,16 @@
         <div class="newcontent">
           {!! trans('admin_routes.routes') !!} :{{$value->name}}<br>
           {!! trans('admin_routes.forwardtrip') !!}: 
-            @foreach($value->directions as $direction)
-              @if($direction->status == \App\Models\Direction::STATUS_FORWARD)
-                {{$direction->stop->name}} ({{$direction->stop->address}})-
+            @foreach($value->directions as $forward)
+              @if($forward->status == \App\Models\Direction::STATUS_FORWARD)
+                {{$forward->stop->name}} ({{$forward->stop->address}})-
               @endif
             @endforeach
             <br>
           {!! trans('admin_routes.backwardtrip') !!}:
-            @foreach($value->directions as $direction)
-              @if($direction->status == \App\Models\Direction::STATUS_BACKWARD)
-                {{$direction->stop->name}} ({{$direction->stop->address}})-
+            @foreach($value->directions as $backward)
+              @if($backward->status == \App\Models\Direction::STATUS_BACKWARD)
+                {{$backward->stop->name}} ({{$backward->stop->address}})-
               @endif
             @endforeach 
           <br>
@@ -34,20 +34,22 @@
       </div>
       @endforeach
     </div>
-    <div hidden=""> 
-      <p class="test">{{$direction->stop}}</p>
-      <p class="abc">{{$value->frequency}}</p>
-    </div>    
     <div id="contact" class="contact">
       <div class="section secondary-section">
         <div class="container">
           <div class="title">
-            <h2 class="map">Bản đồ </h2>  
+            <h2 class="map">{!! trans('index.map') !!} </h2>
+            <button class="go" onclick="showDirection('forward')">{!! trans('admin_routes.forwardtrip') !!}</button>    
+            <button class="back" onclick="showDirection('backward')">{!! trans('admin_routes.backwardtrip') !!}</button>  
           </div>
         </div>
-        <div id="mymap" style="height: 1000px; width: 80%; margin: auto;"></div>   
+        <div id="mymap"></div>   
         </div>
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+    var forward = <?php print_r(json_encode($forward)); ?>;
+    var backward = <?php print_r(json_encode($backward)); ?>;
+  </script>
 @stop
