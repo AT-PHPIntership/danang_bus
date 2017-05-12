@@ -33,4 +33,6 @@ Route::group(['namespace' => 'Danabus'], function () {
     Route::resource('/news', 'NewsController');
     Route::get('/routes', 'RouteController@index');
     Route::get('/routes/{id}', 'RouteController@show');
+    Route::get('/feedback', 'FeedbackController@index');
+    Route::post('/feedback', 'FeedbackController@store');
 });
