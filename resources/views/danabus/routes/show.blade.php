@@ -43,7 +43,6 @@
     </div>
   </div>
   <script type="text/javascript">
-    var forwardDirectionJson =  '<?php echo $forwardDirection->toJson();?>';
-    var backwardDirectionJson =  '<?php echo $backwardDirection->toJson();?>';
+    var routeJSONStr=  '<?php echo $route->toJson();?>';
   </script>
 @stop
