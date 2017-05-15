@@ -26,8 +26,8 @@
                   <div class="form-group">
                     <label>{{trans('search.choice_status')}}</label>
                    <select class="form-control" id="status">
-                     <option value="App/Models/Directions/STATUS_FORWARD">Lượt đi </option>
-                     <option value="App/Models/Directions/STATUS_FORWARD">Lượt về </option>
+                     <option value="App/Models/Directions/STATUS_FORWARD">{{trans('search.forward')}} </option>
+                     <option value="App/Models/Directions/STATUS_FORWARD">{{trans('search.backward')}}</option>
                    </select>
                   </div>
                   <div class="form-group">

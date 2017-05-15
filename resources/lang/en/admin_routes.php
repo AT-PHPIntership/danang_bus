@@ -25,7 +25,8 @@
         'time' => "Xe đầu tiên đến lúc ",
         "fee" => "Giá tiền ",
         "add" => "Add",
-        "delete" => "Delete"
+        "delete" => "Delete",
+        'unit' => 'Phút/chuyến '
 
 
         
