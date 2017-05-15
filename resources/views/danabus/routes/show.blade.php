@@ -11,13 +11,13 @@
         <div class="newcontent">
           {!! trans('admin_routes.routes') !!} :{{$route->name}}<br>
           {!! trans('admin_routes.forwardtrip') !!}: 
-          @foreach($route->forwardDirections as $forwardDirection) 
-            ->{{$forwardDirection->stop->address}} 
+          @foreach($forwardDirections as $item) 
+            ->{{$item->stop->address}} 
           @endforeach
           <br>
           {!! trans('admin_routes.backwardtrip') !!}: 
-          @foreach($route->backwardDirections as $backwardDirection) 
-            ->{{$backwardDirection->stop->address}} 
+          @foreach($backwardDirections as $item) 
+            ->{{$item->stop->address}} 
           @endforeach  
           <br>
           {{ trans('admin_routes.distance') }} {{$route->distance}}  km<br>
@@ -33,8 +33,8 @@
         <div class="container">
           <div class="title">
             <h2 class="map">{!! trans('index.map') !!} </h2>
-            <button onclick="showBusStopOnMap('forwardDirection')">{!! trans('admin_routes.forwardtrip') !!}</button>    
-            <button onclick="showBusStopOnMap('backwardDirection')">{!! trans('admin_routes.backwardtrip') !!}</button>  
+            <button class="btn-showforwardDirection">{!! trans('admin_routes.forwardtrip') !!}</button>    
+            <button class="btn-showbackwardDirection">{!! trans('admin_routes.backwardtrip') !!}</button>  
           </div>
         </div>
         <div id="mymap"></div>   

@@ -1,14 +1,17 @@
 $(document).ready(function() {
-    showBusStopOnMap("forwardDirection");
-}); 
-function showBusStopOnMap(type) {
   var routeJSON = JSON.parse(routeJSONStr);
-  var busstops;
-  if(type == "forwardDirection") {
+  var busstops = routeJSON["forward_directions"];
+  showBusStopOnMap(busstops);
+  $('.btn-showforwardDirection').on('click', function(){
     var busstops = routeJSON["forward_directions"];
-  } else {
+    showBusStopOnMap(busstops);
+  }); 
+  $('.btn-showbackwardDirection').on('click', function(){
     var busstops = routeJSON["backward_directions"];
-  }
+    showBusStopOnMap(busstops);
+  });
+}); 
+function showBusStopOnMap(busstops) {
   var mymap = new google.maps.Map(document.getElementById('mymap'), {
     zoom: 14,
     center: {lat: 16.058980, lng: 108.204351},

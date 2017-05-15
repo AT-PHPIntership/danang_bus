@@ -30,6 +30,8 @@ class RouteController extends Controller
     public function show($id)
     {
         $route = Route::with('backwardDirections', 'forwardDirections', 'forwardDirections.stop', 'backwardDirections.stop')->findOrFail($id);
-        return view('danabus.routes.show', compact('route'));
+        $forwardDirections = $route->forwardDirections;
+        $backwardDirections = $route->backwardDirections;
+        return view('danabus.routes.show', compact('route', 'forwardDirections', 'backwardDirections'));
     }
 }
