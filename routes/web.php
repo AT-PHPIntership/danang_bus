@@ -35,4 +35,6 @@ Route::group(['namespace' => 'Danabus'], function () {
     Route::get('/routes/{id}', 'RouteController@show');
     Route::get('/feedback', 'FeedbackController@index');
     Route::post('/feedback', 'FeedbackController@store');
+    Route::get('/search', 'SearchController@index');
+    Route::post('/search', 'SearchController@search'); 
 });
