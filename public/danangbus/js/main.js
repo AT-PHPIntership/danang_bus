@@ -1,12 +1,15 @@
 $(document).ready(function() {
-
-showBusStopOnMap();
+  if(typeof(routeJSONStr) != "undefined" && routeJSONStr !== null){
+    showBusStopOnMap();
+  }
 });
+
 function showBusStopOnMap() {
   var busstops = JSON.parse(routeJSONStr);
-  console.log(busstops);
   var forward_path = [];  
-  var backward_path = [];  
+  var backward_path = [];
+  var waypoints_backward;
+  var waypoints_forward;
   var directions_forward = new google.maps.DirectionsService;
   var directions_backward = new google.maps.DirectionsService;
   var directions_display_forward = new google.maps.DirectionsRenderer({
@@ -20,7 +23,7 @@ function showBusStopOnMap() {
   },
   }); 
   var mymap = new google.maps.Map(document.getElementById('mymap'), {
-    zoom: 14,
+    zoom: 10,
     center: {lat: 16.058980, lng: 108.204351},
     mapTypeId: 'terrain'
   });
@@ -32,44 +35,35 @@ function showBusStopOnMap() {
   $.each( busstops.backward_directions, function( index, busstop ){
     backward_path.push({lat: Number(busstop.stop.lat), lng: Number(busstop.stop.lng)});
   });
-  var waypoints_backward=[];
-  var waypoints_forward=[];
-  var forward_path_length = forward_path.length;
-  var backward_path_length = backward_path.length;
-  for(var i = 1; i < forward_path_length-1; i++) { 
-    waypoints_forward.push({
-      location: forward_path[i],
+  waypoints_forward = getWaypoint(forward_path);
+  waypoints_backward = getWaypoint(backward_path);
+  drawDirection(directions_forward,directions_display_forward,forward_path,waypoints_forward);
+  drawDirection(directions_backward,directions_display_backward,backward_path,waypoints_backward);
+}
+
+function getWaypoint(path){
+  var path_length = path.length;
+  var points = [];
+  for(var i = 1; i < path_length-1; i++) { 
+    points.push({
+      location: path[i],
       stopover: true  
     });
   }
-  for(var i = 1; i < backward_path_length-1; i++) { 
-    waypoints_backward.push({
-      location: backward_path[i],
-      stopover: true  
-    });
-  }
-   directions_forward.route({
-    origin: forward_path[0],
-    waypoints: waypoints_forward,
+  return points;
+}
+
+function drawDirection(directions, directions_display,path,waypoints){
+  var path_length = path.length;
+  directions.route({
+    origin: path[0],
+    waypoints: waypoints,
     optimizeWaypoints: true,
-    destination: forward_path[forward_path_length-1],
+    destination: path[path_length-1],
     travelMode: 'DRIVING',
   }, function(response, status) {
       if (status === 'OK') {
-        directions_display_forward.setDirections(response);
-      } else {
-        console.log('Directions request failed due to ' + status);
-      }
-    });
-  directions_backward.route({
-    origin: backward_path[0],
-    waypoints: waypoints_backward,
-    optimizeWaypoints: true,
-    destination: backward_path[backward_path_length-1],
-    travelMode: 'DRIVING',
-  }, function(response, status) {
-      if (status === 'OK') {
-        directions_display_backward.setDirections(response);
+        directions_display.setDirections(response);
       } else {
         console.log('Directions request failed due to ' + status);
       }
