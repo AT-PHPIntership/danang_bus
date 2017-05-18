@@ -23,9 +23,13 @@ class RouteController extends Controller
     /**
      * Display the specified resource.
      *
+     *  @param int $id of route
+     *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
+        $route = Route::with('backwardDirections', 'forwardDirections', 'forwardDirections.stop', 'backwardDirections.stop')->findOrFail($id);
+        return view('danabus.routes.show', compact('route'));
     }
 }

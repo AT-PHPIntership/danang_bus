@@ -32,6 +32,26 @@ class Route extends Model
         return $this->hasMany(Direction::class);
     }
 
+     /**
+     * Route has many directions with status = 0
+     *
+     * @return Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function backwardDirections()
+    {
+        return $this->hasMany(Direction::class)->where('status', Direction::STATUS_BACKWARD);
+    }
+
+     /**
+     * Route has many directions with status = 1
+     *
+     * @return Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function forwardDirections()
+    {
+        return $this->hasMany(Direction::class)->where('status', Direction::STATUS_FORWARD);
+    }
+
     /**
      * Type of route
      *
