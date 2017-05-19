@@ -15,10 +15,10 @@ $(document).ready(function() {
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
-    })
+    });
     formData = {
-      $route_id: $('#route_id').val(),
-      $status: $('#status').val(),
+      route_id: $('#route_id').val(),
+      status: $('#status').val(),
     }
     $.ajax({
       type: 'POST',

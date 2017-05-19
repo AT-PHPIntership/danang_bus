@@ -29,8 +29,8 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         if ($request->ajax()) {
-            $id = $request->get('$route_id');
-            $status = $request->get('$status');
+            $id = $request->get('route_id');
+            $status = $request->get('status');
             $condition = ['status' => $status, 'route_id' => $id];
             $directions = Direction::where($condition)->with('stop')->get();
             return response()->json($directions);
