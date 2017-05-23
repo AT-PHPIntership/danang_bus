@@ -8,20 +8,17 @@
            @if (Auth::guest())
           <h3 class="profile-username text-center">Login</h3>
           @else
+          {{-- {{dd(Auth::user())}} --}}
           <h3 class="profile-username text-center">{{ Auth::user()->username }}</h3>
-          <p class="text-muted text-center">Software Engineer</p>
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              <b>Tham gia</b> <a class="pull-right">1,322</a>
+              <b>Tham gia</b> <a class="pull-right">{{ Auth::user()->created_at}}</a>
             </li>
             <li class="list-group-item">
-              <b>Bài viết</b> <a class="pull-right">543</a>
-            </li>
-            <li class="list-group-item">
-              <b>Friends</b> <a class="pull-right">13,287</a>
+              <b>Bài viết</b> <a class="pull-right">{{ Auth::user()->news->count()}}</a>
             </li>
           </ul>
-          <a href="#" class="btn btn-primary btn-block"><b>Chỉnh sửa</b></a>
+          <a href="{{route('admin.users.edit',Auth::user()->id)}}" class="btn btn-primary btn-block"><b>Chỉnh sửa</b></a>
           @endif
         </div>
       </div>
@@ -44,34 +41,18 @@
           <table class="table table-hover">
             <tr>
               <th>ID</th>
-              <th>Title</th>
               <th>Category</th>
+              <th>Title</th>
               <th>Content</th>
             </tr>
-            <tr>
-              <td>183</td>
-              <td>John Doe</td>
-              <td>11-7-2014</td>
-              <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+            @foreach (Auth::user()->news as $news)
+              <tr>
+              <td>{{$news->id}}</td>
+              <td>{{$news->category->name}}</td>
+              <td>{{$news->title}}</td>
+              <td>{!!str_limit($news->content,100)!!}</td>
             </tr>
-            <tr>
-              <td>219</td>
-              <td>Alexander Pierce</td>
-              <td>11-7-2014</td>
-              <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-            </tr>
-            <tr>
-              <td>657</td>
-              <td>Bob Doe</td>
-              <td>11-7-2014</td>
-              <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-            </tr>
-            <tr>
-              <td>175</td>
-              <td>Mike Doe</td>
-              <td>11-7-2014</td>
-              <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-            </tr>
+            @endforeach
           </table>
         </div>
       </div>
@@ -81,7 +62,6 @@
     <div class="box box-primary">
       <div class="box-header with-border">
         <h3 class="box-title">Inbox</h3>
-
         <div class="box-tools pull-right">
           <div class="has-feedback">
             <input type="text" class="form-control input-sm" placeholder="Search Mail">
@@ -98,105 +78,26 @@
           </button>
           <div class="btn-group">
             <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
           </div>
           <!-- /.btn-group -->
           <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-          <div class="pull-right">
-            1-50/200
-            <div class="btn-group">
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-            </div>
-            <!-- /.btn-group -->
-          </div>
-          <!-- /.pull-right -->
         </div>
         <div class="table-responsive mailbox-messages">
           <table class="table table-hover table-striped">
             <tbody>
-            <tr>
+            @foreach ($feedbacks as $feedback)
+              <tr>
               <td><input type="checkbox"></td>
               <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-              <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-              <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+              <td class="mailbox-name"><a href="read-mail.html">{{$feedback->email}}</a></td>
+              <td class="mailbox-subject"> {{str_limit($feedback->content,50)}}
               </td>
+              <td><button type="button" class="btn btn-default btn-sm"><a href="{{route('admin.feedbacks.edit',$feedback->id)}}"><i class="fa fa-share"></i></a></button></td>
               <td class="mailbox-attachment"></td>
-              <td class="mailbox-date">5 mins ago</td>
+              <td>{{ Carbon\Carbon::parse($feedback->created_at)->format('d-m-Y') }}</td>
             </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-              <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-              <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-              </td>
-              <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-              <td class="mailbox-date">28 mins ago</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-              <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-              <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-              </td>
-              <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-              <td class="mailbox-date">11 hours ago</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-              <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-              <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-              </td>
-              <td class="mailbox-attachment"></td>
-              <td class="mailbox-date">15 hours ago</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-              <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-              <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-              </td>
-              <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-              <td class="mailbox-date">Yesterday</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-              <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-              <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-              </td>
-              <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-              <td class="mailbox-date">2 days ago</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-              <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-              <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-              </td>
-              <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-              <td class="mailbox-date">2 days ago</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-              <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-              <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-              </td>
-              <td class="mailbox-attachment"></td>
-              <td class="mailbox-date">2 days ago</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-              <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-              <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-              </td>
-              <td class="mailbox-attachment"></td>
-              <td class="mailbox-date">2 days ago</td>
-            </tr>
+            @endforeach
+            
             </tbody>
           </table>
           <!-- /.table -->
@@ -211,20 +112,12 @@
           </button>
           <div class="btn-group">
             <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
           </div>
           <!-- /.btn-group -->
           <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-          <div class="pull-right">
-            1-50/200
-            <div class="btn-group">
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-            </div>
-            <!-- /.btn-group -->
-          </div>
-          <!-- /.pull-right -->
+          <ul class="pagination pagination-sm no-margin pull-right">
+            <li> {{$feedbacks->render()}}</li>
+          </ul>
         </div>
       </div>
     </div>
