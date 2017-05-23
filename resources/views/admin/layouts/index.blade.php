@@ -94,7 +94,7 @@
               </td>
               <td><button type="button" class="btn btn-default btn-sm"><a href="{{route('admin.feedbacks.edit',$feedback->id)}}"><i class="fa fa-share"></i></a></button></td>
               <td class="mailbox-attachment"></td>
-              <td>{{ Carbon\Carbon::parse($news->created_at)->format('d-m-Y') }}</td>
+              <td>{{ Carbon\Carbon::parse($feedback->created_at)->format('d-m-Y') }}</td>
             </tr>
             @endforeach
             
