@@ -28,12 +28,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 });
 
 Route::group(['namespace' => 'Danabus'], function () {
-    Route::get('/', 'IndexController@index');
-    Route::resource('/categories', 'CategoryController');
-    Route::resource('/news', 'NewsController');
+    Route::get('/', 'IndexController@index')->name('home');
+    Route::resource('/categories', 'CategoryController', ['only'=>'show']);
+    Route::resource('/news', 'NewsController', ['only'=>'show']);
     Route::get('/routes', 'RouteController@index');
     Route::get('/routes/{id}', 'RouteController@show');
-    Route::get('/feedback', 'FeedbackController@index');
+    Route::get('/feedback', 'FeedbackController@index')->name('feedbacks.index');
     Route::post('/feedback', 'FeedbackController@store');
     Route::get('/search', 'SearchController@index');
     Route::post('/search', 'SearchController@search');

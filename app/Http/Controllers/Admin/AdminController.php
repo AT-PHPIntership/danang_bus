@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Feedback;
 
 class AdminController extends Controller
 {
@@ -15,6 +16,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.layouts.index');
+        
+        $feedbacks= Feedback::orderBy('id', 'DESC')->paginate();
+        return view('admin.layouts.index', compact('feedbacks'));
     }
 }

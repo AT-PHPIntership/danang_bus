@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Danabus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Feedback;
-use App\Request\FeedbackRequest;
+use App\Http\Requests\FeedbackRequest;
+use Session;
 
 class FeedbackController extends Controller
 {
