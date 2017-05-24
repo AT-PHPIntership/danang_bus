@@ -18,7 +18,7 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare()
     {
-        // static::startChromeDriver();
+        static::startChromeDriver();
     }
 
     /**
@@ -29,7 +29,7 @@ abstract class DuskTestCase extends BaseTestCase
     protected function driver()
     {
         return RemoteWebDriver::create(
-            'http://danangbus.app/', DesiredCapabilities::safari()
+            'http://127.0.0.1', DesiredCapabilities::chrome()
         );
     }
 }

@@ -16,9 +16,14 @@ class ExampleTest extends DuskTestCase
      */
     public function testBasicExample()
     {
-        // $this->browse(function (Browser $browser) {
-        //     $browser->visit('/')
-        //             ->assertTitle('Danabus.com ');
-        // });
+        try{
+            $this->browse(function (Browser $browser) {
+                $browser->visit('/admin/login')
+                        ->assertTitle('Danabus.com ');
+            });    
+        }catch(\Exception $e){
+            dd(request()->url());
+        }
+        
     }
 }
