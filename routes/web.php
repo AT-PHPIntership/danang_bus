@@ -15,7 +15,7 @@
 
 
 Route::group(['namespace' => 'Admin', 'middleware'=>'auth','prefix' => 'admin'], function () {
-    Route::get('/home', 'AdminController@index');
+    Route::get('/home', 'AdminController@index')->name('admin.home');
     Route::resource('/categories', 'CategoryController', ['as' => 'admin']);
     Route::resource('/routes', 'RouteController', ['as' => 'admin', 'except' => 'show']);
     Route::resource('/news', 'NewsController', ['as' => 'admin']);
