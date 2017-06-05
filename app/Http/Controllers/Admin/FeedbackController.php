@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Feedback;
 use Session;
+use Mail;
 
 class FeedbackController extends Controller
 {
@@ -44,7 +45,12 @@ class FeedbackController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        $admin_mail = Auth::user()->email;
         Feedback::findOrFail($id)->update($input);
+        Mail::send('admin.feedbacks.content', $input, function($message) use($input,$admin_mail){
+            $message->from($admin_mail,'Admin');
+            $message->to($input->mail,'Guest')->subject('Reply your feedback');
+        });
         Session::flash('success', trans('messages.feedback_reply_success'));
         return redirect()->route('admin.feedbacks.index');
     }
