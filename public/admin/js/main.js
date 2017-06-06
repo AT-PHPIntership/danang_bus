@@ -4,29 +4,30 @@ function confirmDelete(msg){
     }
         return false;
 }
-var mymap;
-var marker;
-var stop_namespace = {
+
+var stop_module = {
+  mymap:0,
+  marker:0,
   initMap :function(){
-    mymap = new google.maps.Map(document.getElementById('mymap'), {
+    stop_module.mymap = new google.maps.Map(document.getElementById('mymap'), {
       zoom: 14,
       center: {lat: 16.058980, lng: 108.204351},
       mapTypeId: 'terrain'
     }); 
   },
   dragMaker :function(address_latlng){
-    if (marker) {
-      marker.setPosition(address_latlng);
+    if (stop_module.marker != 0) {
+      stop_module.marker.setPosition(address_latlng);
     } 
     else {
-      marker = new google.maps.Marker({
-        map: mymap,
+      stop_module.marker = new google.maps.Marker({
+        map: stop_module.mymap,
         position: address_latlng,
         draggable: true
       });
-      marker.setMap(mymap);
+      stop_module.marker.setMap(stop_module.mymap);
     }
-    google.maps.event.addListener(marker, 'dragend', function(result){
+    google.maps.event.addListener(stop_module.marker, 'dragend', function(result){
       $('#input-lat').val(result.latLng.lat());
       $('#input-lng').val(result.latLng.lng());
     });
@@ -56,23 +57,25 @@ $(document).ready(function(){
 
   if($('#input-lat') !='' && $('#input-lng') !=''){
     var address_latlng =  new google.maps.LatLng($('#input-lat').val(),$('#input-lng').val());
-    stop_namespace.dragMaker(address_latlng);
+    stop_module.dragMaker(address_latlng);
   }
 
   $('#input-address').blur(function() { 
     var address = $('#input-address').val()+',Đà Nẵng, Việt Nam';
-    $.getJSON( {
-      url  : 'https://maps.googleapis.com/maps/api/geocode/json',
-      data : {
-        sensor  : false,
-        address : address
-      },
-      success : function(data) {
-        var address_latlng = data.results[0].geometry.location;
-        $('#input-lat').val(address_latlng.lat);
-        $('#input-lng').val(address_latlng.lng);
-        stop_namespace.dragMaker(address_latlng);
-      }
-    });
+    var geocoder = new google.maps.Geocoder(); 
+    geocoder.geocode({
+      address : address,
+    },
+      function(data, status) {
+        if (status.toLowerCase() == 'ok') {
+          var address_latlng = new google.maps.LatLng(
+            data[0]['geometry']['location'].lat(),
+            data[0]['geometry']['location'].lng()
+          );
+          $('#input-lat').val(address_latlng.lat());
+          $('#input-lng').val(address_latlng.lng());
+          stop_module.dragMaker(address_latlng);
+        }
+      });
   });
 });
