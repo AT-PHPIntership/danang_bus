@@ -66,6 +66,6 @@
 <script src="{{asset('bower_components/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
 @yield('script')
 <script src="{{asset('admin/js/main.js')}}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmfz59xpBdgu2WuHic0O4ra1drIDWSrMo&callback=initMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{config('constant.map_key')}}&callback=stop_namespace.initMap"></script>
 </body>
 </html>
