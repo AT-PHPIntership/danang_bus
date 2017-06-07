@@ -6,8 +6,8 @@ function confirmDelete(msg){
 }
 
 var stop_module = {
-  mymap:0,
-  marker:0,
+  mymap:null,
+  marker:null,
   initMap :function(){
     stop_module.mymap = new google.maps.Map(document.getElementById('mymap'), {
       zoom: 14,
@@ -16,7 +16,7 @@ var stop_module = {
     }); 
   },
   dragMaker :function(address_latlng){
-    if (stop_module.marker != 0) {
+    if (stop_module.marker) {
       stop_module.marker.setPosition(address_latlng);
     } 
     else {
