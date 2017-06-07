@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Feedback;
 use Session;
 use Mail;
+use Auth;
 
 class FeedbackController extends Controller
 {
@@ -47,9 +48,9 @@ class FeedbackController extends Controller
         $input = $request->all();
         $admin_mail = Auth::user()->email;
         Feedback::findOrFail($id)->update($input);
-        Mail::send('admin.feedbacks.content', $input, function($message) use($input,$admin_mail){
-            $message->from($admin_mail,'Admin');
-            $message->to($input->mail,'Guest')->subject('Reply your feedback');
+        Mail::send('admin.feedbacks.content', $input, function ($message) use ($input, $admin_mail) {
+            $message->from($admin_mail, 'Danang_bus Admin');
+            $message->to($input['email'])->subject(trans('feedbacks.subject'));
         });
         Session::flash('success', trans('messages.feedback_reply_success'));
         return redirect()->route('admin.feedbacks.index');
