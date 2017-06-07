@@ -8,7 +8,7 @@
           <div class="col-md-6 col-md-offset-3">
             <div class="row">
               <div class="col-lg-12">
-                <form action="/search " method="POST" id="login-form"  method="post" role="form" style="display: block;">
+                <form action="/search " method="GET" id="login-form" role="form" style="display: block;">
                 <meta name="csrf-token" content="{{ csrf_token() }}" />
                   <div class="form-group">
                     <label>{{trans('search.type_your_address')}}</label>
@@ -52,4 +52,7 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+    
+  </script>
 @stop
