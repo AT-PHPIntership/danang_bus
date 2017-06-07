@@ -6,6 +6,7 @@
   <title> {{trans('admin.danabus')}}| {{trans('admin.dashboard')}}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="{{asset('bower_components/AdminLTE/bootstrap/css/bootstrap.min.css')}}">
   <!-- Font Awesome -->
@@ -65,5 +66,6 @@
 <script src="{{asset('bower_components/AdminLTE/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
 @yield('script')
 <script src="{{asset('admin/js/main.js')}}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{config('constant.map_key')}}&callback=stop_module.initMap"></script>
 </body>
 </html>
