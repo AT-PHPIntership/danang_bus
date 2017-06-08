@@ -17,25 +17,25 @@
               <span class="help-block" >{{$errors->first('name')}}</span>
             @endif
           </div>
+          <div class="form-group col-md-6 {{ $errors->has('address') ? ' has-error' : '' }}">
+            <label>{{ trans('stops.address') }} </label>
+            <input type="text" class="form-control"  name="address" value="{{$stop->address}}" id="input-address">
+            @if ($errors->has('address'))
+              <span class="help-block">{{$errors->first('address')}}</span>
+            @endif
+          </div>
           <div class="form-group col-md-6 {{ $errors->has('lat') ? ' has-error' : '' }}">
             <label>{{trans('stops.lat')}} </label>
-            <input type="text" class="form-control"  name="lat" value="{{$stop->lat}}">
+            <input type="text" class="form-control"  name="lat" value="{{$stop->lat}}" id="input-lat">
             @if ($errors->has('lat'))
               <span class="help-block" >{{$errors->first('lat')}}</span>
             @endif
           </div>
           <div class="form-group col-md-6 {{ $errors->has('lng') ? ' has-error' : '' }}">
             <label>{{trans('stops.lng')}} </label>
-            <input type="text" class="form-control"  name="lng" value="{{$stop->lng}}">
+            <input type="text" class="form-control"  name="lng" value="{{$stop->lng}}" id="input-lng">
             @if ($errors->has('lng'))            
               <span class="help-block">{{$errors->first('lng')}}</span>
-            @endif
-          </div>
-          <div class="form-group col-md-6 {{ $errors->has('address') ? ' has-error' : '' }}">
-            <label>{{ trans('stops.address') }} </label>
-            <input type="text" class="form-control"  name="address" value="{{$stop->address}}">
-            @if ($errors->has('address'))
-              <span class="help-block">{{$errors->first('address')}}</span>
             @endif
           </div>
         </div>
@@ -47,4 +47,5 @@
     </div>
   </div>
 </div>
+<div id="mymap" style="height: 700px"></div>
 @endsection
