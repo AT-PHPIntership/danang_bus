@@ -12,17 +12,15 @@
                 <meta name="csrf-token" content="{{ csrf_token() }}" />
                   <div class="form-group">
                     <label>{{trans('search.type_starting_point')}}</label>
-                   <input type="text" name="input-starting-point" id="input-starting-point">
+                    <input type="text" name="input-starting-point" id="input-starting-point">
                   </div>
                   <div class="form-group">
                     <label>{{trans('search.type_destination')}}</label>
-                   <input type="text" name="input-destination" id="input-destination">
+                    <input type="text" name="input-destination" id="input-destination">
                   </div>
                   <div class="form-group">
-                    <div class="row">
-                      <div class="col-sm-6 col-sm-offset-3">
-                        <a href="#" class="btn-search">{{trans('search.search')}}</a>
-                      </div>
+                    <div class="col-sm-6 col-sm-offset-3">
+                      <a href="#" class="btn-search">{{trans('search.search')}}</a>
                     </div>
                   </div>  
                 </form>

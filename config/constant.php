@@ -1,6 +1,6 @@
 <?php
     return [
         'path_upload_news' => 'upload/picture_news/',
-        'map_key' => 'AIzaSyAmfz59xpBdgu2WuHic0O4ra1drIDWSrMo',
+        'map_key' => env('GOOGLE_APIKEY'),
         'circle_radius' => '2',
     ];

@@ -48,12 +48,7 @@ $(document).ready(function() {
 
   });
 
-  $('#input-starting-point').blur(function() { 
-    var map = new google.maps.Map(document.getElementById('mymap'), {
-      zoom: 14,
-      center: {lat: 16.058980, lng: 108.204351},
-      mapTypeId: 'terrain'
-    });  
+  $('#input-starting-point').blur(function() {   
     var data;
     var starting_point = $('#input-starting-point').val()+',Đà Nẵng, Việt Nam';
     search_module.showAddress(starting_point,function(starting_point_latlng){
