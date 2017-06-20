@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Danabus;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use App\Models\Stop;
+use App\Models\Direction;
 
 class SearchController extends Controller
 {
@@ -20,24 +20,20 @@ class SearchController extends Controller
     }
 
    /**
-     * Get data from ajax
+     * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request from ajax
+     * @param \Illuminate\Http\Request $request of form
      *
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request)
     {
-        $radius = config('constant.circle_radius');
         if ($request->ajax()) {
-            $lat = $request->get('lat');
-            $lng = $request->get('lng');
-            $raw = "(6371 * acos(cos(radians($lat)) * cos(radians(lat)) * cos(radians(lng) 
-                - radians($lng)) 
-                + sin(radians($lat)) 
-                * sin(radians(lat))))";
-            $stops = Stop::with('direction', 'direction.routes')->whereRaw("{$raw} < ?", [$radius])->get();
-            return response()->json($stops);
+            $id = $request->get('route_id');
+            $status = $request->get('status');
+            $condition = ['status' => $status, 'route_id' => $id];
+            $directions = Direction::where($condition)->with('stop')->get();
+            return response()->json($directions);
         }
     }
 }
