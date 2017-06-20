@@ -8,27 +8,15 @@
           <div class="col-md-6 col-md-offset-3">
             <div class="row">
               <div class="col-lg-12">
-                <form action="/search " method="POST" id="login-form"  method="post" role="form" style="display: block;">
+                <form action="/search" method="GET" id="login-form" role="form" style="display: block;">
                 <meta name="csrf-token" content="{{ csrf_token() }}" />
                   <div class="form-group">
-                    <label>{{trans('search.type_your_address')}}</label>
-                   <input type="text" name="address" id="address">
+                    <label>{{trans('search.type_starting_point')}}</label>
+                   <input type="text" name="input-starting-point" id="input-starting-point">
                   </div>
                   <div class="form-group">
-                    <label>{{trans('search.choice_route')}}</label>
-                   <select class="form-control" id="route_id">
-                     <option value="">-- Choose --</option>
-                     @foreach($routes as $item)
-                     <option value="{{$item->id}}">{{$item->name}}</option>
-                     @endforeach
-                   </select>
-                  </div>
-                  <div class="form-group">
-                    <label>{{trans('search.choice_status')}}</label>
-                   <select class="form-control" id="status">
-                     <option value="App/Models/Directions/STATUS_FORWARD">{{trans('search.forward')}} </option>
-                     <option value="App/Models/Directions/STATUS_FORWARD">{{trans('search.backward')}}</option>
-                   </select>
+                    <label>{{trans('search.type_destination')}}</label>
+                   <input type="text" name="input-destination" id="input-destination">
                   </div>
                   <div class="form-group">
                     <div class="row">
