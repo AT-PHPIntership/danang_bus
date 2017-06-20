@@ -3,13 +3,26 @@ $(document).ready(function() {
   $(".btn-search").click(function () {
     var formData;
     var busstops;
-    var distance;  
+    var distance;
+    var infowindow = new google.maps.InfoWindow();  
     if($('#address').val()!=''){
       var full_address = $('#address').val()+',Đà Nẵng, Việt Nam';
       showAddress(full_address);
     }
     else {
-      alert('Vui lòng nhập địa điểm của bạn ')
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var full_address = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        mymap.setCenter(full_address);
+        mymap.setZoom(14);
+        infowindow.setPosition(full_address);
+        infowindow.setContent('Your address');
+        infowindow.open(mymap);
+        drawCircle(full_address);
+      }, function() {
+        });
     }
     $.ajaxSetup({
       headers: {
@@ -21,7 +34,7 @@ $(document).ready(function() {
       status: $('#status').val(),
     }
     $.ajax({
-      type: 'POST',
+      type: 'GET',
       url: '/search',
       cache: false,
       data: formData,
