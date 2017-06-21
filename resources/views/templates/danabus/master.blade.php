@@ -24,7 +24,9 @@
 	<!-- start footer -->
 	@include('templates.danabus.footer')
 	<!-- end footer -->
-	<script src="{{asset('danangbus/js/main.js')}}"></script>
+	<script src="{{asset('danangbus/js/dnbus.main.js')}}"></script>
+	<script src="{{asset('danangbus/js/dnbus.routesmodule.js')}}"></script>
+	<script src="{{asset('danangbus/js/dnbus.searchmodule.js')}}"></script>
 </body>
 </html>
 
