@@ -46,10 +46,10 @@ class FeedbackController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $user = Auth::user()->email;
+        $adminMail = Auth::user()->email;
         Feedback::findOrFail($id)->update($input);
-        Mail::send('admin.feedbacks.content', $input, function ($message) use ($input, $user) {
-            $message->from($user, 'Admin');
+        Mail::send('admin.feedbacks.content', $input, function ($message) use ($input, $adminMail) {
+            $message->from($adminMail, config('constant.admin'));
             $message->to($input['email'])->subject(trans('feedbacks.subject'));
         });
         Session::flash('success', trans('messages.feedback_reply_success'));
