@@ -15,8 +15,9 @@ class RouteController extends Controller
      */
     public function index()
     {
-        $interprovincial = Route::interprovincial()->get();
-        $innercity = Route::innercity()->get();
+        $interprovincial = Route::interprovincial()->with('backwardDirections', 'forwardDirections', 'forwardDirections.stop', 'backwardDirections.stop')->get();
+        $innercity = Route::innercity()->with('backwardDirections', 'forwardDirections', 'forwardDirections.stop', 'backwardDirections.stop')->get();
+        // dd($interprovincial->toArray());
         return view('danabus.routes.index', ['interprovincial' => $interprovincial, 'innercity' => $innercity]);
     }
 

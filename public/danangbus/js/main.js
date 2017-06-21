@@ -35,9 +35,28 @@ $(document).ready(function() {
     });
   });
 
-  if(typeof(routeJSONStr) != "undefined" && routeJSONStr !== null){
-    showBusStopOnMap();
-  }
+   var colors= ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 
+  'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
+  'silver', 'teal', 'white', 'yellow'];
+
+
+    if(typeof(routeJSONStr) != "undefined" && routeJSONStr !== null){
+      var busstops = JSON.parse(routeJSONStr);
+      console.log(busstops);
+      showBusStopOnMap(busstops,colors);
+    }
+
+    if(typeof(routesJSON) != "undefined" && routesJSON !== null){
+      var routes = JSON.parse(routesJSON);
+      console.log(routes);
+      $.each( routes, function( index, route){
+        console.log('routes');
+        console.log(route);
+        if (index ==0) {
+        showBusStopOnMap(route,colors[index]);}
+      });
+      
+    }
 });
 
 var mymap = new google.maps.Map(document.getElementById('mymap'), {
@@ -46,8 +65,7 @@ var mymap = new google.maps.Map(document.getElementById('mymap'), {
   mapTypeId: 'terrain'
 }); 
 
-function showBusStopOnMap() {
-  var busstops = JSON.parse(routeJSONStr);
+function showBusStopOnMap(busstops,color) {
   var forward_path = [];  
   var backward_path = [];
   var waypoints_backward;
@@ -56,12 +74,12 @@ function showBusStopOnMap() {
   var directions_backward = new google.maps.DirectionsService;
   var directions_display_forward = new google.maps.DirectionsRenderer({
     polylineOptions: {
-      strokeColor: 'green'
+      strokeColor: color
     },
   });
   var directions_display_backward = new google.maps.DirectionsRenderer({
     polylineOptions: {
-      strokeColor: 'red'
+      strokeColor: color
     },
   }); 
   var mymap = new google.maps.Map(document.getElementById('mymap'), {
@@ -105,6 +123,8 @@ function drawDirection(directions, directions_display,path,waypoints){
     travelMode: 'DRIVING',
   }, function(response, status) {
       if (status === 'OK') {
+        console.log(status);
+        console.log(response);
         directions_display.setDirections(response);
       } else {
         console.log('Directions request failed due to ' + status);
