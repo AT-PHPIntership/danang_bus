@@ -2,7 +2,6 @@ DNBus.RoutesModule = {
 
   /**
   * show all busstop by maker on map
-  * @return no
   */
   showBusStopOnMap : function () {
     var busstops = JSON.parse(routeJSONStr);
@@ -59,7 +58,6 @@ DNBus.RoutesModule = {
   * @param {Object} directions_display
   * @param {Array} path
   * @param {Array} waypoints
-  * @return no
   */
   drawDirection : function (directions, directions_display,path,waypoints){
     var path_length = path.length;

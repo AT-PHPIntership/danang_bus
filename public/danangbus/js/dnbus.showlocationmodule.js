@@ -2,7 +2,6 @@ DNBus.ShowLocation = {
 
 	/**
   * Get your location by Geolocation and show it on map
-  * @return no
   */
 	showYourLocation: function(){
 		navigator.geolocation.getCurrentPosition(function(position) {
