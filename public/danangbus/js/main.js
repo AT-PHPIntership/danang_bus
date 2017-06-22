@@ -43,7 +43,14 @@ $(document).ready(function() {
     if(typeof(routeJSONStr) != "undefined" && routeJSONStr !== null){
       var busstops = JSON.parse(routeJSONStr);
       console.log(busstops);
-      showBusStopOnMap(busstops,colors);
+      r.push(busstops.forward_directions);
+      r.push(busstops.backward_directions);
+
+      $.each( r, function( index, v){
+        console.log(colors[index]);
+        test(v, colors[index]);
+      
+      });
     }
 
     if(typeof(routesJSON) != "undefined" && routesJSON !== null){
@@ -53,15 +60,19 @@ $(document).ready(function() {
         console.log('routes');
         console.log(route);
         r.push(route.forward_directions);
-
-        
-          //showBusStopOnMap(route,colors[index]);
-
+        r.push(route.backward_directions);
       });
 
       console.log(r);
       $.each( r, function( index, v){
-        abc(v, colors[index]);
+        if(index % 2 != 0){
+        console.log(colors[index--]);
+        test(v, colors[index--]);
+        }
+        else {
+          console.log(colors[index]);
+          test(v, colors[index]);
+        }
       });
       
       
@@ -74,41 +85,41 @@ var mymap = new google.maps.Map(document.getElementById('mymap'), {
   mapTypeId: 'terrain'
 }); 
 
-function showBusStopOnMap(busstops,color) {
-  var forward_path = [];  
-  //var backward_path = [];
-  var waypoints_backward;
-  var waypoints_forward;
-  var directions_forward = new google.maps.DirectionsService;
-  //var directions_backward = new google.maps.DirectionsService;
-  var directions_display_forward = new google.maps.DirectionsRenderer({
-    polylineOptions: {
-      strokeColor: color
-    },
-  });
-  // var directions_display_backward = new google.maps.DirectionsRenderer({
-  //   polylineOptions: {
-  //     strokeColor: color
-  //   },
-  // }); 
-  // var mymap = new google.maps.Map(document.getElementById('mymap'), {
-  //   zoom: 10,
-  //   center: {lat: 16.058980, lng: 108.204351},
-  //   mapTypeId: 'terrain'
-  // });
-  directions_display_forward.setMap(mymap);
-  //directions_display_backward.setMap(mymap);
-  $.each( busstops.forward_directions, function( index, busstop ){
-    forward_path.push({lat: Number(busstop.stop.lat), lng: Number(busstop.stop.lng)});
-  });
-  // $.each( busstops.backward_directions, function( index, busstop ){
-  //   backward_path.push({lat: Number(busstop.stop.lat), lng: Number(busstop.stop.lng)});
-  // });
-  waypoints_forward = getWaypoint(forward_path);
-  //waypoints_backward = getWaypoint(backward_path);
-  drawDirection(directions_forward,directions_display_forward,forward_path,waypoints_forward);
-  //drawDirection(directions_backward,directions_display_backward,backward_path,waypoints_backward);
-}
+// function showBusStopOnMap(busstops,color) {
+//   var forward_path = [];  
+//   //var backward_path = [];
+//   var waypoints_backward;
+//   var waypoints_forward;
+//   var directions_forward = new google.maps.DirectionsService;
+//   //var directions_backward = new google.maps.DirectionsService;
+//   var directions_display_forward = new google.maps.DirectionsRenderer({
+//     polylineOptions: {
+//       strokeColor: color
+//     },
+//   });
+//   // var directions_display_backward = new google.maps.DirectionsRenderer({
+//   //   polylineOptions: {
+//   //     strokeColor: color
+//   //   },
+//   // }); 
+//   // var mymap = new google.maps.Map(document.getElementById('mymap'), {
+//   //   zoom: 10,
+//   //   center: {lat: 16.058980, lng: 108.204351},
+//   //   mapTypeId: 'terrain'
+//   // });
+//   directions_display_forward.setMap(mymap);
+//   //directions_display_backward.setMap(mymap);
+//   $.each( busstops.forward_directions, function( index, busstop ){
+//     forward_path.push({lat: Number(busstop.stop.lat), lng: Number(busstop.stop.lng)});
+//   });
+//   // $.each( busstops.backward_directions, function( index, busstop ){
+//   //   backward_path.push({lat: Number(busstop.stop.lat), lng: Number(busstop.stop.lng)});
+//   // });
+//   waypoints_forward = getWaypoint(forward_path);
+//   //waypoints_backward = getWaypoint(backward_path);
+//   drawDirection(directions_forward,directions_display_forward,forward_path,waypoints_forward);
+//   //drawDirection(directions_backward,directions_display_backward,backward_path,waypoints_backward);
+// }
 
 function getWaypoint(path){
   var path_length = path.length;
@@ -201,7 +212,7 @@ function showNearbusstop(full_address, busstops){
   });
 }
 
-function abc(busstops,color){
+function test(busstops,color){
   var path =[];
     var waypoints;
     var directions = new google.maps.DirectionsService;

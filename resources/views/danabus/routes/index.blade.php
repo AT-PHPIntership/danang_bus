@@ -42,7 +42,7 @@
   </div> 
 
   <script type="text/javascript">
-    var routesJSON=  '<?php echo $interprovincial->toJson();?>';
+    var routesJSON=  '<?php echo $routes->toJson();?>';
   </script>
 
 @endsection
