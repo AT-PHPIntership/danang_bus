@@ -12,11 +12,11 @@
           <div class="box-body">
             <div class="form-group ">
               <label>{{trans('admin_feedback.email')}}</label>
-              <input type="email" name="email" class="form-control"  value="{{$feedback->email}}" disabled="">
+              <input type="email" name="email" class="form-control"  value="{{$feedback->email}}" readonly>
             </div>
             <div class="form-group ">
               <label>{{trans('admin_feedback.content')}}</label>
-              <input type="text" class="form-control"  name="content" value="{{$feedback->content}}" disabled="">
+              <input type="text" class="form-control"  name="content" value="{{$feedback->content}}" readonly>
             </div>
             <div class="form-group ">
               <label>{{trans('admin_feedback.reply')}}</label>

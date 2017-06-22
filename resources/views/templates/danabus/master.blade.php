@@ -26,6 +26,7 @@
 	<!-- end footer -->
 	<script src="{{asset('danangbus/js/dnbus.main.js')}}"></script>
 	<script src="{{asset('danangbus/js/dnbus.routesmodule.js')}}"></script>
+	<script src="{{asset('danangbus/js/dnbus.showlocationmodule.js')}}"></script>
 	<script src="{{asset('danangbus/js/dnbus.searchmodule.js')}}"></script>
 </body>
 </html>

@@ -1,8 +1,12 @@
-var DNBus = {};
 DNBus.SearchModule = {
 
   routes : [],
 
+  /**
+  * Draw a circle with a radius of 2km
+  * @param {Object} your_address
+  * @return no
+  */
   drawCircle : function(your_address){
     var addressCircle = new google.maps.Circle({
       strokeColor: '#FF0000',
@@ -16,6 +20,11 @@ DNBus.SearchModule = {
     });
   },
 
+  /**
+  * show your location on map with infowindow
+  * @param {String} full_address
+  * @return callback
+  */
   showAddress : function(full_address, callback){
     var geocoder = new google.maps.Geocoder();
     var infowindow = new google.maps.InfoWindow();
@@ -40,7 +49,12 @@ DNBus.SearchModule = {
     });
   },
 
-  ajaxFunction : function(data, callback){
+  /**
+  * send data to controller and get all busstop of route
+  * @param {Object} data
+  * @return callback
+  */
+  getBusstopsOfRoute : function(data, callback){
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -67,7 +81,12 @@ DNBus.SearchModule = {
     });
   },
 
-    getRoutes : function(data, callbackRoutes){
+  /**
+  * get array routes
+  * @param {Object} data
+  * @return callbackRoutes
+  */
+  getRoutes : function(data, callbackRoutes){
     $.each( data, function( index, busstop ) {
       $.each( busstop.direction, function( index, route ){ 
         if (DNBus.SearchModule.routes[route.route_id] == undefined) {
@@ -81,35 +100,12 @@ DNBus.SearchModule = {
     });
   },
 
-  getWaypoint : function (path){
-    var path_length = path.length;
-    var points = [];
-    for(var i = 1; i < path_length-1; i++) { 
-      points.push({
-        location: path[i],
-        stopover: true  
-      });
-    }
-    return points;
-  },
-
-  drawDirection : function (directions, directions_display,path,waypoints){
-    var path_length = path.length;
-    directions.route({
-      origin: path[0],
-      waypoints: waypoints,
-      optimizeWaypoints: true,
-      destination: path[path_length-1],
-      travelMode: 'DRIVING',
-    }, function(response, status) {
-        if (status === 'OK') {
-          directions_display.setDirections(response);
-        } else {
-          console.log('Directions request failed due to ' + status);
-        }
-    });
-  },
-
+  /**
+  * draw polyline from start busstop to destiantion busstop
+  * @param {Object} busstops
+  * @param {Object} color
+  * @return no
+  */
   drawPolyline : function(busstops,color){
     var path =[];
     var waypoints;
@@ -123,8 +119,8 @@ DNBus.SearchModule = {
     $.each( busstops, function( index, busstop ){
       path.push({lat: Number(busstop.lat), lng: Number(busstop.lng)});
     });
-    waypoints = DNBus.SearchModule.getWaypoint(path);
-    DNBus.SearchModule.drawDirection(directions,directions_display,path,waypoints);
+    waypoints = DNBus.RoutesModule.getWaypoint(path);
+    DNBus.RoutesModule.drawDirection(directions,directions_display,path,waypoints);
   },
 
 };

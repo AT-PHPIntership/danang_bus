@@ -1,6 +1,9 @@
-var DNBus = {};
 DNBus.RoutesModule = {
 
+  /**
+  * show all busstop by maker on map
+  * @return no
+  */
   showBusStopOnMap : function () {
     var busstops = JSON.parse(routeJSONStr);
     var forward_path = [];  
@@ -33,6 +36,11 @@ DNBus.RoutesModule = {
     DNBus.RoutesModule.drawDirection(directions_backward,directions_display_backward,backward_path,waypoints_backward);
   },
 
+  /**
+  * get all waypoint of path
+  * @param {Array} path
+  * @return points
+  */
   getWaypoint : function (path){
     var path_length = path.length;
     var points = [];
@@ -45,6 +53,14 @@ DNBus.RoutesModule = {
     return points;
   },
 
+  /**
+  * draw Direction of routes
+  * @param {Object} directions
+  * @param {Object} directions_display
+  * @param {Array} path
+  * @param {Array} waypoints
+  * @return no
+  */
   drawDirection : function (directions, directions_display,path,waypoints){
     var path_length = path.length;
     directions.route({
