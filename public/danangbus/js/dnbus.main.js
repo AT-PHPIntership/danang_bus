@@ -37,11 +37,37 @@ $(document).ready(function() {
   });
 
   if(typeof(routeJSONStr) != "undefined" && routeJSONStr !== null){
-    DNBus.RoutesModule.showBusStopOnMap();
+    var routeJson = JSON.parse(routeJSONStr);
+    route.push(routeJson.forward_directions);
+    route.push(routeJson.backward_directions);
+    $.each( route, function( index, busstop){
+      DNBus.RoutesModule.showBusstopOnMap(busstop, colors[index]);
+    });
   }
+
+  if(typeof(routesJSONStr) != "undefined" && routesJSONStr !== null){
+    var routesJSON = JSON.parse(routesJSONStr);
+    $.each( routesJSON, function( index, route){
+      routes.push(route.forward_directions);
+      routes.push(route.backward_directions);
+    });
+    $.each( routes, function( index, route){
+      if(index % 2 != 0){
+        DNBus.RoutesModule.showBusstopOnMap(route, colors[index--]);
+      }
+      else {
+        DNBus.RoutesModule.showBusstopOnMap(route, colors[index]);
+      }
+    });
+  }  
+
 });
 
 var DNBus = {};
+
+var routes = [];
+
+var route = [];
 
 var colors= ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 
 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
