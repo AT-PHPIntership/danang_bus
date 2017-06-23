@@ -1,11 +1,11 @@
 DNBus.RoutesModule = {
-
   /**
   * show all busstop by maker on map
-  * @param {object} busstops
-  * @param {String} color
+  * 
+  * @param object busstops
+  * @param String color
   */
-  showBusstopOnMap : function(busstops,color){
+  showBusstopOnMap : function(busstops, color){
     var path =[];
     var waypoints;
     var directions = new google.maps.DirectionsService;
@@ -15,16 +15,18 @@ DNBus.RoutesModule = {
       },
     });
     directions_display.setMap(mymap);
-    $.each( busstops, function( index, busstop ){
+    $.each( busstops, function(index, busstop ){
       path.push({lat: Number(busstop.stop.lat), lng: Number(busstop.stop.lng)});
     });
     waypoints = DNBus.RoutesModule.getWaypoint(path);
-    DNBus.RoutesModule.drawDirection(directions,directions_display,path,waypoints);
+    DNBus.RoutesModule.drawDirection(directions, directions_display, path, waypoints);
   },
 
   /**
   * get all waypoint of path
-  * @param {Array} path
+  * 
+  * @param Array path
+  * 
   * @return points
   */
   getWaypoint : function (path){
@@ -41,12 +43,13 @@ DNBus.RoutesModule = {
 
   /**
   * draw Direction of routes
-  * @param {Object} directions
-  * @param {Object} directions_display
-  * @param {Array} path
-  * @param {Array} waypoints
+  * 
+  * @param Object directions
+  * @param Object directions_display
+  * @param Array path
+  * @param Array waypoints
   */
-  drawDirection : function (directions, directions_display,path,waypoints){
+  drawDirection : function (directions, directions_display, path, waypoints){
     var path_length = path.length;
     directions.route({
       origin: path[0],
