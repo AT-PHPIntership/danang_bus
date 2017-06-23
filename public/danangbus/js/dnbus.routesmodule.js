@@ -1,5 +1,4 @@
 DNBus.RoutesModule = {
-
   /**
   * show all busstop by maker on map
   */
@@ -23,21 +22,22 @@ DNBus.RoutesModule = {
     }); 
     directions_display_forward.setMap(mymap);
     directions_display_backward.setMap(mymap);
-    $.each( busstops.forward_directions, function( index, busstop ){
+    $.each( busstops.forward_directions, function(index, busstop ){
       forward_path.push({lat: Number(busstop.stop.lat), lng: Number(busstop.stop.lng)});
     });
-    $.each( busstops.backward_directions, function( index, busstop ){
+    $.each( busstops.backward_directions, function(index, busstop ){
       backward_path.push({lat: Number(busstop.stop.lat), lng: Number(busstop.stop.lng)});
     });
     waypoints_forward = DNBus.RoutesModule.getWaypoint(forward_path);
     waypoints_backward = DNBus.RoutesModule.getWaypoint(backward_path);
-    DNBus.RoutesModule.drawDirection(directions_forward,directions_display_forward,forward_path,waypoints_forward);
-    DNBus.RoutesModule.drawDirection(directions_backward,directions_display_backward,backward_path,waypoints_backward);
+    DNBus.RoutesModule.drawDirection(directions_forward, directions_display_forward, forward_path, waypoints_forward);
+    DNBus.RoutesModule.drawDirection(directions_backward, directions_display_backward, backward_path, waypoints_backward);
   },
 
   /**
   * get all waypoint of path
   * @param {Array} path
+  * 
   * @return points
   */
   getWaypoint : function (path){
@@ -59,7 +59,7 @@ DNBus.RoutesModule = {
   * @param {Array} path
   * @param {Array} waypoints
   */
-  drawDirection : function (directions, directions_display,path,waypoints){
+  drawDirection : function (directions, directions_display, path, waypoints){
     var path_length = path.length;
     directions.route({
       origin: path[0],

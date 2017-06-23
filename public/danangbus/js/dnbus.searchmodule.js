@@ -1,9 +1,9 @@
 DNBus.SearchModule = {
-
   routes : [],
 
   /**
   * Draw a circle with a radius of 2km
+  * 
   * @param {Array} your_address
   */
   drawCircle : function(your_address){
@@ -21,8 +21,10 @@ DNBus.SearchModule = {
 
   /**
   * show your location on map with infowindow
+  * 
   * @param {String} full_address
   * @param {Function} full_address
+  * 
   * @return callback
   */
   showAddress : function(full_address, callback){
@@ -51,8 +53,10 @@ DNBus.SearchModule = {
 
   /**
   * send data to controller and get all busstop of route
+  * 
   * @param {Object} data
   * @param {Function} callback
+  * 
   * @return callback
   */
   getBusstopsOfRoute : function(data, callback){
@@ -67,7 +71,7 @@ DNBus.SearchModule = {
       cache: false,
       data: data,
       success: function (data) {
-        $.each( data, function( index, busstop ) {    
+        $.each( data, function(index, busstop ) {    
           var marker = new google.maps.Marker({
             map: mymap,
             position: {lat: Number(busstop.lat), lng: Number(busstop.lng)},
@@ -84,13 +88,15 @@ DNBus.SearchModule = {
 
   /**
   * get array routes
+  * 
   * @param {Object} data
   * @param {Function} callbackRoutes
+  * 
   * @return callbackRoutes
   */
   getRoutes : function(data, callbackRoutes){
-    $.each( data, function( index, busstop ) {
-      $.each( busstop.direction, function( index, route ){ 
+    $.each( data, function(index, busstop ) {
+      $.each( busstop.direction, function(index, route ){ 
         if (DNBus.SearchModule.routes[route.route_id] == undefined) {
           DNBus.SearchModule.routes[route.route_id] = [];
         }
@@ -104,10 +110,11 @@ DNBus.SearchModule = {
 
   /**
   * draw polyline from start busstop to destiantion busstop
+  * 
   * @param {Object} busstops
   * @param {Object} color
   */
-  drawPolyline : function(busstops,color){
+  drawPolyline : function(busstops, color){
     var path =[];
     var waypoints;
     var directions = new google.maps.DirectionsService;
@@ -117,11 +124,11 @@ DNBus.SearchModule = {
       },
     });
     directions_display.setMap(mymap);
-    $.each( busstops, function( index, busstop ){
+    $.each( busstops, function(index, busstop ){
       path.push({lat: Number(busstop.lat), lng: Number(busstop.lng)});
     });
     waypoints = DNBus.RoutesModule.getWaypoint(path);
-    DNBus.RoutesModule.drawDirection(directions,directions_display,path,waypoints);
+    DNBus.RoutesModule.drawDirection(directions, directions_display, path, waypoints);
   },
 
 };

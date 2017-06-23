@@ -33,7 +33,7 @@
       <div class="title">
        <h2 class="map">{{trans('index.map')}}</h2>
       </div>
-      <div id="mymap" style="height: 800px; width: 80%; margin: auto;">
+      <div id="mymap">
       </div>   
     </div>
   </div>
