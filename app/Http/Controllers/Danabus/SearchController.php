@@ -32,11 +32,11 @@ class SearchController extends Controller
         if ($request->ajax()) {
             $lat = $request->get('lat');
             $lng = $request->get('lng');
-            $raw = "(6371 * acos(cos(radians($lat)) * cos(radians(lat)) * cos(radians(lng) 
-                - radians($lng)) 
-                + sin(radians($lat)) 
+            $raw = "(6371 * acos(cos(radians(?)) * cos(radians(lat)) * cos(radians(lng) 
+                - radians(?)) 
+                + sin(radians(?)) 
                 * sin(radians(lat))))";
-            $stops = Stop::with('direction', 'direction.routes')->whereRaw("{$raw} < ?", [$radius])->get();
+            $stops = Stop::with('direction', 'direction.routes')->whereRaw("{$raw} < ?", [$lat, $lng, $lat, $radius])->get();
             return response()->json($stops);
         }
     }
