@@ -36,7 +36,8 @@ DNBus.RoutesModule = {
 
   /**
   * get all waypoint of path
-  * @param {Array} path
+  * 
+  * @param Array path
   * 
   * @return points
   */
@@ -54,10 +55,11 @@ DNBus.RoutesModule = {
 
   /**
   * draw Direction of routes
-  * @param {Object} directions
-  * @param {Object} directions_display
-  * @param {Array} path
-  * @param {Array} waypoints
+  * 
+  * @param Object directions
+  * @param Object directions_display
+  * @param Array path
+  * @param Array waypoints
   */
   drawDirection : function (directions, directions_display, path, waypoints){
     var path_length = path.length;

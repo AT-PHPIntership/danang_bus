@@ -4,7 +4,7 @@ DNBus.SearchModule = {
   /**
   * Draw a circle with a radius of 2km
   * 
-  * @param {Array} your_address
+  * @param Array your_address
   */
   drawCircle : function(your_address){
     var addressCircle = new google.maps.Circle({
@@ -22,8 +22,8 @@ DNBus.SearchModule = {
   /**
   * show your location on map with infowindow
   * 
-  * @param {String} full_address
-  * @param {Function} full_address
+  * @param String full_address
+  * @param Function full_address
   * 
   * @return callback
   */
@@ -54,8 +54,8 @@ DNBus.SearchModule = {
   /**
   * send data to controller and get all busstop of route
   * 
-  * @param {Object} data
-  * @param {Function} callback
+  * @param Object data
+  * @param Function callback
   * 
   * @return callback
   */
@@ -89,8 +89,8 @@ DNBus.SearchModule = {
   /**
   * get array routes
   * 
-  * @param {Object} data
-  * @param {Function} callbackRoutes
+  * @param Object data
+  * @param Function callbackRoutes
   * 
   * @return callbackRoutes
   */
@@ -111,8 +111,8 @@ DNBus.SearchModule = {
   /**
   * draw polyline from start busstop to destiantion busstop
   * 
-  * @param {Object} busstops
-  * @param {Object} color
+  * @param Object busstops
+  * @param Object color
   */
   drawPolyline : function(busstops, color){
     var path =[];
