@@ -9,19 +9,30 @@ var mymap = new google.maps.Map(document.getElementById('mymap'), {
   center: {lat: 16.058980, lng: 108.204351},
   mapTypeId: 'terrain'
 }); 
+var newmap;
+
 
 $(document).ready(function() {
 
   DNBus.ShowLocation.showYourLocation();
 
-  $('#input-starting-point').blur(function() {   
+  $('#input-starting-point').blur(function() {  
+    newmap = new google.maps.Map(document.getElementById('mymap'), {
+      zoom: 14,
+      center: {lat: 16.058980, lng: 108.204351},
+      mapTypeId: 'terrain'
+    });
     var data;
+    var infowindow = new google.maps.InfoWindow();
     var starting_point = $('#input-starting-point').val()+',Đà Nẵng, Việt Nam';
     DNBus.SearchModule.showAddress(starting_point, function(starting_point_latlng){
       data = {
         lat: starting_point_latlng.lat,
         lng: starting_point_latlng.lng,
-      }
+      };
+      infowindow.setPosition(data);
+      infowindow.setContent('Điểm đi ');
+      infowindow.open(newmap);
       DNBus.SearchModule.getBusstopsOfRoute(data, function() {
         //TODO
       });
@@ -30,12 +41,16 @@ $(document).ready(function() {
 
   $('#input-destination').blur(function() { 
     var data;
+    var infowindow = new google.maps.InfoWindow();
     var destination = $('#input-destination').val()+',Đà Nẵng, Việt Nam';
     DNBus.SearchModule.showAddress(destination,function(destination_latlng){
       data = {
         lat: destination_latlng.lat,
         lng: destination_latlng.lng,
-      }
+      };
+      infowindow.setPosition(data);
+      infowindow.setContent('Điểm đến ');
+      infowindow.open(newmap);
       DNBus.SearchModule.getBusstopsOfRoute(data, function(callback, routes) {
         if (callback) {
           for (var i = 0; i <= routes.length; i++) {
