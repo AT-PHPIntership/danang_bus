@@ -27,7 +27,7 @@ DNBus.ShowLocation = {
         url: '/search',
         data: data,
         success: function(data) {
-          $.each( data, function( index, busstop ){
+          $.each( data, function(index, busstop ){
             var marker = new google.maps.Marker({
               map: mymap,
               position: {lat: Number(busstop.lat), lng: Number(busstop.lng)},

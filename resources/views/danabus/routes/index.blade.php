@@ -30,6 +30,18 @@
         </div>
       </div>
     </div>
+    <div class="section secondary-section">
+      <div class="container">
+        <div class="title">
+          <h2 class="map">{!! trans('index.map') !!} </h2>
+        </div>
+      </div>
+      <div id="mymap">   
+      </div>   
+    </div>
   </div>
+  <script type="text/javascript">
+    var routesJSONStr=  '<?php echo $routes->toJson();?>';
+  </script>
 @endsection
   

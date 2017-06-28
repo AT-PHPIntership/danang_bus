@@ -1,3 +1,15 @@
+var DNBus = {};
+var routes = [];
+var route = [];
+var colors= ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 
+'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
+'silver', 'teal', 'white', 'yellow'];
+var mymap = new google.maps.Map(document.getElementById('mymap'), {
+  zoom: 14,
+  center: {lat: 16.058980, lng: 108.204351},
+  mapTypeId: 'terrain'
+}); 
+
 $(document).ready(function() {
 
   DNBus.ShowLocation.showYourLocation();
@@ -37,16 +49,28 @@ $(document).ready(function() {
   });
 
   if(typeof(routeJSONStr) != "undefined" && routeJSONStr !== null){
-    DNBus.RoutesModule.showBusStopOnMap();
+    var routeJson = JSON.parse(routeJSONStr);
+    route.push(routeJson.forward_directions);
+    route.push(routeJson.backward_directions);
+    $.each( route, function( index, busstop){
+      DNBus.RoutesModule.showBusstopOnMap(busstop, colors[index]);
+    });
   }
-});
 
-var DNBus = {};
-var colors= ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 
-'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
-'silver', 'teal', 'white', 'yellow'];
-var mymap = new google.maps.Map(document.getElementById('mymap'), {
-  zoom: 14,
-  center: {lat: 16.058980, lng: 108.204351},
-  mapTypeId: 'terrain'
-}); 
+  if(typeof(routesJSONStr) != "undefined" && routesJSONStr !== null){
+    var routesJSON = JSON.parse(routesJSONStr);
+    $.each( routesJSON, function( index, route){
+      routes.push(route.forward_directions);
+      routes.push(route.backward_directions);
+    });
+    $.each( routes, function( index, route){
+      if(index % 2 != 0){
+        DNBus.RoutesModule.showBusstopOnMap(route, colors[index--]);
+      }
+      else {
+        DNBus.RoutesModule.showBusstopOnMap(route, colors[index]);
+      }
+    });
+  }  
+
+});

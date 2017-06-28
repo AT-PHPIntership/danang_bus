@@ -112,7 +112,7 @@ DNBus.SearchModule = {
   * draw polyline from start busstop to destiantion busstop
   * 
   * @param Object busstops
-  * @param Object color
+  * @param String color
   */
   drawPolyline : function(busstops, color){
     var path =[];

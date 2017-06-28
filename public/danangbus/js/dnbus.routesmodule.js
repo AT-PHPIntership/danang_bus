@@ -1,37 +1,25 @@
 DNBus.RoutesModule = {
   /**
   * show all busstop by maker on map
+  * 
+  * @param object busstops
+  * @param String color
   */
-  showBusStopOnMap : function () {
-    var busstops = JSON.parse(routeJSONStr);
-    var forward_path = [];  
-    var backward_path = [];
-    var waypoints_backward;
-    var waypoints_forward;
-    var directions_forward = new google.maps.DirectionsService;
-    var directions_backward = new google.maps.DirectionsService;
-    var directions_display_forward = new google.maps.DirectionsRenderer({
+  showBusstopOnMap : function(busstops, color){
+    var path =[];
+    var waypoints;
+    var directions = new google.maps.DirectionsService;
+    var directions_display = new google.maps.DirectionsRenderer({
       polylineOptions: {
-        strokeColor: 'green'
+        strokeColor: color
       },
     });
-    var directions_display_backward = new google.maps.DirectionsRenderer({
-      polylineOptions: {
-        strokeColor: 'red'
-      },
-    }); 
-    directions_display_forward.setMap(mymap);
-    directions_display_backward.setMap(mymap);
-    $.each( busstops.forward_directions, function(index, busstop ){
-      forward_path.push({lat: Number(busstop.stop.lat), lng: Number(busstop.stop.lng)});
+    directions_display.setMap(mymap);
+    $.each( busstops, function(index, busstop ){
+      path.push({lat: Number(busstop.stop.lat), lng: Number(busstop.stop.lng)});
     });
-    $.each( busstops.backward_directions, function(index, busstop ){
-      backward_path.push({lat: Number(busstop.stop.lat), lng: Number(busstop.stop.lng)});
-    });
-    waypoints_forward = DNBus.RoutesModule.getWaypoint(forward_path);
-    waypoints_backward = DNBus.RoutesModule.getWaypoint(backward_path);
-    DNBus.RoutesModule.drawDirection(directions_forward, directions_display_forward, forward_path, waypoints_forward);
-    DNBus.RoutesModule.drawDirection(directions_backward, directions_display_backward, backward_path, waypoints_backward);
+    waypoints = DNBus.RoutesModule.getWaypoint(path);
+    DNBus.RoutesModule.drawDirection(directions, directions_display, path, waypoints);
   },
 
   /**
