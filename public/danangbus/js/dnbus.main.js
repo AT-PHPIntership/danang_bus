@@ -1,3 +1,15 @@
+var DNBus = {};
+var routes = [];
+var route = [];
+var colors= ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 
+'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
+'silver', 'teal', 'white', 'yellow'];
+var mymap = new google.maps.Map(document.getElementById('mymap'), {
+  zoom: 14,
+  center: {lat: 16.058980, lng: 108.204351},
+  mapTypeId: 'terrain'
+}); 
+
 $(document).ready(function() {
 
   DNBus.ShowLocation.showYourLocation();
@@ -62,15 +74,3 @@ $(document).ready(function() {
   }  
 
 });
-
-var DNBus = {};
-var routes = [];
-var route = [];
-var colors= ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 
-'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
-'silver', 'teal', 'white', 'yellow'];
-var mymap = new google.maps.Map(document.getElementById('mymap'), {
-  zoom: 14,
-  center: {lat: 16.058980, lng: 108.204351},
-  mapTypeId: 'terrain'
-}); 
