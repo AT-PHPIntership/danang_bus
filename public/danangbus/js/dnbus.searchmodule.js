@@ -13,7 +13,7 @@ DNBus.SearchModule = {
       strokeWeight: 2,
       fillColor: '#FF0000',
       fillOpacity: 0.35,
-      map: mymap,
+      map: newmap,
       center: your_address,
       radius: 2000,
     });
@@ -29,7 +29,6 @@ DNBus.SearchModule = {
   */
   showAddress : function(full_address, callback){
     var geocoder = new google.maps.Geocoder();
-    var infowindow = new google.maps.InfoWindow();
     var your_location ;
     geocoder.geocode({
         address : full_address,
@@ -37,11 +36,8 @@ DNBus.SearchModule = {
       function(results, status) {
         if (status.toLowerCase() == 'ok') {
         your_location = new google.maps.LatLng(results[0].geometry.location.lat(),results[0].geometry.location.lng());
-        mymap.setCenter(your_location);
-        mymap.setZoom(14);
-        infowindow.setPosition(your_location);
-        infowindow.setContent('Your location');
-        infowindow.open(mymap);
+        newmap.setCenter(your_location);
+        newmap.setZoom(14);
         DNBus.SearchModule.drawCircle(your_location);
         callback({
           lat: results[0].geometry.location.lat(),
@@ -73,11 +69,11 @@ DNBus.SearchModule = {
       success: function (data) {
         $.each( data, function(index, busstop ) {    
           var marker = new google.maps.Marker({
-            map: mymap,
+            map: newmap,
             position: {lat: Number(busstop.lat), lng: Number(busstop.lng)},
             title: busstop.adresss
           });
-          marker.setMap(mymap);
+          marker.setMap(newmap);
         });
         DNBus.SearchModule.getRoutes(data, function(callbackRoutes, routes) {
           return callback(true, routes);
@@ -123,7 +119,7 @@ DNBus.SearchModule = {
         strokeColor: color
       },
     });
-    directions_display.setMap(mymap);
+    directions_display.setMap(newmap);
     $.each( busstops, function(index, busstop ){
       path.push({lat: Number(busstop.lat), lng: Number(busstop.lng)});
     });
